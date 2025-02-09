@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-background: #fff;
+    --color-text: #1e1e1e;
+    --color-muted: #636363;
+    --color-border: #e5e5e5;
+    --color-primary: #007aff; 
+    --font-family-sans: 'Inter', sans-serif;
+    --font-family-serif: 'Merriweather', serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.6;
+    --spacing-unit: 16px;
+    --sidebar-width: 250px; 
+    --sidebar-background: #f9f9f9; 
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+}
+
+.page-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.menu {
+    padding: var(--spacing-unit) 0;
+}
+
+.menu_theme_notion {
+    background-color: var(--sidebar-background);
+    border-right: var(--color-border);
+}
+
+.menu_left {
+    width: var(--sidebar-width);
+    border-right: 1px solid;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; 
+    overflow-y: auto; 
+}
+
+.menu__list {
+    list-style: none;
+}
+  
+.menu__item {
+    padding: 0.75em 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.menu__item_theme_notion {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.menu__link {
+    text-decoration: none;
+    display: block;
+}
+
+.menu__link-theme_notion {
+    color: var(--color-text);
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+  
+.menu__link-theme_notion:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-container {
+    padding: var(--spacing-unit);
+    margin: 0 auto;
+}
+
+.main-container_menu-left {
+    margin-left: var(--sidebar-width); 
+    flex: 1;
+    max-width: 800px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.main-title__heading {
+    font-family: sans-serif;
+}
+
+.main-title__heading_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
+.participat-form {
+    display: block;
+}
+
+.participat-form__label {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.participat-form__label_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
+.participat-form__input {
+    width: 100%;
+    padding: 0.75em;
+    margin-bottom: var(--spacing-unit);
+    border-radius: 6px;
+    border: 1px solid;
+}
+
+.participat-form__input_theme_notion {
+    font-family: var(--font-family-sans);
+    font-size: 1em;
+    border: 1px solid var(--color-border);
+}
+
+.participat-form__input_theme_notion:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.select-exam {
+    display: block;
+}
+
+.select-exam__heading {
+    text-align: left;
+    font-size: 2rem;
+}
+
+.select-exam__heading_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
+.select-exam__button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.select-exam__button_theme_notion {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    font-family: var(--font-family-sans);
+}
+
+.select-exam__button_theme_notion:hover {
+    background-color: #0062cc;
+}
+
+.exam-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.exam-form__heading {
+    text-align: left;
+    font-size: 1.5rem;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.exam-form__heading_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
+.exam-form-labels__label {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.exam-form-labels__label_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
+.exam-form-inputs__input {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid;
+    height: 26px;
+    padding: 5px;
+    margin-bottom: 7px;
+}
+
+.exam-form-inputs__input_theme_notion {
+    font-family: var(--font-family-sans);
+    font-size: 1em;
+    border: 1px solid var(--color-border);
+}
+
+.exam-form-inputs__input_theme_notion:focus{
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.teacher-letter {
+    display: block;
+}
+
+.teacher-letter__heading {
+    text-align: left;
+    font-size: 2rem;
+}
+
+.teacher-letter__heading_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
+.teacher-letter__textarea {
+    width: 100%;
+    padding: 0.75em;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.teacher-letter__textarea_theme_notion {
+    margin-bottom: var(--spacing-unit);
+    border: 1px solid var(--color-border);
+    font-family: var(--font-family-sans);
+}
+
+.teacher-letter__textarea_theme_notion:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.submit-button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+}
+
+.submit__button_theme_notion {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    font-family: var(--font-family-sans);
+}
+
+.submit__button_theme_notion:hover {
+    background-color: #0062cc;
+}
+
+.disabled {
+    display: none;
+}
+
