@@ -31,13 +31,13 @@
     
     <form class="participat-form">
         <label class="participat-form__label participat-form__label_theme_notion">Participant's Name:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" type="text">
+        <input class="participat-form__input participat-form__input_theme_notion" id="studentName" type="text">
         <label class="participat-form__label participat-form__label_theme_notion">Participant's Surname:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" type="text">
+        <input class="participat-form__input participat-form__input_theme_notion" id="studentSurname" type="text">
         <label class="participat-form__label participat-form__label_theme_notion">Exam level:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" type="text">
+        <input class="participat-form__input participat-form__input_theme_notion" id="examLevel" type="text">
         <label class="participat-form__label participat-form__label_theme_notion">Dates:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" type="text">
+        <input class="participat-form__input participat-form__input_theme_notion" id="examDate" type="text">
     </form>
 
     <div class="select-exam">
@@ -165,12 +165,14 @@
         <textarea class="teacher-letter__textarea teacher-letter__textarea_theme_notion" rows="4" cols="50" maxlength="200"></textarea>
     </div>
 
-    <button class="submit-button submit__button_theme_notion" type="submit">
+    <button class="submit-button submit__button_theme_notion" type="submit" onclick="generateCertificate()">
         <span class="submit-button__text">Generate a certificate</span>
     </button>
     </main>
 </div>
     
 <script src="index.js"></script>
+<script src="jspdf.umd.min.js" data-source-map="none"></script>
+<script src="imageData.js"></script>
 </body>
 </html>
