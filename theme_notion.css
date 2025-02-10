@@ -3,8 +3,8 @@
     --color-text: #1e1e1e;
     --color-muted: hsl(0, 0%, 30%);
     --color-border: #e5e5e5;
-    --color-primary: hsl(0, 0%, 20%); 
-    --color-primary-hover: hsl(0, 0%, 40%); 
+    --color-primary: hsla(0, 0%, 20%, 0.9); 
+    --color-primary-hover: hsl(0, 0%, 40%, 1); 
     --font-family-sans: 'Inter', sans-serif;
     --font-family-serif: 'Merriweather', serif;
     --font-size-base: 16px;
@@ -91,6 +91,15 @@
 
 .select-exam__button_theme_notion:hover {
     background-color: var(--color-primary-hover);
+}
+
+.exam-form_theme_notion {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    width: 50%;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 5px 10px;
 }
 
 .exam-form__heading_theme_notion {
