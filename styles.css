@@ -145,6 +145,15 @@
     width: 150px;
 }
 
+.footer {
+    display: block;
+}
+
+.footer__division-line {
+    width: 100%;
+    color: black;
+}
+
 .disabled {
     display: none;
 }

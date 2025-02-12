@@ -155,3 +155,16 @@
 .submit__button_theme_notion:hover {
     background-color: var(--color-primary-hover);
 }
+
+.footer__division-line_theme_notion {
+    margin: 50px auto 0 auto;
+    width: 50%;
+    height: 1px;
+    background-color: var(--color-border);
+}
+
+.footer__text_theme_notion {
+    margin: 10px 0 10px 600px;
+    font-family: var(--font-family-sans);
+    color: var(--color-text);
+}

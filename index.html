@@ -31,13 +31,22 @@
     
     <form class="participat-form">
         <label class="participat-form__label participat-form__label_theme_notion">Participant's Name:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" id="studentName" type="text" required>
+        <input class="participat-form__input participat-form__input_theme_notion" id="participantName" type="text" required>
+        <span id="participantNameError" class="error"></span><br>
+
         <label class="participat-form__label participat-form__label_theme_notion">Participant's Surname:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" id="studentSurname" type="text" required>
+        <input class="participat-form__input participat-form__input_theme_notion" id="participantSurname" type="text" required>
+        <span id="participantSurnameError" class="error"></span><br>
+
         <label class="participat-form__label participat-form__label_theme_notion">Exam level:</label>
         <input class="participat-form__input participat-form__input_theme_notion" id="examLevel" type="text" required>
+        <span id="examLevelError" class="error"></span><br>
+
         <label class="participat-form__label participat-form__label_theme_notion">Dates:</label>
         <input class="participat-form__input participat-form__input_theme_notion" id="examDate" type="text" required>
+        <span id="examDateError" class="error"></span><br>
+
+        <button type="submit" onclick="participantInfoValidation()" id="submitBtn">Submit</button>
     </form>
 
     <div class="select-exam">
@@ -169,8 +178,14 @@
         <span class="submit-button__text">Generate a certificate</span>
     </button>
     </main>
+
 </div>
-    
+
+<footer class="footer">
+    <div class="footer__division-line footer__division-line_theme_notion"></div>
+    <p class="footer__text footer__text_theme_notion">MMC 2025.</p>       
+</footer>    
+
 <script src="index.js"></script>
 <script src="jspdf.umd.min.js" data-source-map="none"></script>
 <script src="imageData.js"></script>

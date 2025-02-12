@@ -35,6 +35,68 @@ selectExamButtons.forEach(button => {
     });
 });
 
+// const participantName = document.getElementById("participantName").value;
+// const participantSurname = document.getElementById("participantSurname").value;
+// const examLevel = document.getElementById("examLevel").value;
+// const examDate = document.getElementById("examDate").value;
+
+const submitBtn = document.getElementById("submitBtn");
+
+submitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const participantName = document.getElementById("participantName");
+    const participantSurname = document.getElementById("participantSurname");
+    const examLevel = document.getElementById("examLevel");
+    const examDate = document.getElementById("examDate");
+
+    const participantNameError = document.getElementById("participantNameError");
+    const participantSurnameError = document.getElementById("participantSurnameError");
+    const examLevelError = document.getElementById("examLevelError");
+    const examDateError = document.getElementById("examDateError");
+
+    let isValid = true;
+
+    participantNameError.textContent = "";
+    participantSurnameError.textContent = "";
+    examLevelError.textContent = "";
+    examDateError.textContent = "";
+
+    if (participantName.value.trim() === "") {
+        participantNameError.textContent = "Participant's Name is required";
+        isValid = false;
+    }
+
+    if (participantSurname.value.trim() === "") {
+        participantSurnameError.textContent = "Participant's Surname is required";
+        isValid = false;
+    }
+
+    if (examLevel.value.trim() === "") {
+        examLevelError.textContent = "Exam Level is required";
+        isValid = false;
+    }
+
+    if (examDate.value.trim() === "") {
+        examDateError.textContent = "Exam Date is required";
+        isValid = false;
+    }
+
+    if (isValid) {
+        console.log("Form is valid.  Submitting...");
+    } else {
+        console.log("Form has errors.  Please correct them.");
+    }
+})
+
+function participantInfoValidation() {
+    if (participantName === null) {
+        participantName.textContent = "required";
+    }
+
+}
+
+
 function generateCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
