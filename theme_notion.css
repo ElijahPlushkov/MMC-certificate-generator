@@ -99,7 +99,7 @@
     width: 50%;
     margin-top: 15px;
     margin-left: 15px;
-    padding: 5px 10px;
+    padding: 10px 20px 10px 20px;
 }
 
 .exam-form__heading_theme_notion {
@@ -167,4 +167,14 @@
     margin: 10px 0 10px 600px;
     font-family: var(--font-family-sans);
     color: var(--color-text);
+}
+
+.error_theme_notion {
+    font-family: var(--font-family-serif);
+    font-style: italic;
+    font-size: 15px;
+}
+
+.input_error_theme_notion {
+    border: 1px solid red;
 }

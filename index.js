@@ -35,10 +35,6 @@ selectExamButtons.forEach(button => {
     });
 });
 
-// const participantName = document.getElementById("participantName").value;
-// const participantSurname = document.getElementById("participantSurname").value;
-// const examLevel = document.getElementById("examLevel").value;
-// const examDate = document.getElementById("examDate").value;
 
 const submitBtn = document.getElementById("submitBtn");
 
@@ -63,21 +59,25 @@ submitBtn.addEventListener("click", (event) => {
     examDateError.textContent = "";
 
     if (participantName.value.trim() === "") {
+        participantName.classList.add("input_error_theme_notion");
         participantNameError.textContent = "Participant's Name is required";
         isValid = false;
     }
 
     if (participantSurname.value.trim() === "") {
+        participantSurname.classList.add("input_error_theme_notion");
         participantSurnameError.textContent = "Participant's Surname is required";
         isValid = false;
     }
 
     if (examLevel.value.trim() === "") {
+        examLevel.classList.add("input_error_theme_notion");
         examLevelError.textContent = "Exam Level is required";
         isValid = false;
     }
 
     if (examDate.value.trim() === "") {
+        examDate.classList.add("input_error_theme_notion");
         examDateError.textContent = "Exam Date is required";
         isValid = false;
     }
@@ -88,14 +88,6 @@ submitBtn.addEventListener("click", (event) => {
         console.log("Form has errors.  Please correct them.");
     }
 })
-
-function participantInfoValidation() {
-    if (participantName === null) {
-        participantName.textContent = "required";
-    }
-
-}
-
 
 function generateCertificate() {
     const { jsPDF } = window.jspdf;
