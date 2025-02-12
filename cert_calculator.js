@@ -20,8 +20,6 @@ function calculateScore(input, thresholds, maxScore) {
     return { result: 0, shields: "0" }; 
 }
 
-let startersResults = {};
-
 calculateButton1.addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -85,22 +83,23 @@ calculateButton1.addEventListener("click", function (event) {
         } else {
             startersGrade = "Not passed";
         }
-
-        startersResults = {
-            listening: {
-                result: listeningScore.result,
-                shields: listeningScore.shields
-            },
-            readingWriting: {
-                result: readingWritingScore.result,
-                shields: readingWritingScore.shields
-            },
-            speaking: {
-                result: speakingScore.result,
-                shields: speakingScore.shields
-            },
-            totalShields: startersShieldSum,
-            grade: startersGrade
+    let startersResults = {};
+    
+    startersResults = {
+        listening: {
+            result: listeningScore.result,
+            shields: listeningScore.shields
+        },
+        readingWriting: {
+            result: readingWritingScore.result,
+            shields: readingWritingScore.shields
+        },
+        speaking: {
+            result: speakingScore.result,
+            shields: speakingScore.shields
+        },
+        totalShields: startersShieldSum,
+        grade: startersGrade
         };
 
         console.log("Starters Results:", startersResults);
@@ -114,18 +113,17 @@ const petSpeakingInput = document.getElementById("petSpeakingInput");
 const petError = document.getElementById("petError");
 const calculateButton2 = document.getElementById("calculateButton2");
 
-function calculateScorePet(input, scoresTable, maxScore) {
-    const score = Number(input);
+function calculateScorePet(rawScore, scoresTable, maxScore) {
+    const score = Number(rawScore);
     
     if (score < 0 || score > maxScore){
         return null;
     }
 
-    let cambridgeScore = scoresTable[input];
+    let cambridgeScore = scoresTable[rawScore];
     return cambridgeScore;
 }
 
-let petResults = {};
 
 calculateButton2.addEventListener("click", function(event) {
     event.preventDefault();
@@ -136,7 +134,7 @@ calculateButton2.addEventListener("click", function(event) {
     petWritingInput.classList.remove("input_error_theme_notion");
     petSpeakingInput.classList.remove("input_error_theme_notion");
 
-petListening = {
+petListeningScoresTable = {
     25: 170,
     24: 165,
     23: 160,
@@ -165,7 +163,7 @@ petListening = {
     0: 0
 };
 
-petReading = {
+petReadingScoresTable = {
     32: 170,
     31: 167,
     30: 163,
@@ -201,7 +199,7 @@ petReading = {
     0: 0
 };
 
-petWriting = {
+petWritingScoresTable = {
     40: 170,
     39: 168,
     38: 167,
@@ -245,7 +243,7 @@ petWriting = {
     0: 0
 };
 
-petSpeaking = {
+petSpeakingScoresTable = {
     30: 170,
     29: 167,
     28: 163,
@@ -279,70 +277,72 @@ petSpeaking = {
     0: 0
 };
 
-const listeningScore = calculateScorePet(petListeningInput.value, petListening, 25);
+const listeningScore = calculateScorePet(petListeningInput.value, petListeningScoresTable, 25);
 if (listeningScore === null) {
     petError.textContent = "Invalid input for Listening.";
     petListeningInput.classList.add("input_error_theme_notion");
     return;
 }
-const readingScore = calculateScorePet(petReadingInput.value, petReading, 32);
+const readingScore = calculateScorePet(petReadingInput.value, petReadingScoresTable, 32);
 if (readingScore === null) {
     petError.textContent = "Invalid input for Reading.";
     petReadingInput.classList.add("input_error_theme_notion");
     return;
 }
-const writingScore = calculateScorePet(petWritingInput.value, petWriting, 40);
+const writingScore = calculateScorePet(petWritingInput.value, petWritingScoresTable, 40);
 if (writingScore === null) {
     petError.textContent = "Invalid input for Writing.";
     petWritingInput.classList.add("input_error_theme_notion");
     return;
 }
-const speakingScore = calculateScorePet(petSpeakingInput.value, petSpeaking, 30);
+const speakingScore = calculateScorePet(petSpeakingInput.value, petSpeakingScoresTable, 30);
 if (speakingScore === null) {
     petError.textContent = "Invalid input for Speaking.";
     petSpeakingInput.classList.add("input_error_theme_notion");
     return;
 }
 
-const petAverage = Math.round((0.25 * listeningScore) + (0.25 * readingScore) + (0.25 * writingScore) + (0.25 * speakingScore));
+const petAverageScore = Math.round((0.25 * listeningScore) + (0.25 * readingScore) + (0.25 * writingScore) + (0.25 * speakingScore));
 
 let petGrade;
 
-if (petAverage >= 160) {
+if (petAverageScore >= 160) {
     petGrade = "Grade A (B2 level)";
 }
-else if (petAverage >= 153) {
+else if (petAverageScore >= 153) {
     petGrade = "Grade B (B1 level)";
 }
-else if (petAverage >= 140) {
+else if (petAverageScore >= 140) {
     petGrade = "Grade C (B1 level)";
 }
-else if (petAverage >= 120) {
+else if (petAverageScore >= 120) {
     petGrade = "A2 level";
 }
 else {
     petGrade = "A1 level";
 }
 
+let petResults = {};
+
 petResults = {
     listening: {
-        testScore: petListeningInput.value,
+        rawScore: petListeningInput.value,
         result: listeningScore,
     },
     reading: {
-        testScore: petReadingInput.value,
+        rawScore: petReadingInput.value,
         result: readingScore,
     },
     writing: {
-        testScore: petWritingInput.value,
+        rawScore: petWritingInput.value,
         result: writingScore,
     },
     speaking: {
-        testScore: petSpeakingInput.value,
+        rawScore: petSpeakingInput.value,
         result: speakingScore,
     },
-    averageScore: petAverage,
-    finalGrade: petGrade,
+    petAverageScore,
+    petGrade,
 }
-console.log("Starters Results:", petResults);
+console.log("Pet Results:", petResults);
 });
