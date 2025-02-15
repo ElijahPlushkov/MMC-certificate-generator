@@ -75,7 +75,7 @@
         </div>
     </form>
 
-<button id="calculateButton1">calculate</button>
+<button id="calculateButton1">calculate St</button>
     
 <form class="exam-form exam-form_theme_notion exam-form-movers disabled">
         <h2 class="exam-form__heading exam-form__heading_theme_notion">Movers</h2>
@@ -85,11 +85,14 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listeningMovInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion readingWritingMovInput" type="number" max="35" min="0" step="1" placeholder="0-35"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion speakingMovInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversReadingWritingInput" type="number" max="35" min="0" step="1" placeholder="0-35"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <span id="moversError" class="error error_theme_notion"></span>
         </div>
     </form>
+
+    <button id="calculateMovers">calculate Mov</button>
 
     <form class="exam-form exam-form_theme_notion exam-form-flyers disabled">
         <h2 class="exam-form__heading exam-form__heading_theme_notion">Flyers</h2>
@@ -99,11 +102,13 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listeningFlInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion readingWritingFlInput" type="number" max="44" min="0" step="1" placeholder="0-44"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion speakingFlInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersReadingWritingInput" type="number" max="44" min="0" step="1" placeholder="0-44"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <span id="flyersError" class="error error_theme_notion"></span>
         </div>
     </form>
+    <button id="calculateFlyers">calculate Fl</button>
   
     <form class="exam-form exam-form_theme_notion exam-form-ket disabled">
         <h2 class="exam-form__heading exam-form__heading_theme_notion">KET</h2>

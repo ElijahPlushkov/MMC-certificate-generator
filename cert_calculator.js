@@ -106,6 +106,195 @@ calculateButton1.addEventListener("click", function (event) {
     }
 });
 
+//MOVERS SECTION
+const moversListeningInput = document.getElementById("moversListeningInput");
+const moversReadingWritingInput = document.getElementById("moversReadingWritingInput");
+const moversSpeakingInput = document.getElementById("moversSpeakingInput");
+const moversError = document.getElementById("moversError");
+const calculateMovers = document.getElementById("calculateMovers");
+
+calculateMovers.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    moversError.textContent = ""; 
+    moversListeningInput.classList.remove("input_error_theme_notion");
+    moversReadingWritingInput.classList.remove("input_error_theme_notion");
+    moversSpeakingInput.classList.remove("input_error_theme_notion");
+
+    const listeningThresholds = [
+        { threshold: 21, shields: "5" },
+        { threshold: 18, shields: "4" },
+        { threshold: 14, shields: "3" },
+        { threshold: 11, shields: "2" },
+        { threshold: 1, shields: "1" },
+        { threshold: 0, shields: "0" },
+    ];
+
+    const readingWritingThresholds = [
+        { threshold: 33, shields: "5" },
+        { threshold: 29, shields: "4" },
+        { threshold: 24, shields: "3" },
+        { threshold: 18, shields: "2" },
+        { threshold: 1, shields: "1" },
+        { threshold: 0, shields: "0" },
+    ];
+
+    const speakingThresholds = [
+        { threshold: 13, shields: "5" },
+        { threshold: 10, shields: "4" },
+        { threshold: 7, shields: "3" },
+        { threshold: 4, shields: "2" },
+        { threshold: 1, shields: "1" },
+        { threshold: 0, shields: "0" },
+    ];
+
+    const listeningScore = calculateScore(moversListeningInput.value, listeningThresholds, 25);
+    if (listeningScore === null) {
+        moversError.textContent = "Invalid input for Listening.";
+        moversListeningInput.classList.add("input_error_theme_notion");
+        return;
+    }
+    const readingWritingScore = calculateScore(moversReadingWritingInput.value, readingWritingThresholds, 35);
+    if (readingWritingScore === null) {
+        moversError.textContent = "Invalid input for R&W.";
+        moversReadingWritingInput.classList.add("input_error_theme_notion");
+        return;
+    }
+    const speakingScore = calculateScore(moversSpeakingInput.value, speakingThresholds, 15);
+    if (speakingScore === null) {
+        moversError.textContent = "Invalid input for Speaking.";
+        moversSpeakingInput.classList.add("input_error_theme_notion");
+        return;
+    }
+
+    if (listeningScore && readingWritingScore && speakingScore) {
+        const moversShieldSum = Number(listeningScore.shields) + Number(readingWritingScore.shields) + Number(speakingScore.shields);
+
+        let moversGrade;
+        if (moversShieldSum >= 10 && Number(listeningScore.shields) > 2 && Number(readingWritingScore.shields) > 2 && Number(speakingScore.shields) > 2) {
+            moversGrade = "Passed";
+        } else {
+            moversGrade = "Not passed";
+        }
+    let moversResults = {};
+    
+    moversResults = {
+        listening: {
+            result: listeningScore.result,
+            shields: listeningScore.shields
+        },
+        readingWriting: {
+            result: readingWritingScore.result,
+            shields: readingWritingScore.shields
+        },
+        speaking: {
+            result: speakingScore.result,
+            shields: speakingScore.shields
+        },
+        totalShields: moversShieldSum,
+        grade: moversGrade
+        };
+
+        console.log("movers Results:", moversResults);
+    }
+})
+
+//FLYERS SECTION
+const  flyersListeningInput = document.getElementById("flyersListeningInput");
+const flyersReadingWritingInput = document.getElementById("flyersReadingWritingInput");
+const flyersSpeakingInput = document.getElementById("flyersSpeakingInput");
+const flyersError = document.getElementById("flyersError");
+const calculateFlyers = document.getElementById("calculateFlyers");
+
+calculateFlyers.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    flyersError.textContent = ""; 
+    flyersListeningInput.classList.remove("input_error_theme_notion");
+    flyersReadingWritingInput.classList.remove("input_error_theme_notion");
+    flyersSpeakingInput.classList.remove("input_error_theme_notion");
+
+    const listeningThresholds = [
+        { threshold: 23, shields: "5" },
+        { threshold: 20, shields: "4" },
+        { threshold: 17, shields: "3" },
+        { threshold: 14, shields: "2" },
+        { threshold: 1, shields: "1" },
+        { threshold: 0, shields: "0" },
+    ];
+
+    const readingWritingThresholds = [
+        { threshold: 42, shields: "5" },
+        { threshold: 36, shields: "4" },
+        { threshold: 30, shields: "3" },
+        { threshold: 24, shields: "2" },
+        { threshold: 1, shields: "1" },
+        { threshold: 0, shields: "0" },
+    ];
+
+    const speakingThresholds = [
+        { threshold: 13, shields: "5" },
+        { threshold: 10, shields: "4" },
+        { threshold: 7, shields: "3" },
+        { threshold: 4, shields: "2" },
+        { threshold: 1, shields: "1" },
+        { threshold: 0, shields: "0" },
+    ];
+
+    const listeningScore = calculateScore(flyersListeningInput.value, listeningThresholds, 25);
+    if (listeningScore === null) {
+        flyersError.textContent = "Invalid input for Listening.";
+        flyersListeningInput.classList.add("input_error_theme_notion");
+        return;
+    }
+    const readingWritingScore = calculateScore(flyersReadingWritingInput.value, readingWritingThresholds, 44);
+    if (readingWritingScore === null) {
+        flyersError.textContent = "Invalid input for R&W.";
+        flyersReadingWritingInput.classList.add("input_error_theme_notion");
+        return;
+    }
+    const speakingScore = calculateScore(flyersSpeakingInput.value, speakingThresholds, 15);
+    if (speakingScore === null) {
+        flyersError.textContent = "Invalid input for Speaking.";
+        flyersSpeakingInput.classList.add("input_error_theme_notion");
+        return;
+    }
+
+    if (listeningScore && readingWritingScore && speakingScore) {
+        const flyersShieldSum = Number(listeningScore.shields) + Number(readingWritingScore.shields) + Number(speakingScore.shields);
+
+        let flyersGrade;
+        if (flyersShieldSum >= 10 && Number(listeningScore.shields) > 2 && Number(readingWritingScore.shields) > 2 && Number(speakingScore.shields) > 2) {
+            flyersGrade = "Passed";
+        } else {
+            flyersGrade = "Not passed";
+        }
+    let flyersResults = {};
+    
+    flyersResults = {
+        listening: {
+            result: listeningScore.result,
+            shields: listeningScore.shields
+        },
+        readingWriting: {
+            result: readingWritingScore.result,
+            shields: readingWritingScore.shields
+        },
+        speaking: {
+            result: speakingScore.result,
+            shields: speakingScore.shields
+        },
+        totalShields: flyersShieldSum,
+        grade: flyersGrade
+        };
+
+        console.log("flyers Results:", flyersResults);
+    }
+})
+//KET SECTION
+
+
+//PET SECTION
 const petListeningInput = document.getElementById("petListeningInput");
 const petReadingInput = document.getElementById("petReadingInput");
 const petWritingInput = document.getElementById("petWritingInput");
