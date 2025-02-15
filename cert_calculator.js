@@ -314,9 +314,10 @@ function calculateScorePet(rawScore, scoresTable, maxScore) {
 }
 
 
-calculateButton2.addEventListener("click", function(event) {
-    event.preventDefault();
+// calculateButton2.addEventListener("click", function(event) {
+//     event.preventDefault();
 
+async function calculatePetResult(){
     petError.textContent = ""; 
     petListeningInput.classList.remove("input_error_theme_notion");
     petReadingInput.classList.remove("input_error_theme_notion");
@@ -511,27 +512,28 @@ else {
     petGrade = "A1 level";
 }
 
-let petResults = {};
+// let petResults = {};
 
-petResults = {
+return {
     listening: {
-        rawScore: petListeningInput.value,
-        result: listeningScore,
+        petListeningInputValue: petListeningInput.value,
+        listeningScore,                                   
     },
     reading: {
-        rawScore: petReadingInput.value,
-        result: readingScore,
+        petReadingInputValue: petReadingInput.value,
+        readingScore,
     },
     writing: {
-        rawScore: petWritingInput.value,
-        result: writingScore,
+        petWritingInputValue: petWritingInput.value,
+        writingScore,
     },
     speaking: {
-        rawScore: petSpeakingInput.value,
-        result: speakingScore,
+        petSpeakingInputValue: petSpeakingInput.value,
+        speakingScore,
     },
     petAverageScore,
     petGrade,
+};
+// console.log("Pet Results:", petResults);
 }
-console.log("Pet Results:", petResults);
-});
+
