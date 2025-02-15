@@ -20,8 +20,7 @@ function calculateScore(input, thresholds, maxScore) {
     return { result: 0, shields: "0" }; 
 }
 
-calculateButton1.addEventListener("click", function (event) {
-    event.preventDefault();
+async function calculateStartersResult() {
 
     startersError.textContent = ""; 
     startersListeningInput.classList.remove("input_error_theme_notion");
@@ -56,19 +55,19 @@ calculateButton1.addEventListener("click", function (event) {
     ];
 
     const listeningScore = calculateScore(startersListeningInput.value, listeningThresholds, 20);
-    if (listeningScore === null) {
+    if (listeningScore === null || startersListeningInput.value.trim === "") {
         startersError.textContent = "Invalid input for Listening.";
         startersListeningInput.classList.add("input_error_theme_notion");
         return;
     }
     const readingWritingScore = calculateScore(startersReadingWritingInput.value, readingWritingThresholds, 25);
-    if (readingWritingScore === null) {
+    if (readingWritingScore === null || startersReadingWritingInput.value.trim === "") {
         startersError.textContent = "Invalid input for R&W.";
         startersReadingWritingInput.classList.add("input_error_theme_notion");
         return;
     }
     const speakingScore = calculateScore(startersSpeakingInput.value, speakingThresholds, 15);
-    if (speakingScore === null) {
+    if (speakingScore === null || startersSpeakingInput.value.trim === "") {
         startersError.textContent = "Invalid input for Speaking.";
         startersSpeakingInput.classList.add("input_error_theme_notion");
         return;
@@ -83,28 +82,25 @@ calculateButton1.addEventListener("click", function (event) {
         } else {
             startersGrade = "Not passed";
         }
-    let startersResults = {};
     
-    startersResults = {
+    return {
         listening: {
-            result: listeningScore.result,
-            shields: listeningScore.shields
+            startersListeningScore: listeningScore.result,
+            startersListeningShields: listeningScore.shields
         },
         readingWriting: {
-            result: readingWritingScore.result,
-            shields: readingWritingScore.shields
+            startersReadingWritingScore: readingWritingScore.result,
+            startersReadingWritingShields: readingWritingScore.shields
         },
         speaking: {
-            result: speakingScore.result,
-            shields: speakingScore.shields
+            startersSpeakingScore: speakingScore.result,
+            startersSpeakingShields: speakingScore.shields
         },
-        totalShields: startersShieldSum,
-        grade: startersGrade
+        startersShieldSum,
+        startersGrade
         };
-
-        console.log("Starters Results:", startersResults);
     }
-});
+}
 
 //MOVERS SECTION
 const moversListeningInput = document.getElementById("moversListeningInput");
@@ -313,10 +309,6 @@ function calculateScorePet(rawScore, scoresTable, maxScore) {
     return cambridgeScore;
 }
 
-
-// calculateButton2.addEventListener("click", function(event) {
-//     event.preventDefault();
-
 async function calculatePetResult(){
     petError.textContent = ""; 
     petListeningInput.classList.remove("input_error_theme_notion");
@@ -468,25 +460,25 @@ petSpeakingScoresTable = {
 };
 
 const listeningScore = calculateScorePet(petListeningInput.value, petListeningScoresTable, 25);
-if (listeningScore === null) {
+if (listeningScore === null || petListeningInput.value.trim() === "") {
     petError.textContent = "Invalid input for Listening.";
     petListeningInput.classList.add("input_error_theme_notion");
     return;
 }
 const readingScore = calculateScorePet(petReadingInput.value, petReadingScoresTable, 32);
-if (readingScore === null) {
+if (readingScore === null || petReadingInput.value.trim() === "") {
     petError.textContent = "Invalid input for Reading.";
     petReadingInput.classList.add("input_error_theme_notion");
     return;
 }
 const writingScore = calculateScorePet(petWritingInput.value, petWritingScoresTable, 40);
-if (writingScore === null) {
+if (writingScore === null || petWritingInput.value.trim() === "") {
     petError.textContent = "Invalid input for Writing.";
     petWritingInput.classList.add("input_error_theme_notion");
     return;
 }
 const speakingScore = calculateScorePet(petSpeakingInput.value, petSpeakingScoresTable, 30);
-if (speakingScore === null) {
+if (speakingScore === null || petSpeakingInput.value.trim() === "") {
     petError.textContent = "Invalid input for Speaking.";
     petSpeakingInput.classList.add("input_error_theme_notion");
     return;
@@ -512,8 +504,6 @@ else {
     petGrade = "A1 level";
 }
 
-// let petResults = {};
-
 return {
     listening: {
         petListeningInputValue: petListeningInput.value,
@@ -534,6 +524,5 @@ return {
     petAverageScore,
     petGrade,
 };
-// console.log("Pet Results:", petResults);
 }
 

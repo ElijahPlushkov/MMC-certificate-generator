@@ -41,7 +41,7 @@ selectExamButtons.forEach(button => {
 // submitBtn.addEventListener("click", (event) => {
 //     event.preventDefault();
 
-async function participantForm() {
+function participantForm() {
     const participantName = document.getElementById("participantName");
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
@@ -52,7 +52,7 @@ async function participantForm() {
     const examLevelError = document.getElementById("examLevelError");
     const examDateError = document.getElementById("examDateError");
 
-    // let isValid = true;
+    let isValid = true;
 
     participantNameError.textContent = "";
     participantSurnameError.textContent = "";
@@ -62,36 +62,34 @@ async function participantForm() {
     if (participantName.value.trim() === "") {
         participantName.classList.add("input_error_theme_notion");
         participantNameError.textContent = "Participant's Name is required";
-        return
+        isValid = false;
     }
 
     if (participantSurname.value.trim() === "") {
         participantSurname.classList.add("input_error_theme_notion");
         participantSurnameError.textContent = "Participant's Surname is required";
-        return
+        isValid = false;
     }
 
     if (examLevel.value.trim() === "") {
         examLevel.classList.add("input_error_theme_notion");
         examLevelError.textContent = "Exam Level is required";
-        return
+        isValid = false;
     }
 
     if (examDate.value.trim() === "") {
         examDate.classList.add("input_error_theme_notion");
         examDateError.textContent = "Exam Date is required";
-        return
+        isValid = false;
     }
 
-    // if (isValid) {
-    //     console.log("Form is valid.  Submitting...");
-    // } else {
-    //     console.log("Form has errors.  Please correct them.");
-    // }
+    return isValid;
 }
 
 async function createCertificate() {
-    await participantForm();
+    if (!participantForm()) {
+        return;
+    }
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
