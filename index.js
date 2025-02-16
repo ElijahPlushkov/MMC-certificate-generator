@@ -36,6 +36,7 @@ selectExamButtons.forEach(button => {
 });
 
 function participantForm() {
+
     const participantName = document.getElementById("participantName");
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
@@ -52,6 +53,11 @@ function participantForm() {
     participantSurnameError.textContent = "";
     examLevelError.textContent = "";
     examDateError.textContent = "";
+
+    participantName.classList.remove("input_error_theme_notion");
+    participantSurname.classList.remove("input_error_theme_notion");
+    examLevel.classList.remove("input_error_theme_notion");
+    examDate.classList.remove("input_error_theme_notion");
 
     if (participantName.value.trim() === "") {
         participantName.classList.add("input_error_theme_notion");
@@ -227,6 +233,53 @@ async function generateFlyersCertificate() {
     }
 }
 
+async function generateKetCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const ketResults = await calculateKetResult();
+
+        const {
+            listening: { ketListeningInputValue, listeningScore },
+            readingWriting: { ketReadingWritingInputValue, readingWritingScore },
+            speaking: { ketSpeakingInputValue, speakingScore },
+            ketAverageScore,
+            ketGrade, } = ketResults;
+
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(ketListeningInputValue, 105, 210, { align: "right" });
+
+        doc.setFontSize(16);
+        doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
+    }
+}
+
 async function generatePetCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -275,6 +328,104 @@ async function generatePetCertificate() {
     }
 }
 
+async function generateFceCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const fceResults = await calculateFceResult();
+
+        const {
+            listening: { fceListeningInputValue, listeningScore },
+            reading: { fcereadingInputValue, readingScore },
+            use: { fceUseInputValue, useScore},
+            writing: { fceWritingInputValue, writingScore },
+            speaking: { fceSpeakingInputValue, speakingScore },
+            fceAverageScore,
+            fceGrade, } = fceResults;
+
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(fceListeningInputValue, 105, 210, { align: "right" });
+
+        doc.setFontSize(16);
+        doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
+    }
+}
+
+async function generateCaeCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const caeResults = await calculateCaeResult();
+
+        const {
+            listening: { caeListeningInputValue, listeningScore },
+            reading: { caereadingInputValue, readingScore },
+            use: { caeUseInputValue, useScore},
+            writing: { caeWritingInputValue, writingScore },
+            speaking: { caeSpeakingInputValue, speakingScore },
+            caeAverageScore,
+            caeGrade, } = caeResults;
+
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(caeListeningInputValue, 105, 210, { align: "right" });
+
+        doc.setFontSize(16);
+        doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
+    }
+}
+
 async function createCertificate() {
     if (!participantForm()) {
         return;
@@ -291,11 +442,19 @@ async function createCertificate() {
     else if (examLevel === "flyers") {
         generateFlyersCertificate();
     }
+    else if (examLevel === "ket") {
+        generateKetCertificate();
+    }
     else if (examLevel === "pet") {
         generatePetCertificate();
     }
+    else if (examLevel === "fce") {
+        generateFceCertificate();
+    }
+    else if (examLevel === "cae"){
+        generateCaeCertificate();
+    }
 }
-
 
 document.getElementById("generateCertificate").addEventListener("click", async () => {
     await createCertificate();

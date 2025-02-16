@@ -111,9 +111,10 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listeningKetInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion readingWritingKetInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion speakingKetInput" type="number" min="0" max="45" step="1" placeholder="0-45"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketReadingWritingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketSpeakingInput" type="number" min="0" max="45" step="1" placeholder="0-45"><br>
+            <span id="ketError" class="error error_theme_notion"></span>
         </div>
     </form>
     
@@ -144,11 +145,12 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listeningFceInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion readingFceInput" type="number" min="0" max="42" step="1" placeholder="0-42"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion useFceInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion writingFceInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion speakingFceInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceReadingInput" type="number" min="0" max="42" step="1" placeholder="0-42"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceUseInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceSpeakingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+            <span id="fceError" class="error error_theme_notion"></span>
         </div>
     </form>
     
@@ -162,11 +164,12 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listeningCaeInput" type="number" min="0" max="60" step="1" placeholder="0-30"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion readingCaeInput" type="number" min="0" max="50" step="1" placeholder="0-50"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion useCaeInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion writingCaeInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion speakingCaeInput" type="number" min="0" max="75" step="1" placeholder="0-75"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-30"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeReadingInput" type="number" min="0" max="50" step="1" placeholder="0-50"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeUseInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeSpeakingInput" type="number" min="0" max="75" step="1" placeholder="0-75"><br>
+            <span id="caeError" class="error error_theme_notion"></span>
         </div>
     </form>
     <br>
