@@ -2,7 +2,7 @@ const selectExamButtons = document.querySelectorAll(".select-exam__button");
 
 selectExamButtons.forEach(button => {
     button.addEventListener('click', () => {
-        switch(button.textContent) {
+        switch (button.textContent) {
             case "Starters":
                 const examFormStarters = document.querySelector(".exam-form-starters");
                 examFormStarters.classList.toggle("disabled");
@@ -84,54 +84,6 @@ function levelChoice() {
     return document.getElementById("examLevel").value.trim().toLowerCase();
 }
 
-async function generatePetCertificate() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
-    backgroundImg.onload = async () => {
-    
-    doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
-
-    const petResults = await calculatePetResult();
-
-    const {
-        listening: { petListeningInputValue, listeningScore },
-        reading: {petreadingInputValue, readingScore},
-        writing: {petWritingInputValue, writingScore},
-        speaking: {petSpeakingInputValue, speakingScore},
-        petAverageScore,
-        petGrade,} = petResults; 
-
-      const name = document.getElementById('participantName').value;
-      const surname = document.getElementById('participantSurname').value;
-      const examLevel = document.getElementById('examLevel').value;
-      const examDate = document.getElementById('examDate').value;
-
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(24);
-      doc.text(name, 105, 140, {align: 'center'});
-
-      doc.setFontSize(16);
-      doc.text(`Date: ${examDate}`, 105, 160, {align: 'center'});
-
-      doc.setFontSize(16);
-      doc.text(surname, 105, 180, {align: 'center'});
-
-      doc.setFontSize(16);
-      doc.text(examLevel, 105, 200, {align: 'center'});
-
-      doc.setFontSize(16);
-      doc.text(petListeningInputValue, 105, 210, {align: "right"});
-
-      doc.setFontSize(16);
-      doc.text(String(listeningScore), 105, 220, {align: "right"});
-
-      doc.save('certificate.pdf');
-    }
-}
-
 async function generateStartersCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -139,43 +91,187 @@ async function generateStartersCertificate() {
     const backgroundImg = new Image();
     backgroundImg.src = window.YLE_TEMPLATE;
     backgroundImg.onload = async () => {
-    
-    doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-    const startersResults = await calculateStartersResult();
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-    const {
-        listening: { startersListeningScore, startersListeningShields },
-        readingWriting: { startersReadingWritingScore, startersReadingWritingShields },
-        speaking: { startersSpeakingScore, startersSpeakingShields },
-        startersShieldSum,
-        startersGrade} = startersResults; 
+        const startersResults = await calculateStartersResult();
 
-      const name = document.getElementById('participantName').value;
-      const surname = document.getElementById('participantSurname').value;
-      const examLevel = document.getElementById('examLevel').value;
-      const examDate = document.getElementById('examDate').value;
+        const {
+            listening: { startersListeningScore, startersListeningShields },
+            readingWriting: { startersReadingWritingScore, startersReadingWritingShields },
+            speaking: { startersSpeakingScore, startersSpeakingShields },
+            startersShieldSum,
+            startersGrade } = startersResults;
 
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(24);
-      doc.text(name, 105, 140, {align: 'center'});
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
 
-      doc.setFontSize(16);
-      doc.text(`Date: ${examDate}`, 105, 160, {align: 'center'});
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
 
-      doc.setFontSize(16);
-      doc.text(surname, 105, 180, {align: 'center'});
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
 
-      doc.setFontSize(16);
-      doc.text(examLevel, 105, 200, {align: 'center'});
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
 
-      doc.setFontSize(16);
-      doc.text(String(startersListeningScore), 105, 210, {align: "right"});
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
 
-      doc.setFontSize(16);
-      doc.text(String(startersListeningShields), 105, 220, {align: "right"});
+        doc.setFontSize(16);
+        doc.text(String(startersListeningScore), 105, 210, { align: "right" });
 
-      doc.save('certificate.pdf');
+        doc.setFontSize(16);
+        doc.text(String(startersListeningShields), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
+    }
+}
+
+async function generateMoversCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const moversResults = await calculateMoversResult();
+
+        const {
+            listening: { moversListeningScore, moversListeningShields },
+            readingWriting: { moversReadingWritingScore, moversReadingWritingShields },
+            speaking: { moversSpeakingScore, moversSpeakingShields },
+            moversShieldSum,
+            moversGrade,
+        } = moversResults;
+
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(String(moversListeningScore), 105, 210, { align: "right" });
+
+        doc.setFontSize(16);
+        doc.text(String(moversListeningShields), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
+    }
+}
+
+async function generateFlyersCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const flyersResults = await calculateFlyersResult();
+
+        const {
+            listening: { flyersListeningScore, flyersListeningShields },
+            readingWriting: { flyersReadingWritingScore, flyersReadingWritingShields },
+            speaking: { flyersSpeakingScore, flyersSpeakingShields },
+            flyersShieldSum,
+            flyersGrade,
+        } = flyersResults;
+
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(String(flyersListeningScore), 105, 210, { align: "right" });
+
+        doc.setFontSize(16);
+        doc.text(String(flyersListeningShields), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
+    }
+}
+
+async function generatePetCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const petResults = await calculatePetResult();
+
+        const {
+            listening: { petListeningInputValue, listeningScore },
+            reading: { petreadingInputValue, readingScore },
+            writing: { petWritingInputValue, writingScore },
+            speaking: { petSpeakingInputValue, speakingScore },
+            petAverageScore,
+            petGrade, } = petResults;
+
+        const name = document.getElementById('participantName').value;
+        const surname = document.getElementById('participantSurname').value;
+        const examLevel = document.getElementById('examLevel').value;
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(24);
+        doc.text(name, 105, 140, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(surname, 105, 180, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(examLevel, 105, 200, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.text(petListeningInputValue, 105, 210, { align: "right" });
+
+        doc.setFontSize(16);
+        doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        doc.save('certificate.pdf');
     }
 }
 
@@ -186,69 +282,19 @@ async function createCertificate() {
 
     let examLevel = levelChoice();
 
-    if(examLevel === "starters"){
+    if (examLevel === "starters") {
         generateStartersCertificate();
     }
-    else if(examLevel === "pet"){
+    else if (examLevel === "movers") {
+        generateMoversCertificate();
+    }
+    else if (examLevel === "flyers") {
+        generateFlyersCertificate();
+    }
+    else if (examLevel === "pet") {
         generatePetCertificate();
     }
 }
-
-    // const { jsPDF } = window.jspdf;
-    // const doc = new jsPDF();
-
-    // // 1) Add your background image
-    // // Make sure "certificate-bg.png" is in the correct folder
-    // // and adjust x/y/width/height to match your layout.
-    // const backgroundImg = new Image();
-    // backgroundImg.src = window.YLE_TEMPLATE;
-    // backgroundImg.onload = async () => {
-    //   // The page size by default is A4: 210mm x 297mm, 
-    //   // but jsPDF uses 'pt' by default (596 pts x 842 pts).
-    //   // You can do some math or just approximate.
-    //   doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
-
-    // const petResults = await calculatePetResult();
-
-    // const {
-    //     listening: { petListeningInputValue, listeningScore },
-    //     reading: {petreadingInputValue, readingScore},
-    //     writing: {petWritingInputValue, writingScore},
-    //     speaking: {petSpeakingInputValue, speakingScore},
-    //     petAverageScore,
-    //     petGrade,} = petResults; 
-
-    //   // 2) Grab input values
-    //   const name = document.getElementById('participantName').value;
-    //   const surname = document.getElementById('participantSurname').value;
-    //   const examLevel = document.getElementById('examLevel').value;
-    //   const examDate = document.getElementById('examDate').value;
-
-    //   // 3) Overlay text
-    //   // Adjust coordinates, font sizes, etc. to match your background design
-    //   doc.setFont('helvetica', 'bold');
-    //   doc.setFontSize(24);
-    //   doc.text(name, 105, 140, {align: 'center'});
-
-    //   doc.setFontSize(16);
-    //   doc.text(`Date: ${examDate}`, 105, 160, {align: 'center'});
-
-    //   doc.setFontSize(16);
-    //   doc.text(surname, 105, 180, {align: 'center'});
-
-    //   doc.setFontSize(16);
-    //   doc.text(examLevel, 105, 200, {align: 'center'});
-
-    //   doc.setFontSize(16);
-    //   doc.text(petListeningInputValue, 105, 210, {align: "right"});
-
-    //   doc.setFontSize(16);
-    //   doc.text(String(listeningScore), 105, 220, {align: "right"});
-
-    //   // 4) Save
-    //   doc.save('certificate.pdf');
-    // };
-
 
 
 document.getElementById("generateCertificate").addEventListener("click", async () => {
