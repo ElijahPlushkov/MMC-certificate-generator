@@ -1,3 +1,44 @@
+function initDropdownMenu() {
+    const toggleButton = document.getElementById('participantFormToggleButton');
+    const inputField = document.getElementById('examDate');
+    const optionsList = document.getElementById('participantFormOptionsList');
+
+    // Toggle the options list when the button is clicked
+    toggleButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Toggle the "show" class to display or hide the options
+      optionsList.classList.toggle('show');
+
+      // Update the aria-expanded attribute for accessibility
+      const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+      toggleButton.setAttribute('aria-expanded', !expanded);
+    });
+
+    // When an option is clicked, update the input and hide the list
+    optionsList.addEventListener('click', function (e) {
+      if (e.target && e.target.tagName.toLowerCase() === 'li') {
+        inputField.value = e.target.textContent;
+
+        // Hide the options list
+        optionsList.classList.remove('show');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Optional: Hide the drop-down if the user clicks outside of the menu
+    document.addEventListener('click', function (e) {
+      // Check if the click happened outside of the dropdown container
+      if (!e.target.closest('.participant-form__collapsible-menu')) {
+        optionsList.classList.remove('show');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Initialize the dropdown menu once the DOM is loaded
+  document.addEventListener('DOMContentLoaded', initDropdownMenu);
+
 const selectExamButtons = document.querySelectorAll(".select-exam__button");
 
 selectExamButtons.forEach(button => {
@@ -34,6 +75,18 @@ selectExamButtons.forEach(button => {
         }
     });
 });
+
+function mergeNameAndSurname(){
+    const participantName = document.getElementById("participantName").value.trim();
+    const participantSurname = document.getElementById("participantSurname").value.trim();
+
+    const formattedName = participantName.charAt(0).toUpperCase() + participantName.slice(1).toLowerCase();
+    const formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
+
+    const nameSurname = `${formattedName} ${formattedSurname}`;
+
+    return nameSurname;
+}
 
 function participantForm() {
 
@@ -109,20 +162,17 @@ async function generateStartersCertificate() {
             startersShieldSum,
             startersGrade } = startersResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });
@@ -157,20 +207,17 @@ async function generateMoversCertificate() {
             moversGrade,
         } = moversResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });
@@ -205,20 +252,17 @@ async function generateFlyersCertificate() {
             flyersGrade,
         } = flyersResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });
@@ -252,20 +296,17 @@ async function generateKetCertificate() {
             ketAverageScore,
             ketGrade, } = ketResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });
@@ -300,20 +341,17 @@ async function generatePetCertificate() {
             petAverageScore,
             petGrade, } = petResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });
@@ -349,20 +387,17 @@ async function generateFceCertificate() {
             fceAverageScore,
             fceGrade, } = fceResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });
@@ -398,20 +433,17 @@ async function generateCaeCertificate() {
             caeAverageScore,
             caeGrade, } = caeResults;
 
-        const name = document.getElementById('participantName').value;
-        const surname = document.getElementById('participantSurname').value;
+        const fullName = mergeNameAndSurname();
+
         const examLevel = document.getElementById('examLevel').value;
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(24);
-        doc.text(name, 105, 140, { align: 'center' });
+        doc.text(fullName, 105, 140, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
-
-        doc.setFontSize(16);
-        doc.text(surname, 105, 180, { align: 'center' });
 
         doc.setFontSize(16);
         doc.text(examLevel, 105, 200, { align: 'center' });

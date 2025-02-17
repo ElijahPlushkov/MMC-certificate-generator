@@ -29,22 +29,33 @@
         <h1 class="main-title__heading main-title__heading_theme_notion">MMC Certificate Generator</h1>   
     </header>
     
-    <form class="participat-form">
-        <label class="participat-form__label participat-form__label_theme_notion">Participant's Name:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" id="participantName" type="text" required>
+    <form class="participant-form">
+        <label class="participant-form__label participant-form__label_theme_notion">Participant's Name:</label>
+        <input class="participant-form__input participant-form__input_theme_notion" id="participantName" type="text" required>
         <span id="participantNameError" class="error error_theme_notion"></span><br>
 
-        <label class="participat-form__label participat-form__label_theme_notion">Participant's Surname:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" id="participantSurname" type="text" required>
+        <label class="participant-form__label participant-form__label_theme_notion">Participant's Surname:</label>
+        <input class="participant-form__input participant-form__input_theme_notion" id="participantSurname" type="text" required>
         <span id="participantSurnameError" class="error error_theme_notion"></span><br>
 
-        <label class="participat-form__label participat-form__label_theme_notion">Exam level:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" id="examLevel" type="text" required>
+        <label class="participant-form__label participant-form__label_theme_notion">Exam level:</label>
+        <input class="participant-form__input participant-form__input_theme_notion" id="examLevel" type="text" required>
         <span id="examLevelError" class="error error_theme_notion"></span><br>
 
-        <label class="participat-form__label participat-form__label_theme_notion">Dates:</label>
-        <input class="participat-form__input participat-form__input_theme_notion" id="examDate" type="text" required>
+      <div class="participant-form__collapsible-menu participant-form__collapsible-menu_theme_notion">
+        <label class="participant-form__label participant-form__label_theme_notion">Dates:</label>
+        <div class="dropdown-container">
+        <input class="participant-form__input participant-form__input_theme_notion" id="examDate" type="text" required>
+        <button id="participantFormToggleButton">▼</button>
+        </div>
+        <ul id="participantFormOptionsList" class="participant-form__options-list">
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+            <li>Option 4</li>
+        </ul>
         <span id="examDateError" class="error error_theme_notion"></span><br>
+      </div>
     </form>
 
     <div class="select-exam">
