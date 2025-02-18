@@ -44,15 +44,18 @@
 
       <div class="participant-form__collapsible-menu participant-form__collapsible-menu_theme_notion">
         <label class="participant-form__label participant-form__label_theme_notion">Dates:</label>
-        <div class="dropdown-container">
+        
+        <div class="participant-form__dropdown-container">
         <input class="participant-form__input participant-form__input_theme_notion" id="examDate" type="text" required>
-        <button id="participantFormToggleButton">▼</button>
+        <button id="participantFormToggleButton" class="participant-form__options-list-button participant-form__options-list-button_theme_notion">▼</button>
         </div>
-        <ul id="participantFormOptionsList" class="participant-form__options-list">
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
-            <li>Option 4</li>
+        <ul id="participantFormOptionsList" class="participant-form__options-list participant-form__options-list_theme_notion">
+            <li class="participant-form__options-list-item">June 1st to June 13th</li>
+            <li class="participant-form__options-list-item">June 15th to June 27th</li>
+            <li class="participant-form__options-list-item">June 29th to July 11th</li>
+            <li class="participant-form__options-list-item">July 13th to July 25th</li>
+            <li class="participant-form__options-list-item">July 27th to August 8th</li>
+            <li class="participant-form__options-list-item">August 10th to August 22nd</li>
         </ul>
         <span id="examDateError" class="error error_theme_notion"></span><br>
       </div>

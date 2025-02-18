@@ -1,93 +1,3 @@
-function initDropdownMenu() {
-    const toggleButton = document.getElementById('participantFormToggleButton');
-    const inputField = document.getElementById('examDate');
-    const optionsList = document.getElementById('participantFormOptionsList');
-
-    // Toggle the options list when the button is clicked
-    toggleButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      // Toggle the "show" class to display or hide the options
-      optionsList.classList.toggle('show');
-
-      // Update the aria-expanded attribute for accessibility
-      const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
-      toggleButton.setAttribute('aria-expanded', !expanded);
-    });
-
-    // When an option is clicked, update the input and hide the list
-    optionsList.addEventListener('click', function (e) {
-      if (e.target && e.target.tagName.toLowerCase() === 'li') {
-        inputField.value = e.target.textContent;
-
-        // Hide the options list
-        optionsList.classList.remove('show');
-        toggleButton.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Optional: Hide the drop-down if the user clicks outside of the menu
-    document.addEventListener('click', function (e) {
-      // Check if the click happened outside of the dropdown container
-      if (!e.target.closest('.participant-form__collapsible-menu')) {
-        optionsList.classList.remove('show');
-        toggleButton.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  // Initialize the dropdown menu once the DOM is loaded
-  document.addEventListener('DOMContentLoaded', initDropdownMenu);
-
-const selectExamButtons = document.querySelectorAll(".select-exam__button");
-
-selectExamButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        switch (button.textContent) {
-            case "Starters":
-                const examFormStarters = document.querySelector(".exam-form-starters");
-                examFormStarters.classList.toggle("disabled");
-                break;
-            case "Movers":
-                const examFormMovers = document.querySelector(".exam-form-movers");
-                examFormMovers.classList.toggle("disabled");
-                break;
-            case "Flyers":
-                const examFormFlyers = document.querySelector(".exam-form-flyers");
-                examFormFlyers.classList.toggle("disabled");
-                break;
-            case "KET":
-                const examFormKet = document.querySelector(".exam-form-ket");
-                examFormKet.classList.toggle("disabled");
-                break;
-            case "PET":
-                const examFormPet = document.querySelector(".exam-form-pet");
-                examFormPet.classList.toggle("disabled");
-                break;
-            case "FCE":
-                const examFormFce = document.querySelector(".exam-form-fce");
-                examFormFce.classList.toggle("disabled");
-                break;
-            case "CAE":
-                const examFormCae = document.querySelector(".exam-form-cae");
-                examFormCae.classList.toggle("disabled");
-                break;
-        }
-    });
-});
-
-function mergeNameAndSurname(){
-    const participantName = document.getElementById("participantName").value.trim();
-    const participantSurname = document.getElementById("participantSurname").value.trim();
-
-    const formattedName = participantName.charAt(0).toUpperCase() + participantName.slice(1).toLowerCase();
-    const formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
-
-    const nameSurname = `${formattedName} ${formattedSurname}`;
-
-    return nameSurname;
-}
-
 function participantForm() {
 
     const participantName = document.getElementById("participantName");
@@ -138,6 +48,91 @@ function participantForm() {
 
     return isValid;
 }
+
+function mergeNameAndSurname(){
+    const participantName = document.getElementById("participantName").value.trim();
+    const participantSurname = document.getElementById("participantSurname").value.trim();
+
+    const formattedName = participantName.charAt(0).toUpperCase() + participantName.slice(1).toLowerCase();
+    const formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
+
+    const nameSurname = `${formattedName} ${formattedSurname}`;
+
+    return nameSurname;
+}
+
+function initDropdownMenu() {
+    const toggleButton = document.getElementById('participantFormToggleButton');
+    const inputField = document.getElementById('examDate');
+    const optionsList = document.getElementById('participantFormOptionsList');
+
+    toggleButton.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      optionsList.classList.toggle('show');
+
+      const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+      toggleButton.setAttribute('aria-expanded', !expanded);
+    });
+
+    optionsList.addEventListener('click', function (event) {
+      if (event.target && event.target.tagName.toLowerCase() === 'li') {
+        inputField.value = event.target.textContent;
+
+        optionsList.classList.remove('show');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+   
+      if (!event.target.closest('.participant-form__collapsible-menu')) {
+        optionsList.classList.remove('show');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initDropdownMenu);
+
+const selectExamButtons = document.querySelectorAll(".select-exam__button");
+
+selectExamButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        switch (button.textContent) {
+            case "Starters":
+                const examFormStarters = document.querySelector(".exam-form-starters");
+                examFormStarters.classList.toggle("disabled");
+                break;
+            case "Movers":
+                const examFormMovers = document.querySelector(".exam-form-movers");
+                examFormMovers.classList.toggle("disabled");
+                break;
+            case "Flyers":
+                const examFormFlyers = document.querySelector(".exam-form-flyers");
+                examFormFlyers.classList.toggle("disabled");
+                break;
+            case "KET":
+                const examFormKet = document.querySelector(".exam-form-ket");
+                examFormKet.classList.toggle("disabled");
+                break;
+            case "PET":
+                const examFormPet = document.querySelector(".exam-form-pet");
+                examFormPet.classList.toggle("disabled");
+                break;
+            case "FCE":
+                const examFormFce = document.querySelector(".exam-form-fce");
+                examFormFce.classList.toggle("disabled");
+                break;
+            case "CAE":
+                const examFormCae = document.querySelector(".exam-form-cae");
+                examFormCae.classList.toggle("disabled");
+                break;
+        }
+    });
+});
+
+
 
 function levelChoice() {
     return document.getElementById("examLevel").value.trim().toLowerCase();

@@ -80,29 +80,20 @@
     margin-bottom: var(--spacing-unit);
     border-radius: 6px;
     border: 1px solid;
+    box-sizing: border-box;
+    padding: 8px 30px 8px 8px;
 }
 
-/**/
-
-/* Container to hold the input and the arrow button */
-.dropdown-container {
+.participant-form__dropdown-container {
     position: relative;
-    width: 200px; /* Set the desired width */
-    display: inline-block;
-  }
-
-  /* Style the input field with extra padding on the right to accommodate the arrow */
-  .participant-form__input {
     width: 100%;
-    box-sizing: border-box;
-    padding: 8px 30px 8px 8px; /* Right padding for arrow button */
-  }
+    display: inline-block;
+}
 
-  /* Position the arrow button inside the input field */
-  .dropdown-container button {
+.participant-form__options-list-button {
     position: absolute;
     right: 5px;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     background: transparent;
     border: none;
@@ -110,32 +101,29 @@
     font-size: 1em;
     padding: 0;
     margin: 0;
-  }
+}
 
-  /* Style the dropdown list */
-  .participant-form__options-list {
+.participant-form__options-list {
     display: none;
     list-style: none;
     margin: 0;
     padding: 0;
     border: 1px solid #ccc;
     max-width: 200px;
-  }
+}
 
-  .participant-form__options-list.show {
+.participant-form__options-list.show {
     display: block;
-  }
+}
 
-  .participant-form__options-list li {
+.participant-form__options-list-item {
     padding: 8px;
     cursor: pointer;
-  }
+}
 
-  .participant-form__options-list li:hover {
+.participant-form__options-list-item:hover {
     background-color: #f0f0f0;
-  }
-
-/**/
+}
 
 .select-exam {
     display: block;
