@@ -42,9 +42,7 @@
         <input class="participant-form__input participant-form__input_theme_notion" id="examLevel" type="text" required>
         <span id="examLevelError" class="error error_theme_notion"></span><br>
 
-      <div class="participant-form__collapsible-menu participant-form__collapsible-menu_theme_notion">
         <label class="participant-form__label participant-form__label_theme_notion">Dates:</label>
-        
         <div class="participant-form__dropdown-container">
         <input class="participant-form__input participant-form__input_theme_notion" id="examDate" type="text" required>
         <button id="participantFormToggleButton" class="participant-form__options-list-button participant-form__options-list-button_theme_notion">▼</button>
@@ -58,7 +56,6 @@
             <li class="participant-form__options-list-item">August 10th to August 22nd</li>
         </ul>
         <span id="examDateError" class="error error_theme_notion"></span><br>
-      </div>
     </form>
 
     <div class="select-exam">
@@ -190,7 +187,8 @@
 
     <div class="teacher-letter">
         <h2 class="heading heading_theme_notion">Teacher's letter</h2>
-        <textarea class="teacher-letter__textarea teacher-letter__textarea_theme_notion" rows="4" cols="50" maxlength="200"></textarea>
+        <textarea id="teacherLetter" class="teacher-letter__textarea teacher-letter__textarea_theme_notion" rows="4" cols="50" maxlength="2000"></textarea>
+        <span id="teacherLetterError" class="error error_theme_notion teacher-letter__error_theme_notion"></span>
     </div>
 
     <button class="submit-button submit__button_theme_notion" type="submit" id="generateCertificate">

@@ -4,11 +4,13 @@ function participantForm() {
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
     const examDate = document.getElementById("examDate");
+    const teacherLetter = document.getElementById("teacherLetter");
 
     const participantNameError = document.getElementById("participantNameError");
     const participantSurnameError = document.getElementById("participantSurnameError");
     const examLevelError = document.getElementById("examLevelError");
     const examDateError = document.getElementById("examDateError");
+    const teacherLetterError = document.getElementById("teacherLetterError");
 
     let isValid = true;
 
@@ -16,33 +18,60 @@ function participantForm() {
     participantSurnameError.textContent = "";
     examLevelError.textContent = "";
     examDateError.textContent = "";
+    teacherLetterError.textContent = "";
 
     participantName.classList.remove("input_error_theme_notion");
     participantSurname.classList.remove("input_error_theme_notion");
     examLevel.classList.remove("input_error_theme_notion");
     examDate.classList.remove("input_error_theme_notion");
+    teacherLetter.classList.remove("input_error_theme_notion");
 
     if (participantName.value.trim() === "") {
         participantName.classList.add("input_error_theme_notion");
-        participantNameError.textContent = "Participant's Name is required";
+        participantNameError.textContent = "Participant's Name is required.";
         isValid = false;
     }
 
     if (participantSurname.value.trim() === "") {
         participantSurname.classList.add("input_error_theme_notion");
-        participantSurnameError.textContent = "Participant's Surname is required";
+        participantSurnameError.textContent = "Participant's Surname is required.";
         isValid = false;
     }
 
     if (examLevel.value.trim() === "") {
         examLevel.classList.add("input_error_theme_notion");
-        examLevelError.textContent = "Exam Level is required";
+        examLevelError.textContent = "Exam Level is required.";
+        isValid = false;
+    }
+
+    const examLevels = ["starters", "movers", "flyers", "ket", "pet", "fce", "cae"];
+
+    if (!examLevels.includes(examLevel.value.trim().toLowerCase())) {
+        examLevel.classList.add("input_error_theme_notion");
+        examLevelError.textContent = "There might be a spelling mistake.";
         isValid = false;
     }
 
     if (examDate.value.trim() === "") {
         examDate.classList.add("input_error_theme_notion");
-        examDateError.textContent = "Exam Date is required";
+        examDateError.textContent = "Exam date is required.";
+        isValid = false;
+    }
+
+    const examDates = document.querySelectorAll(".participant-form__options-list-item");
+    
+    const isValidExamDate = Array.from(examDates).some(option => 
+        option.textContent.trim().toLocaleLowerCase() === examDate.value.trim().toLowerCase());
+   
+    if (!isValidExamDate) {
+        examDate.classList.add("input_error_theme_notion");
+        examDateError.textContent = "Exam date is invalid.";
+        isValid = false;
+    }
+
+    if (teacherLetter.value.trim() === "") {
+        teacherLetter.classList.add("input_error_theme_notion");
+        teacherLetterError.textContent = "Don't forget to include your letter.";
         isValid = false;
     }
 
@@ -70,9 +99,6 @@ function initDropdownMenu() {
       event.preventDefault();
 
       optionsList.classList.toggle('show');
-
-      const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
-      toggleButton.setAttribute('aria-expanded', !expanded);
     });
 
     optionsList.addEventListener('click', function (event) {
@@ -80,15 +106,12 @@ function initDropdownMenu() {
         inputField.value = event.target.textContent;
 
         optionsList.classList.remove('show');
-        toggleButton.setAttribute('aria-expanded', 'false');
       }
     });
 
     document.addEventListener('click', function (event) {
-   
-      if (!event.target.closest('.participant-form__collapsible-menu')) {
+      if (!event.target.closest('.participant-form__dropdown-container')) {
         optionsList.classList.remove('show');
-        toggleButton.setAttribute('aria-expanded', 'false');
       }
     });
 }
@@ -132,10 +155,25 @@ selectExamButtons.forEach(button => {
     });
 });
 
-
-
 function levelChoice() {
     return document.getElementById("examLevel").value.trim().toLowerCase();
+}
+
+function formatExamLevel() {
+    const examLevel = document.getElementById("examLevel").value;
+    const formattedExamLevel = examLevel.trim().toLowerCase();
+
+    if (formattedExamLevel === "starters" || 
+        formattedExamLevel === "movers" || 
+        formattedExamLevel === "flyers") {
+        return formattedExamLevel.charAt(0).toUpperCase() + formattedExamLevel.slice(1).toLowerCase();
+    }
+    else if(formattedExamLevel === "ket" || 
+        formattedExamLevel === "pet" || 
+        formattedExamLevel === "fce" || 
+        formattedExamLevel === "cae") {
+        return formattedExamLevel.toUpperCase();
+    }
 }
 
 async function generateStartersCertificate() {
@@ -159,7 +197,8 @@ async function generateStartersCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -177,6 +216,15 @@ async function generateStartersCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(startersListeningShields), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -204,7 +252,8 @@ async function generateMoversCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -222,6 +271,15 @@ async function generateMoversCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(moversListeningShields), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -249,7 +307,8 @@ async function generateFlyersCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -267,6 +326,15 @@ async function generateFlyersCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(flyersListeningShields), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -293,7 +361,8 @@ async function generateKetCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -311,6 +380,15 @@ async function generateKetCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -338,7 +416,8 @@ async function generatePetCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -356,6 +435,15 @@ async function generatePetCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -384,7 +472,8 @@ async function generateFceCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -402,6 +491,15 @@ async function generateFceCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -430,7 +528,8 @@ async function generateCaeCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = document.getElementById('examLevel').value;
+        const examLevel = formatExamLevel();
+
         const examDate = document.getElementById('examDate').value;
 
         doc.setFont('helvetica', 'bold');
@@ -448,6 +547,15 @@ async function generateCaeCertificate() {
 
         doc.setFontSize(16);
         doc.text(String(listeningScore), 105, 220, { align: "right" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 50;
+        const leftMargin = 50;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+    
+        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -485,4 +593,4 @@ async function createCertificate() {
 
 document.getElementById("generateCertificate").addEventListener("click", async () => {
     await createCertificate();
-}) 
+}); 

@@ -195,3 +195,7 @@
 .input_error_theme_notion {
     border: 1px solid red;
 }
+
+.teacher-letter__error_theme_notion {
+    border: none;
+}
