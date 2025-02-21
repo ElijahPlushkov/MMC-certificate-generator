@@ -176,12 +176,32 @@ function formatExamLevel() {
     }
 }
 
+// const textarea = document.getElementById("teacherLetter");
+// const wordCountDisplay = document.getElementById("wordCount");
+// const maxWords = 20;
+
+// textarea.addEventListener("input", () => {
+//     const words = textarea.value.trim().split(/\s+/).filter(word => word !== "");
+//     const wordCount = words.length;
+
+//     if (wordCount > maxWords) {
+//         // Truncate the text to the maximum number of words
+//         const truncatedText = words.slice(0, maxWords).join(" ");
+//         textarea.value = truncatedText;
+//         wordCountDisplay.textContent = `${maxWords}/${maxWords}`;
+//     } else {
+//         wordCountDisplay.textContent = `${wordCount}/${maxWords}`;
+//     }
+// });
+
+
+
 async function generateStartersCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -201,30 +221,49 @@ async function generateStartersCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
+
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(String(startersListeningScore), 67, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(String(startersListeningShields), 69, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersListeningScore), 105, 210, { align: "right" });
+        doc.text(String(startersReadingWritingScore), 102, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersListeningShields), 105, 220, { align: "right" });
+        doc.text(String(startersReadingWritingShields), 103, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(String(startersSpeakingScore), 135, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(String(startersSpeakingShields), 137, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(startersGrade, 167, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(String(startersShieldSum), 169, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
     
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }

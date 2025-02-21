@@ -75,9 +75,9 @@ async function calculateStartersResult() {
 
         let startersGrade;
         if (startersShieldSum >= 10 && Number(listeningScore.shields) > 2 && Number(readingWritingScore.shields) > 2 && Number(speakingScore.shields) > 2) {
-            startersGrade = "Passed";
+            startersGrade = "Pass";
         } else {
-            startersGrade = "Not passed";
+            startersGrade = "Fail";
         }
 
         return {
@@ -163,9 +163,9 @@ async function calculateMoversResult() {
 
         let moversGrade;
         if (moversShieldSum >= 10 && Number(listeningScore.shields) > 2 && Number(readingWritingScore.shields) > 2 && Number(speakingScore.shields) > 2) {
-            moversGrade = "Passed";
+            moversGrade = "Pass";
         } else {
-            moversGrade = "Not passed";
+            moversGrade = "Fail";
         }
 
         return {
@@ -251,9 +251,9 @@ async function calculateFlyersResult() {
 
         let flyersGrade;
         if (flyersShieldSum >= 10 && Number(listeningScore.shields) > 2 && Number(readingWritingScore.shields) > 2 && Number(speakingScore.shields) > 2) {
-            flyersGrade = "Passed";
+            flyersGrade = "Pass";
         } else {
-            flyersGrade = "Not passed";
+            flyersGrade = "Fail";
         }
 
         return {
