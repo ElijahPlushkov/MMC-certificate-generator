@@ -59,10 +59,10 @@ function participantForm() {
     }
 
     const examDates = document.querySelectorAll(".participant-form__options-list-item");
-    
-    const isValidExamDate = Array.from(examDates).some(option => 
+
+    const isValidExamDate = Array.from(examDates).some(option =>
         option.textContent.trim().toLocaleLowerCase() === examDate.value.trim().toLowerCase());
-   
+
     if (!isValidExamDate) {
         examDate.classList.add("input_error_theme_notion");
         examDateError.textContent = "Exam date is invalid.";
@@ -78,7 +78,7 @@ function participantForm() {
     return isValid;
 }
 
-function mergeNameAndSurname(){
+function mergeNameAndSurname() {
     const participantName = document.getElementById("participantName").value.trim();
     const participantSurname = document.getElementById("participantSurname").value.trim();
 
@@ -96,23 +96,23 @@ function initDropdownMenu() {
     const optionsList = document.getElementById('participantFormOptionsList');
 
     toggleButton.addEventListener('click', function (event) {
-      event.preventDefault();
+        event.preventDefault();
 
-      optionsList.classList.toggle('show');
+        optionsList.classList.toggle('show');
     });
 
     optionsList.addEventListener('click', function (event) {
-      if (event.target && event.target.tagName.toLowerCase() === 'li') {
-        inputField.value = event.target.textContent;
+        if (event.target && event.target.tagName.toLowerCase() === 'li') {
+            inputField.value = event.target.textContent;
 
-        optionsList.classList.remove('show');
-      }
+            optionsList.classList.remove('show');
+        }
     });
 
     document.addEventListener('click', function (event) {
-      if (!event.target.closest('.participant-form__dropdown-container')) {
-        optionsList.classList.remove('show');
-      }
+        if (!event.target.closest('.participant-form__dropdown-container')) {
+            optionsList.classList.remove('show');
+        }
     });
 }
 
@@ -163,38 +163,62 @@ function formatExamLevel() {
     const examLevel = document.getElementById("examLevel").value;
     const formattedExamLevel = examLevel.trim().toLowerCase();
 
-    if (formattedExamLevel === "starters" || 
-        formattedExamLevel === "movers" || 
+    if (formattedExamLevel === "starters" ||
+        formattedExamLevel === "movers" ||
         formattedExamLevel === "flyers") {
         return formattedExamLevel.charAt(0).toUpperCase() + formattedExamLevel.slice(1).toLowerCase();
     }
-    else if(formattedExamLevel === "ket" || 
-        formattedExamLevel === "pet" || 
-        formattedExamLevel === "fce" || 
+    else if (formattedExamLevel === "ket" ||
+        formattedExamLevel === "pet" ||
+        formattedExamLevel === "fce" ||
         formattedExamLevel === "cae") {
         return formattedExamLevel.toUpperCase();
     }
 }
 
-// const textarea = document.getElementById("teacherLetter");
-// const wordCountDisplay = document.getElementById("wordCount");
-// const maxWords = 20;
+const teacherLetter = document.getElementById("teacherLetter");
+const teacherLetterError = document.getElementById("teacherLetterError");
+const wordCountDisplay = document.getElementById("wordCountDisplay");
+const maxWords = 100;
 
-// textarea.addEventListener("input", () => {
-//     const words = textarea.value.trim().split(/\s+/).filter(word => word !== "");
-//     const wordCount = words.length;
+teacherLetter.addEventListener("input", () => {
+    const words = teacherLetter.value.trim().split(/\s+/).filter(word => word !== "");
+    const wordCount = words.length;
 
-//     if (wordCount > maxWords) {
-//         // Truncate the text to the maximum number of words
-//         const truncatedText = words.slice(0, maxWords).join(" ");
-//         textarea.value = truncatedText;
-//         wordCountDisplay.textContent = `${maxWords}/${maxWords}`;
-//     } else {
-//         wordCountDisplay.textContent = `${wordCount}/${maxWords}`;
-//     }
-// });
+        if (wordCount >= maxWords) {
+            const truncatedText = words.slice(0, maxWords).join(" ");
+            teacherLetter.value = truncatedText;
+            wordCountDisplay.textContent = `${maxWords}/${maxWords}`;
+            teacherLetterError.textContent = "You have exceeded the maximum number of words.";
+        }
+        else {
+            wordCountDisplay.textContent = `${wordCount}/${maxWords}`;
+        }
+})
 
+function isTeacherLetterTooLong() {
+    const teacherLetter = document.getElementById("teacherLetter");
+    const words = teacherLetter.value.trim().split(/\s+/).filter(word => word !== "");
+    const wordCount = words.length;
+    let isTooLong = true;
+    const maxWords = 100;
 
+    teacherLetter.classList.remove(".input_error_theme_notion");
+    teacherLetterError.textContent = "";
+
+    if (wordCount >= maxWords) {
+        teacherLetterError.textContent = "You have exceeded the maximum number of words.";
+        teacherLetter.classList.add("input_error_theme_notion");
+        isTooLong = false;
+    }
+    else {
+        teacherLetterError.textContent = "";
+        teacherLetter.classList.remove("input_error_theme_notion");
+        isTooLong = true;
+    }
+
+    return isTooLong;
+}
 
 async function generateStartersCertificate() {
     const { jsPDF } = window.jspdf;
@@ -262,7 +286,7 @@ async function generateStartersCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -317,7 +341,7 @@ async function generateMoversCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -372,7 +396,7 @@ async function generateFlyersCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -426,7 +450,7 @@ async function generateKetCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -481,7 +505,7 @@ async function generatePetCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -503,7 +527,7 @@ async function generateFceCertificate() {
         const {
             listening: { fceListeningInputValue, listeningScore },
             reading: { fcereadingInputValue, readingScore },
-            use: { fceUseInputValue, useScore},
+            use: { fceUseInputValue, useScore },
             writing: { fceWritingInputValue, writingScore },
             speaking: { fceSpeakingInputValue, speakingScore },
             fceAverageScore,
@@ -537,7 +561,7 @@ async function generateFceCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -559,7 +583,7 @@ async function generateCaeCertificate() {
         const {
             listening: { caeListeningInputValue, listeningScore },
             reading: { caereadingInputValue, readingScore },
-            use: { caeUseInputValue, useScore},
+            use: { caeUseInputValue, useScore },
             writing: { caeWritingInputValue, writingScore },
             speaking: { caeSpeakingInputValue, speakingScore },
             caeAverageScore,
@@ -593,7 +617,7 @@ async function generateCaeCertificate() {
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
-    
+
         doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -602,6 +626,10 @@ async function generateCaeCertificate() {
 
 async function createCertificate() {
     if (!participantForm()) {
+        return;
+    }
+
+    if (!isTeacherLetterTooLong()) {
         return;
     }
 
@@ -625,7 +653,7 @@ async function createCertificate() {
     else if (examLevel === "fce") {
         generateFceCertificate();
     }
-    else if (examLevel === "cae"){
+    else if (examLevel === "cae") {
         generateCaeCertificate();
     }
 }

@@ -145,6 +145,11 @@
     color: var(--color-text);
 }
 
+.teacher-letter__word-count_theme_notion {
+    font-family: var(--font-family-serif);
+    color: var(--color-text);
+}
+
 .teacher-letter__textarea_theme_notion {
     margin-bottom: var(--spacing-unit);
     border: 1px solid var(--color-border);
