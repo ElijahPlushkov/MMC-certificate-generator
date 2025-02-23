@@ -257,28 +257,28 @@ async function generateStartersCertificate() {
 
 
         doc.setFontSize(16);
-        doc.text(String(startersListeningScore), 67, 130, { align: "left" });
+        doc.text(`${String(startersListeningScore)}/20`, 64, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersListeningShields), 69, 142, { align: "left" });
+        doc.text(`${String(startersListeningShields)}/5`, 67, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersReadingWritingScore), 102, 130, { align: "left" });
+        doc.text(`${String(startersReadingWritingScore)}/25`, 98, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersReadingWritingShields), 103, 142, { align: "left" });
+        doc.text(`${String(startersReadingWritingShields)}/5`, 101, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersSpeakingScore), 135, 130, { align: "left" });
+        doc.text(`${String(startersSpeakingScore)}/15`, 132, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersSpeakingShields), 137, 142, { align: "left" });
+        doc.text(`${String(startersSpeakingShields)}/5`, 135, 142, { align: "left" });
 
         doc.setFontSize(16);
         doc.text(startersGrade, 167, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(startersShieldSum), 169, 142, { align: "left" });
+        doc.text(`${String(startersShieldSum)}/15`, 166, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
         const rightMargin = 30;
@@ -298,7 +298,7 @@ async function generateMoversCertificate() {
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -319,30 +319,49 @@ async function generateMoversCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
+
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(`${String(moversListeningScore)}/25`, 64, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(`${String(moversListeningShields)}/5`, 67, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(moversListeningScore), 105, 210, { align: "right" });
+        doc.text(`${String(moversReadingWritingScore)}/35`, 98, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(moversListeningShields), 105, 220, { align: "right" });
+        doc.text(`${String(moversReadingWritingShields)}/5`, 101, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(moversSpeakingScore)}/15`, 132, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(moversSpeakingShields)}/5`, 135, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(moversGrade, 167, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(moversShieldSum)}/15`, 166, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -353,7 +372,7 @@ async function generateFlyersCertificate() {
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -374,30 +393,49 @@ async function generateFlyersCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
+
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(`${String(flyersListeningScore)}/25`, 64, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(`${String(flyersListeningShields)}/5`, 67, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(flyersListeningScore), 105, 210, { align: "right" });
+        doc.text(`${String(flyersReadingWritingScore)}/44`, 98, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(flyersListeningShields), 105, 220, { align: "right" });
+        doc.text(`${String(flyersReadingWritingShields)}/5`, 101, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(flyersSpeakingScore)}/15`, 132, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(flyersSpeakingShields)}/5`, 135, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(flyersGrade, 167, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(flyersShieldSum)}/15`, 166, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -408,7 +446,7 @@ async function generateKetCertificate() {
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.KET_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -428,30 +466,67 @@ async function generateKetCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
+
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(`${String(ketListeningInputValue)}/25`, 64, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(`${String(listeningScore)}/150`, 61, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(ketListeningInputValue, 105, 210, { align: "right" });
+        doc.text(`${String(ketReadingWritingInputValue)}/60`, 98, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(listeningScore), 105, 220, { align: "right" });
+        doc.text(`${String(readingWritingScore)}/150`, 95, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(ketSpeakingInputValue)}/45`, 132, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(speakingScore)}/150`, 129, 142, { align: "left" });
+
+       if (ketAverageScore <= 99) {
+            doc.setFontSize(16);
+            doc.text(String(ketAverageScore), 170, 130, { align: "left" });
+
+            doc.setFontSize(14);
+            doc.text(ketGrade, 164, 142, { align: "left" }); 
+        }
+
+        else if (ketAverageScore <= 119) {
+            doc.setFontSize(16);
+            doc.text(String(ketAverageScore), 168, 130, { align: "left" });
+            
+            doc.setFontSize(14);
+            doc.text(ketGrade, 164, 142, { align: "left" }); 
+        }
+
+        else {
+            doc.setFontSize(16);
+            doc.text(String(ketAverageScore), 168, 130, { align: "left" });
+
+            doc.setFontSize(14);
+            doc.text(ketGrade, 159, 142, { align: "left" }); 
+        }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -462,7 +537,7 @@ async function generatePetCertificate() {
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.PET_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -471,7 +546,7 @@ async function generatePetCertificate() {
 
         const {
             listening: { petListeningInputValue, listeningScore },
-            reading: { petreadingInputValue, readingScore },
+            reading: { petReadingInputValue, readingScore },
             writing: { petWritingInputValue, writingScore },
             speaking: { petSpeakingInputValue, speakingScore },
             petAverageScore,
@@ -483,30 +558,73 @@ async function generatePetCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
+
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(`${String(petListeningInputValue)}/25`, 56, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(`${String(listeningScore)}/170`, 53, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(petListeningInputValue, 105, 210, { align: "right" });
+        doc.text(`${String(petReadingInputValue)}/32`, 85, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(listeningScore), 105, 220, { align: "right" });
+        doc.text(`${String(readingScore)}/170`, 81, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(petWritingInputValue)}/40`, 113, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(writingScore)}/170`, 109, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(petSpeakingInputValue)}/45`, 141, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(speakingScore)}/170`, 138, 142, { align: "left" });
+
+       if (petAverageScore <= 99) {
+            doc.setFontSize(16);
+            doc.text(String(petAverageScore), 173, 130, { align: "left" });
+
+            doc.setFontSize(14);
+            doc.text(petGrade, 168, 142, { align: "left" }); 
+        }
+
+        else if (petAverageScore <= 129) {
+            doc.setFontSize(16);
+            doc.text(String(petAverageScore), 171, 130, { align: "left" });
+            
+            doc.setFontSize(14);
+            doc.text(petGrade, 168, 142, { align: "left" }); 
+        }
+
+        else {
+            doc.setFontSize(16);
+            doc.text(String(petAverageScore), 171, 130, { align: "left" });
+
+            doc.setFontSize(12);
+            doc.text(petGrade, 164, 142, { align: "left" }); 
+        }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }

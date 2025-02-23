@@ -263,7 +263,7 @@ async function calculateFlyersResult() {
             },
             readingWriting: {
                 flyersReadingWritingScore: readingWritingScore.result,
-                flyersReadingWritingShield: readingWritingScore.shields
+                flyersReadingWritingShields: readingWritingScore.shields
             },
             speaking: {
                 flyersSpeakingScore: speakingScore.result,
@@ -465,13 +465,13 @@ async function calculateKetResult(){
     let ketGrade;
 
     if (ketAverageScore >= 140) {
-        ketGrade = "Grade A (B1 level)";
+        ketGrade = "Grade A (B1)";
     }
     else if (ketAverageScore >= 133) {
-        ketGrade = "Grade B (A2 level)";
+        ketGrade = "Grade B (A2)";
     }
     else if (ketAverageScore >= 120) {
-        ketGrade = "Grade C (A2 level)";
+        ketGrade = "Grade C (A2)";
     }
     else {
         ketGrade = "A1 level";
@@ -686,13 +686,13 @@ async function calculatePetResult() {
     let petGrade;
 
     if (petAverageScore >= 160) {
-        petGrade = "Grade A (B2 level)";
+        petGrade = "Grade A (B2)";
     }
     else if (petAverageScore >= 153) {
-        petGrade = "Grade B (B1 level)";
+        petGrade = "Grade B (B1)";
     }
     else if (petAverageScore >= 140) {
-        petGrade = "Grade C (B1 level)";
+        petGrade = "Grade C (B1)";
     }
     else if (petAverageScore >= 120) {
         petGrade = "A2 level";
