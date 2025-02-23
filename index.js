@@ -526,6 +526,7 @@ async function generateKetCertificate() {
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
+        doc.setFontSize(16);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -624,6 +625,7 @@ async function generatePetCertificate() {
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
+        doc.setFontSize(16);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
@@ -635,7 +637,7 @@ async function generateFceCertificate() {
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.FCE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -644,7 +646,7 @@ async function generateFceCertificate() {
 
         const {
             listening: { fceListeningInputValue, listeningScore },
-            reading: { fcereadingInputValue, readingScore },
+            reading: { fceReadingInputValue, readingScore },
             use: { fceUseInputValue, useScore },
             writing: { fceWritingInputValue, writingScore },
             speaking: { fceSpeakingInputValue, speakingScore },
@@ -657,30 +659,79 @@ async function generateFceCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(`${String(fceListeningInputValue)}/30`, 54, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(`${String(listeningScore)}/190`, 50.5, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(fceListeningInputValue, 105, 210, { align: "right" });
+        doc.text(`${String(fceReadingInputValue)}/42`, 78, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(listeningScore), 105, 220, { align: "right" });
+        doc.text(`${String(readingScore)}/190`, 74.5, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(fceUseInputValue)}/28`, 101.5, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(useScore)}/190`, 98, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(fceWritingInputValue)}/40`, 126, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(writingScore)}/190`, 122, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(fceSpeakingInputValue)}/60`, 151, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(speakingScore)}/190`, 147, 142, { align: "left" });
+
+       if (fceAverageScore <= 99) {
+            doc.setFontSize(16);
+            doc.text(String(fceAverageScore), 178, 130, { align: "left" });
+
+            doc.setFontSize(14);
+            doc.text(fceGrade, 173, 142, { align: "left" }); 
+        }
+
+        else if (fceAverageScore <= 139) {
+            doc.setFontSize(16);
+            doc.text(String(fceAverageScore), 176, 130, { align: "left" });
+            
+            doc.setFontSize(14);
+            doc.text(fceGrade, 173, 142, { align: "left" }); 
+        }
+
+        else {
+            doc.setFontSize(16);
+            doc.text(String(fceAverageScore), 176, 130, { align: "left" });
+
+            doc.setFontSize(10);
+            doc.text(fceGrade, 171, 142, { align: "left" }); 
+        }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.setFontSize(16);
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }
@@ -691,7 +742,7 @@ async function generateCaeCertificate() {
     const doc = new jsPDF();
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE;
+    backgroundImg.src = window.FCE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -700,7 +751,7 @@ async function generateCaeCertificate() {
 
         const {
             listening: { caeListeningInputValue, listeningScore },
-            reading: { caereadingInputValue, readingScore },
+            reading: { caeReadingInputValue, readingScore },
             use: { caeUseInputValue, useScore },
             writing: { caeWritingInputValue, writingScore },
             speaking: { caeSpeakingInputValue, speakingScore },
@@ -713,30 +764,79 @@ async function generateCaeCertificate() {
 
         const examDate = document.getElementById('examDate').value;
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(24);
-        doc.text(fullName, 105, 140, { align: 'center' });
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
 
         doc.setFontSize(16);
-        doc.text(`Date: ${examDate}`, 105, 160, { align: 'center' });
+        doc.text(`${String(caeListeningInputValue)}/30`, 54, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(examLevel, 105, 200, { align: 'center' });
+        doc.text(`${String(listeningScore)}/210`, 50.5, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(caeListeningInputValue, 105, 210, { align: "right" });
+        doc.text(`${String(caeReadingInputValue)}/50`, 78, 130, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(String(listeningScore), 105, 220, { align: "right" });
+        doc.text(`${String(readingScore)}/210`, 74.5, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(caeUseInputValue)}/28`, 101.5, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(useScore)}/210`, 98, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(caeWritingInputValue)}/40`, 126, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(writingScore)}/210`, 122, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(caeSpeakingInputValue)}/75`, 151, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(speakingScore)}/210`, 147, 142, { align: "left" });
+
+       if (caeAverageScore <= 99) {
+            doc.setFontSize(16);
+            doc.text(String(caeAverageScore), 178, 130, { align: "left" });
+
+            doc.setFontSize(14);
+            doc.text(caeGrade, 173, 142, { align: "left" }); 
+        }
+
+        else if (caeAverageScore <= 159) {
+            doc.setFontSize(16);
+            doc.text(String(caeAverageScore), 176, 130, { align: "left" });
+            
+            doc.setFontSize(14);
+            doc.text(caeGrade, 173, 142, { align: "left" }); 
+        }
+
+        else {
+            doc.setFontSize(16);
+            doc.text(String(caeAverageScore), 176, 130, { align: "left" });
+
+            doc.setFontSize(10);
+            doc.text(caeGrade, 171, 142, { align: "left" }); 
+        }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 50;
-        const leftMargin = 50;
+        const rightMargin = 30;
+        const leftMargin = 30;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.text(teacherLetter, leftMargin, 225, { maxWidth: maxWidth });
+        doc.setFontSize(16);
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
     }

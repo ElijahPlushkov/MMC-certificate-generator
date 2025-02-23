@@ -999,13 +999,13 @@ async function calculateFceResult() {
     let fceGrade;
 
     if (fceAverageScore >= 180) {
-        fceGrade = "Grade A (C1 level)";
+        fceGrade = "Grade A (C1)";
     }
     else if (fceAverageScore >= 173) {
-        fceGrade = "Grade B (B2 level)";
+        fceGrade = "Grade B (B2)";
     }
     else if (fceAverageScore >= 160) {
-        fceGrade = "Grade C (B2 level)";
+        fceGrade = "Grade C (B2)";
     }
     else if (fceAverageScore >= 140) {
         fceGrade = "B1 level";
@@ -1342,13 +1342,13 @@ async function calculateCaeResult() {
     let caeGrade;
 
     if (caeAverageScore >= 200) {
-        caeGrade = "Grade A (C2 level)";
+        caeGrade = "Grade A (C2)";
     }
     else if (caeAverageScore >= 193) {
-        caeGrade = "Grade B (C1 level)";
+        caeGrade = "Grade B (C1)";
     }
     else if (caeAverageScore >= 180) {
-        caeGrade = "Grade C (C1 level)";
+        caeGrade = "Grade C (C1)";
     }
     else if (caeAverageScore >= 160) {
         caeGrade = "B2 level";
