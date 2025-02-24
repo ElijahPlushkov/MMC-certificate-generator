@@ -119,9 +119,27 @@ function initDropdownMenu() {
 document.addEventListener('DOMContentLoaded', initDropdownMenu);
 
 const selectExamButtons = document.querySelectorAll(".select-exam__button");
+const examForms = document.querySelectorAll(".exam-form");
+
+function disableForms() {
+
+    examForms.forEach(form => {
+    form.classList.add("disabled");
+});
+
+}
+
+function enableForm (formSelector) {
+    const form = document.querySelector(formSelector);
+    form.classList.remove("disabled");
+}
+
+enableForm(".exam-form-starters");
 
 selectExamButtons.forEach(button => {
     button.addEventListener('click', () => {
+        disableForms();
+        
         switch (button.textContent) {
             case "Starters":
                 const examFormStarters = document.querySelector(".exam-form-starters");

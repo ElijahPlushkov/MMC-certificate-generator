@@ -131,7 +131,7 @@
 
 .exam-form-inputs__input_theme_notion {
     font-family: var(--font-family-sans);
-    font-size: 1em;
+    font-size: 1rem;
     border: 1px solid var(--color-border);
 }
 
