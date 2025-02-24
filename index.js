@@ -222,7 +222,9 @@ function isTeacherLetterTooLong() {
 
 async function generateStartersCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.YLE_TEMPLATE_CERT;
@@ -295,7 +297,9 @@ async function generateStartersCertificate() {
 
 async function generateMoversCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.YLE_TEMPLATE_CERT;
@@ -369,7 +373,9 @@ async function generateMoversCertificate() {
 
 async function generateFlyersCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.YLE_TEMPLATE_CERT;
@@ -443,7 +449,9 @@ async function generateFlyersCertificate() {
 
 async function generateKetCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.KET_TEMPLATE_CERT;
@@ -535,7 +543,9 @@ async function generateKetCertificate() {
 
 async function generatePetCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.PET_TEMPLATE_CERT;
@@ -634,7 +644,9 @@ async function generatePetCertificate() {
 
 async function generateFceCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.FCE_TEMPLATE_CERT;
@@ -703,16 +715,16 @@ async function generateFceCertificate() {
             doc.setFontSize(16);
             doc.text(String(fceAverageScore), 178, 130, { align: "left" });
 
-            doc.setFontSize(14);
-            doc.text(fceGrade, 173, 142, { align: "left" }); 
+            doc.setFontSize(16);
+            doc.text(fceGrade, 172, 142, { align: "left" }); 
         }
 
-        else if (fceAverageScore <= 139) {
+        else if (fceAverageScore <= 159) {
             doc.setFontSize(16);
             doc.text(String(fceAverageScore), 176, 130, { align: "left" });
             
-            doc.setFontSize(14);
-            doc.text(fceGrade, 173, 142, { align: "left" }); 
+            doc.setFontSize(16);
+            doc.text(fceGrade, 172, 142, { align: "left" }); 
         }
 
         else {
@@ -739,7 +751,9 @@ async function generateFceCertificate() {
 
 async function generateCaeCertificate() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        compress: true,
+    });
 
     const backgroundImg = new Image();
     backgroundImg.src = window.FCE_TEMPLATE_CERT;
@@ -812,7 +826,7 @@ async function generateCaeCertificate() {
             doc.text(caeGrade, 173, 142, { align: "left" }); 
         }
 
-        else if (caeAverageScore <= 159) {
+        else if (caeAverageScore <= 179) {
             doc.setFontSize(16);
             doc.text(String(caeAverageScore), 176, 130, { align: "left" });
             
