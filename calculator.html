@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMC Cambridge Score Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme_notion.css">
+</head>
+
+<body class="page-styling page-styling_theme_notion">
+    <div class="page-layout">
+
+        <nav class="menu menu_left menu_theme_notion">
+            <ul class="menu__list">
+                <li class="menu__item menu__item_theme_notion">
+                    <a class="menu__link menu__link-theme_notion" href="#">Instructions</a>
+                </li>
+                <li class="menu__item menu__item_theme_notion">
+                    <a class="menu__link menu__link-theme_notion" href="#">Student DB</a>
+                </li>
+                <li class="menu__item menu__item_theme_notion">
+                    <a class="menu__link menu__link-theme_notion" href="index.html">Certificate Generator</a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main-container main-container_menu-left main-container_theme_notion">
+            <header class="main-title">
+                <h1 class="main-title__heading main-title__heading_theme_notion">MMC Cambridge Score Calculator</h1>
+            </header>
+            <div class="select-exam">
+                <h2 class="heading heading_theme_notion">Calculate the score</h2>
+                <button class="select-exam__button select-exam__button_theme_notion">Starters</button>
+                <button class="select-exam__button select-exam__button_theme_notion">Movers</button>
+                <button class="select-exam__button select-exam__button_theme_notion">Flyers</button>
+                <button class="select-exam__button select-exam__button_theme_notion">KET</button>
+                <button class="select-exam__button select-exam__button_theme_notion">PET</button>
+                <button class="select-exam__button select-exam__button_theme_notion">FCE</button>
+                <button class="select-exam__button select-exam__button_theme_notion">CAE</button>
+            </div>
+
+            <form class="exam-form exam-form_theme_notion exam-form-starters disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">Starters</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label
+                        class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading&Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="startersListeningInput" type="number" max="20" min="0" step="1" placeholder="0-20"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="startersReadingWritingInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="startersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+                    <span id="startersError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculateSt"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+
+            <form class="exam-form exam-form_theme_notion exam-form-movers disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">Movers</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label
+                        class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading&Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="moversListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="moversReadingWritingInput" type="number" max="35" min="0" step="1" placeholder="0-35"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversSpeakingInput"
+                        type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+                    <span id="moversError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculateMov"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+            <form class="exam-form exam-form_theme_notion exam-form-flyers disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">Flyers</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label
+                        class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading&Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="flyersListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="flyersReadingWritingInput" type="number" max="44" min="0" step="1" placeholder="0-44"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersSpeakingInput"
+                        type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+                    <span id="flyersError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculateFl"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+            <form class="exam-form exam-form_theme_notion exam-form-ket disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">KET</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label
+                        class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading&Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketListeningInput"
+                        type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                        id="ketReadingWritingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketSpeakingInput"
+                        type="number" min="0" max="45" step="1" placeholder="0-45"><br>
+                    <span id="ketError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculateKet"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+            <form class="exam-form exam-form_theme_notion exam-form-pet disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">PET</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petListeningInput"
+                        type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petReadingInput"
+                        type="number" min="0" max="32" step="1" placeholder="0-32"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petWritingInput"
+                        type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petSpeakingInput"
+                        type="number" min="0" max="30" step="1" placeholder="0-30"><br>
+                    <span id="petError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculatePet"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+            <form class="exam-form exam-form_theme_notion exam-form-fce disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">FCE</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Use of
+                        English</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceListeningInput"
+                        type="number" min="0" max="30" step="1" placeholder="0-30"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceReadingInput"
+                        type="number" min="0" max="42" step="1" placeholder="0-42"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceUseInput"
+                        type="number" min="0" max="28" step="1" placeholder="0-28"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceWritingInput"
+                        type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceSpeakingInput"
+                        type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+                    <span id="fceError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculateFce"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+            <form class="exam-form exam-form_theme_notion exam-form-cae disabled">
+                <h2 class="exam-form__heading exam-form__heading_theme_notion">CAE</h2>
+                <div class="exam-form-labels">
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Use of
+                        English</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Writing</label><br>
+                    <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
+                </div>
+                <div class="exam-form-inputs">
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeListeningInput"
+                        type="number" min="0" max="60" step="1" placeholder="0-30"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeReadingInput"
+                        type="number" min="0" max="50" step="1" placeholder="0-50"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeUseInput"
+                        type="number" min="0" max="28" step="1" placeholder="0-28"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeWritingInput"
+                        type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeSpeakingInput"
+                        type="number" min="0" max="75" step="1" placeholder="0-75"><br>
+                    <span id="caeError" class="error error_theme_notion"></span>
+                </div>
+                <button type="button" id="calculateCae"
+                    class="submit-button submit__button_theme_notion">Calculate</button>
+            </form>
+
+            <div id="resultsYle" class="disabled">
+                <table id="scoresTableYle" class="scores-table scores-table_theme_notion">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Listening</th>
+                            <th>Reading&Writing</th>
+                            <th>Speaking</th>
+                            <th>Pass/Fail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Marks</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Number of Shields</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="resultsKet" class="disabled">
+                <table id="scoresTableKet" class="scores-table scores-table_theme_notion">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Listening</th>
+                            <th>Reading&Writing</th>
+                            <th>Speaking</th>
+                            <th>Overall Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Marks</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Cambridge Score</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="resultsPet" class="disabled">
+                <table id="scoresTablePet" class="scores-table scores-table_theme_notion">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Listening</th>
+                            <th>Reading</th> 
+                            <th>Writing</th>
+                            <th>Speaking</th>
+                            <th>Overall Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Marks</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Cambridge Score</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="resultsFceCae" class="disabled">
+                <table id="scoresTableFceCae" class="scores-table scores-table_theme_notion">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Listening</th>
+                            <th>Reading</th>
+                            <th>Use of English</th> 
+                            <th>Writing</th>
+                            <th>Speaking</th>
+                            <th>Overall Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Marks</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Cambridge Score</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="footer__division-line footer__division-line_theme_notion"></div>
+        <p class="footer__text footer__text_theme_notion">MMC 2025.</p>
+    </footer>
+
+    <script src="cert_calculator.js"></script>
+    <script src="calculator.js"></script>
+</body>
+
+</html>

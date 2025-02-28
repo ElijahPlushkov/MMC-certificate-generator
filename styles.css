@@ -192,6 +192,21 @@
     width: 150px;
 }
 
+.scores-table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.scores-table th, td {
+    border: solid 1px;
+    padding: 5px;
+}
+
+.scores-table th {
+    background-color: rgb(230, 230, 230);
+    white-space: nowrap;
+}
+
 .footer {
     display: block;
 }

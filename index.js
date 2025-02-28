@@ -118,61 +118,6 @@ function initDropdownMenu() {
 
 document.addEventListener('DOMContentLoaded', initDropdownMenu);
 
-const selectExamButtons = document.querySelectorAll(".select-exam__button");
-const examForms = document.querySelectorAll(".exam-form");
-
-function disableForms() {
-
-    examForms.forEach(form => {
-    form.classList.add("disabled");
-});
-
-}
-
-function enableForm (formSelector) {
-    const form = document.querySelector(formSelector);
-    form.classList.remove("disabled");
-}
-
-enableForm(".exam-form-starters");
-
-selectExamButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        disableForms();
-        
-        switch (button.textContent) {
-            case "Starters":
-                const examFormStarters = document.querySelector(".exam-form-starters");
-                examFormStarters.classList.toggle("disabled");
-                break;
-            case "Movers":
-                const examFormMovers = document.querySelector(".exam-form-movers");
-                examFormMovers.classList.toggle("disabled");
-                break;
-            case "Flyers":
-                const examFormFlyers = document.querySelector(".exam-form-flyers");
-                examFormFlyers.classList.toggle("disabled");
-                break;
-            case "KET":
-                const examFormKet = document.querySelector(".exam-form-ket");
-                examFormKet.classList.toggle("disabled");
-                break;
-            case "PET":
-                const examFormPet = document.querySelector(".exam-form-pet");
-                examFormPet.classList.toggle("disabled");
-                break;
-            case "FCE":
-                const examFormFce = document.querySelector(".exam-form-fce");
-                examFormFce.classList.toggle("disabled");
-                break;
-            case "CAE":
-                const examFormCae = document.querySelector(".exam-form-cae");
-                examFormCae.classList.toggle("disabled");
-                break;
-        }
-    });
-});
-
 function levelChoice() {
     return document.getElementById("examLevel").value.trim().toLowerCase();
 }

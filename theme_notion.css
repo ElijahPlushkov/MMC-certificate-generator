@@ -166,7 +166,7 @@
     color: #fff;
     border: none;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: 1rem;
     transition: background-color 0.3s ease;
     font-family: var(--font-family-sans);
     width: 250px;
@@ -176,6 +176,24 @@
 
 .submit__button_theme_notion:hover {
     background-color: var(--color-primary-hover);
+}
+
+.scores-table_theme_notion {
+    margin-top: 20px;
+    border: 1px solid var(--color-primary);
+    font-family: var(--font-family-sans);
+    font-size: 1rem;
+}
+
+.scores-table_theme_notion td {
+    border: 1px solid var(--color-primary);
+}
+
+.scores-table_theme_notion th {
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: #fff;
+    font-weight: 500;
 }
 
 .footer__division-line_theme_notion {
