@@ -255,6 +255,16 @@ async function generateStartersCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: startersShieldSum,
+            grade: startersGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -331,6 +341,16 @@ async function generateMoversCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: moversShieldSum,
+            grade: moversGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -407,6 +427,16 @@ async function generateFlyersCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: flyersShieldSum,
+            grade: flyersGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -501,6 +531,16 @@ async function generateKetCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: ketAverageScore,
+            grade: ketGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -602,6 +642,16 @@ async function generatePetCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: petAverageScore,
+            grade: petGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -709,6 +759,16 @@ async function generateFceCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: fceAverageScore,
+            grade: fceGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -816,6 +876,16 @@ async function generateCaeCertificate() {
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save('certificate.pdf');
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: caeAverageScore,
+            grade: caeGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -850,6 +920,24 @@ async function createCertificate() {
     }
     else if (examLevel === "cae") {
         generateCaeCertificate();
+    }
+}
+
+async function sendDataToGoogleSheets(studentData) {
+    const url = 'https://script.google.com/macros/s/AKfycbwFvXerK4qqlTq8k6Ysr2Md4jP4uoM7fNd1ZcbKe1U73rwr_8Wr_BMt_hYNfGM5j2HMyw/exec'; 
+
+    try {
+        await fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(studentData)
+        });
+        console.log("Successfully sent data to Google Sheets.");
+    } catch (error) {
+        console.error("Error sending data to Google Sheets:", error);
     }
 }
 
