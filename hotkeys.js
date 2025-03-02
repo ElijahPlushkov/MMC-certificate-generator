@@ -208,13 +208,3 @@ document.addEventListener('keydown', function (event) {
         button.click();
     }
 });
-
-// document.addEventListener('keydown', function (event) {
-//     if (event.code === 'Enter') {
-//         const buttons = document.querySelectorAll('.calculate-button');
-//         buttons.forEach(button => {
-//             button.click();
-//         });
-//         event.preventDefault();
-//     }
-// });
