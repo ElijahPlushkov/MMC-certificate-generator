@@ -15,9 +15,6 @@
         <nav class="menu menu_left menu_theme_notion">
             <ul class="menu__list">
                 <li class="menu__item menu__item_theme_notion">
-                    <a class="menu__link menu__link-theme_notion" href="#">Instructions</a>
-                </li>
-                <li class="menu__item menu__item_theme_notion">
                     <a class="menu__link menu__link-theme_notion" href="index.html">Certificate Generator</a>
                 </li>
                 <li class="menu__item menu__item_theme_notion">
@@ -25,6 +22,9 @@
                 </li>
                 <li class="menu__item menu__item_theme_notion">
                     <a class="menu__link menu__link-theme_notion" href="https://docs.google.com/spreadsheets/d/15Y0Fx78N5XLKg3w4ImopCkKE-WvRr2JKINrfjPb4qhk/edit?gid=0#gid=0" target="_blank">Student DB</a>
+                </li>
+                <li class="menu__item menu__item_theme_notion">
+                    <a class="menu__link menu__link-theme_notion" href="#">Instructions</a>
                 </li>
             </ul>
         </nav>
@@ -35,13 +35,13 @@
             </header>
             <div class="select-exam">
                 <h2 class="heading heading_theme_notion">Calculate the score</h2>
-                <button class="select-exam__button select-exam__button_theme_notion">Starters</button>
-                <button class="select-exam__button select-exam__button_theme_notion">Movers</button>
-                <button class="select-exam__button select-exam__button_theme_notion">Flyers</button>
-                <button class="select-exam__button select-exam__button_theme_notion">KET</button>
-                <button class="select-exam__button select-exam__button_theme_notion">PET</button>
-                <button class="select-exam__button select-exam__button_theme_notion">FCE</button>
-                <button class="select-exam__button select-exam__button_theme_notion">CAE</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="startersSelect">Starters</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="moversSelect">Movers</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="flyersSelect">Flyers</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="ketSelect">KET</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="petSelect">PET</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="fceSelect">FCE</button>
+                <button class="select-exam__button select-exam__button_theme_notion" id="caeSelect">CAE</button>
             </div>
 
             <form class="exam-form exam-form_theme_notion exam-form-starters disabled">
@@ -53,7 +53,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening"
                         id="startersListeningInput" type="number" max="20" min="0" step="1" placeholder="0-20"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
                         id="startersReadingWritingInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
@@ -62,7 +62,7 @@
                     <span id="startersError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculateSt"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
 
@@ -75,7 +75,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening"
                         id="moversListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
                         id="moversReadingWritingInput" type="number" max="35" min="0" step="1" placeholder="0-35"><br>
@@ -84,7 +84,7 @@
                     <span id="moversError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculateMov"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
             <form class="exam-form exam-form_theme_notion exam-form-flyers disabled">
@@ -96,7 +96,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening"
                         id="flyersListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
                         id="flyersReadingWritingInput" type="number" max="44" min="0" step="1" placeholder="0-44"><br>
@@ -105,7 +105,7 @@
                     <span id="flyersError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculateFl"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
             <form class="exam-form exam-form_theme_notion exam-form-ket disabled">
@@ -117,7 +117,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketListeningInput"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="ketListeningInput"
                         type="number" min="0" max="25" step="1" placeholder="0-25"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion"
                         id="ketReadingWritingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
@@ -126,7 +126,7 @@
                     <span id="ketError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculateKet"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
             <form class="exam-form exam-form_theme_notion exam-form-pet disabled">
@@ -138,7 +138,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petListeningInput"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="petListeningInput"
                         type="number" min="0" max="25" step="1" placeholder="0-25"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petReadingInput"
                         type="number" min="0" max="32" step="1" placeholder="0-32"><br>
@@ -149,7 +149,7 @@
                     <span id="petError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculatePet"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
             <form class="exam-form exam-form_theme_notion exam-form-fce disabled">
@@ -163,7 +163,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceListeningInput"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="fceListeningInput"
                         type="number" min="0" max="30" step="1" placeholder="0-30"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceReadingInput"
                         type="number" min="0" max="42" step="1" placeholder="0-42"><br>
@@ -176,7 +176,7 @@
                     <span id="fceError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculateFce"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
             <form class="exam-form exam-form_theme_notion exam-form-cae disabled">
@@ -190,7 +190,7 @@
                     <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
                 </div>
                 <div class="exam-form-inputs">
-                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeListeningInput"
+                    <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="caeListeningInput"
                         type="number" min="0" max="60" step="1" placeholder="0-30"><br>
                     <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeReadingInput"
                         type="number" min="0" max="50" step="1" placeholder="0-50"><br>
@@ -203,7 +203,7 @@
                     <span id="caeError" class="error error_theme_notion"></span>
                 </div>
                 <button type="button" id="calculateCae"
-                    class="submit-button submit__button_theme_notion">Calculate</button>
+                    class="submit-button calculate-button submit__button_theme_notion">Calculate</button>
             </form>
 
             <div id="resultsYle" class="disabled">
@@ -341,6 +341,7 @@
         <p class="footer__text footer__text_theme_notion">MMC 2025.</p>
     </footer>
 
+    <script src="hotkeys.js"></script>
     <script src="cert_calculator.js"></script>
     <script src="calculator.js"></script>
 </body>

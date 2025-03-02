@@ -13,9 +13,6 @@
     <nav class="menu menu_left menu_theme_notion">
         <ul class="menu__list">
             <li class="menu__item menu__item_theme_notion">
-                <a class="menu__link menu__link-theme_notion" href="#">Instructions</a>
-            </li>
-            <li class="menu__item menu__item_theme_notion">
                 <a class="menu__link menu__link-theme_notion" href="index.html">Certificate Generator</a>
             </li>
             <li class="menu__item menu__item_theme_notion">
@@ -23,6 +20,9 @@
             </li>
             <li class="menu__item menu__item_theme_notion">
                 <a class="menu__link menu__link-theme_notion" href="https://docs.google.com/spreadsheets/d/15Y0Fx78N5XLKg3w4ImopCkKE-WvRr2JKINrfjPb4qhk/edit?gid=0#gid=0" target="_blank">Student DB</a>
+            </li>
+             <li class="menu__item menu__item_theme_notion">
+                <a class="menu__link menu__link-theme_notion" href="#">Instructions</a>
             </li>
         </ul>
     </nav>
@@ -51,25 +51,25 @@
         <button id="participantFormToggleButton" class="participant-form__options-list-button participant-form__options-list-button_theme_notion">▼</button>
         </div>
         <ul id="participantFormOptionsList" class="participant-form__options-list participant-form__options-list_theme_notion">
-            <li class="participant-form__options-list-item">June 1st to June 13th</li>
-            <li class="participant-form__options-list-item">June 15th to June 27th</li>
-            <li class="participant-form__options-list-item">June 29th to July 11th</li>
-            <li class="participant-form__options-list-item">July 13th to July 25th</li>
-            <li class="participant-form__options-list-item">July 27th to August 8th</li>
-            <li class="participant-form__options-list-item">August 10th to August 22nd</li>
+            <li class="participant-form__options-list-item" id="date1">June 1st to June 13th</li>
+            <li class="participant-form__options-list-item" id="date2">June 15th to June 27th</li>
+            <li class="participant-form__options-list-item" id="date3">June 29th to July 11th</li>
+            <li class="participant-form__options-list-item" id="date4">July 13th to July 25th</li>
+            <li class="participant-form__options-list-item" id="date5">July 27th to August 8th</li>
+            <li class="participant-form__options-list-item" id="date6">August 10th to August 22nd</li>
         </ul>
         <span id="examDateError" class="error error_theme_notion"></span><br>
     </form>
 
     <div class="select-exam">
         <h2 class="heading heading_theme_notion">Calculate the score</h2>
-        <button class="select-exam__button select-exam__button_theme_notion">Starters</button>
-        <button class="select-exam__button select-exam__button_theme_notion">Movers</button>
-        <button class="select-exam__button select-exam__button_theme_notion">Flyers</button>
-        <button class="select-exam__button select-exam__button_theme_notion">KET</button>
-        <button class="select-exam__button select-exam__button_theme_notion">PET</button>
-        <button class="select-exam__button select-exam__button_theme_notion">FCE</button>
-        <button class="select-exam__button select-exam__button_theme_notion">CAE</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="startersSelect">Starters</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="moversSelect">Movers</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="flyersSelect">Flyers</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="ketSelect">KET</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="petSelect">PET</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="fceSelect">FCE</button>
+        <button class="select-exam__button select-exam__button_theme_notion" id="caeSelect">CAE</button>
     </div>
    
     <form class="exam-form exam-form_theme_notion exam-form-starters disabled">
@@ -80,7 +80,7 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="startersListeningInput" type="number" max="20" min="0" step="1" placeholder="0-20"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="startersListeningInput" type="number" max="20" min="0" step="1" placeholder="0-20"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="startersReadingWritingInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="startersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
             <span id="startersError" class="error error_theme_notion"></span>
@@ -95,7 +95,7 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="moversListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversReadingWritingInput" type="number" max="35" min="0" step="1" placeholder="0-35"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
             <span id="moversError" class="error error_theme_notion"></span>
@@ -110,7 +110,7 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="flyersListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersReadingWritingInput" type="number" max="44" min="0" step="1" placeholder="0-44"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
             <span id="flyersError" class="error error_theme_notion"></span>
@@ -125,7 +125,7 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="ketListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketReadingWritingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketSpeakingInput" type="number" min="0" max="45" step="1" placeholder="0-45"><br>
             <span id="ketError" class="error error_theme_notion"></span>
@@ -135,13 +135,13 @@
     <form class="exam-form exam-form_theme_notion exam-form-pet disabled">
         <h2 class="exam-form__heading exam-form__heading_theme_notion">PET</h2>
         <div class="exam-form-labels">
-            <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion listening">Listening</label><br>
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Reading</label><br>
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Writing</label><br>
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="petListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petReadingInput" type="number" min="0" max="32" step="1" placeholder="0-32"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petSpeakingInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
@@ -159,7 +159,7 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="fceListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceReadingInput" type="number" min="0" max="42" step="1" placeholder="0-42"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceUseInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
@@ -178,7 +178,7 @@
             <label class="exam-form-labels__label exam-form-labels__label_theme_notion">Speaking</label><br>
         </div>
         <div class="exam-form-inputs">
-            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-30"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-30"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeReadingInput" type="number" min="0" max="50" step="1" placeholder="0-50"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeUseInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
             <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
@@ -207,6 +207,7 @@
     <p class="footer__text footer__text_theme_notion">MMC 2025.</p>       
 </footer>    
 
+<script src="hotkeys.js"></script>
 <script src="jspdf.umd.min.js" data-source-map="none"></script>
 <script src="imageData.js"></script>
 <script src="cert_calculator.js"></script>
