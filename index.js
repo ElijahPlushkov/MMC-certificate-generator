@@ -254,7 +254,7 @@ async function generateStartersCertificate() {
 
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,
@@ -340,7 +340,7 @@ async function generateMoversCertificate() {
 
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,
@@ -426,7 +426,7 @@ async function generateFlyersCertificate() {
 
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,
@@ -530,7 +530,7 @@ async function generateKetCertificate() {
         doc.setFontSize(16);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,
@@ -641,7 +641,7 @@ async function generatePetCertificate() {
         doc.setFontSize(16);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,
@@ -697,47 +697,98 @@ async function generateFceCertificate() {
         doc.setFontSize(16);
         doc.text(`${String(fceListeningInputValue)}/30`, 54, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(listeningScore)}/190`, 50.5, 142, { align: "left" });
+        if (listeningScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(listeningScore)}/190`, 53, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(listeningScore)}/190`, 50.5, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(fceReadingInputValue)}/42`, 78, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(readingScore)}/190`, 74.5, 142, { align: "left" });
+        if (readingScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(readingScore)}/190`, 77, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(readingScore)}/190`, 74.5, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(fceUseInputValue)}/28`, 101.5, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(useScore)}/190`, 98, 142, { align: "left" });
+        if (useScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(useScore)}/190`, 101, 142, { align: "left" });
+        }
+
+        else if (useScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(useScore)}/190`, 99, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(useScore)}/190`, 98, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(fceWritingInputValue)}/40`, 126, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(writingScore)}/190`, 122, 142, { align: "left" });
+        if (writingScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(writingScore)}/190`, 125, 142, { align: "left" });
+        }
+        else if (writingScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(writingScore)}/190`, 123, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(writingScore)}/190`, 122, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(fceSpeakingInputValue)}/60`, 151, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(speakingScore)}/190`, 147, 142, { align: "left" });
 
-       if (fceAverageScore <= 99) {
+        if (speakingScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(speakingScore)}/190`, 150, 142, { align: "left" });
+        }
+        else if (speakingScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(speakingScore)}/190`, 148, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(speakingScore)}/190`, 147, 142, { align: "left" });
+        }
+
+        if (fceAverageScore < 10) {
+            doc.setFontSize(16);
+            doc.text(String(fceAverageScore), 180, 130, { align: "left" });
+
+            doc.setFontSize(16);
+            doc.text(fceGrade, 172, 142, { align: "left" });
+        }
+        else if (fceAverageScore <= 99) {
             doc.setFontSize(16);
             doc.text(String(fceAverageScore), 178, 130, { align: "left" });
 
             doc.setFontSize(16);
-            doc.text(fceGrade, 172, 142, { align: "left" }); 
+            doc.text(fceGrade, 172, 142, { align: "left" });
         }
 
         else if (fceAverageScore <= 159) {
             doc.setFontSize(16);
             doc.text(String(fceAverageScore), 176, 130, { align: "left" });
-            
+
             doc.setFontSize(16);
-            doc.text(fceGrade, 172, 142, { align: "left" }); 
+            doc.text(fceGrade, 172, 142, { align: "left" });
         }
 
         else {
@@ -745,7 +796,7 @@ async function generateFceCertificate() {
             doc.text(String(fceAverageScore), 176, 130, { align: "left" });
 
             doc.setFontSize(10);
-            doc.text(fceGrade, 171, 142, { align: "left" }); 
+            doc.text(fceGrade, 171, 142, { align: "left" });
         }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
@@ -758,7 +809,7 @@ async function generateFceCertificate() {
         doc.setFontSize(16);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,
@@ -814,39 +865,96 @@ async function generateCaeCertificate() {
         doc.setFontSize(16);
         doc.text(`${String(caeListeningInputValue)}/30`, 54, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(listeningScore)}/210`, 50.5, 142, { align: "left" });
+        if (listeningScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(listeningScore)}/210`, 52.5, 142, { align: "left" });
+        }
+        else if (listeningScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(listeningScore)}/210`, 51.5, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(listeningScore)}/210`, 50.5, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(caeReadingInputValue)}/50`, 78, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(readingScore)}/210`, 74.5, 142, { align: "left" });
+        if (readingScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(readingScore)}/210`, 76.5, 142, { align: "left" });
+        }
+        else if (readingScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(readingScore)}/210`, 75.5, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(readingScore)}/210`, 74.5, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(caeUseInputValue)}/28`, 101.5, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(useScore)}/210`, 98, 142, { align: "left" });
+        if (useScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(useScore)}/210`, 100, 142, { align: "left" });
+        }
+        else if (useScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(useScore)}/210`, 99, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(useScore)}/210`, 98, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(caeWritingInputValue)}/40`, 126, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(writingScore)}/210`, 122, 142, { align: "left" });
+        if (writingScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(writingScore)}/210`, 124, 142, { align: "left" });
+        }
+        else if (writingScore < 100){
+            doc.setFontSize(16);
+            doc.text(`${String(writingScore)}/210`, 123, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(writingScore)}/210`, 122, 142, { align: "left" });
+        }
 
         doc.setFontSize(16);
         doc.text(`${String(caeSpeakingInputValue)}/75`, 151, 130, { align: "left" });
 
-        doc.setFontSize(16);
-        doc.text(`${String(speakingScore)}/210`, 147, 142, { align: "left" });
+        if (speakingScore < 10) {
+            doc.setFontSize(16);
+            doc.text(`${String(speakingScore)}/210`, 149, 142, { align: "left" });
+        }
+        else if (speakingScore < 100) {
+            doc.setFontSize(16);
+            doc.text(`${String(speakingScore)}/210`, 148, 142, { align: "left" });
+        }
+        else {
+            doc.setFontSize(16);
+            doc.text(`${String(speakingScore)}/210`, 147, 142, { align: "left" });
+        }
 
-       if (caeAverageScore <= 99) {
+        if (caeAverageScore < 10) {
+            doc.setFontSize(16);
+            doc.text(String(caeAverageScore), 180, 130, { align: "left" });
+
+            doc.setFontSize(14);
+            doc.text(caeGrade, 173, 142, { align: "left" });
+        }
+        else if (caeAverageScore <= 99) {
             doc.setFontSize(16);
             doc.text(String(caeAverageScore), 178, 130, { align: "left" });
 
             doc.setFontSize(14);
-            doc.text(caeGrade, 173, 142, { align: "left" }); 
+            doc.text(caeGrade, 173, 142, { align: "left" });
         }
 
         else if (caeAverageScore <= 179) {
@@ -875,7 +983,7 @@ async function generateCaeCertificate() {
         doc.setFontSize(16);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
-        doc.save('certificate.pdf');
+        doc.save(fullName + " " + examLevel);
 
         const studentData = {
             name: fullName,

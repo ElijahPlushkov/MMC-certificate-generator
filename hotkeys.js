@@ -92,7 +92,14 @@ document.addEventListener('keydown', function (event) {
 });
 
 document.addEventListener('keydown', function (event) {
-    if (event.code === 'KeyL') {
+    const participantName = document.getElementById('participantName');
+    const participantSurname = document.getElementById("participantSurname");
+    const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
+    if (event.code === 'KeyL' && document.activeElement !== participantName &&
+        document.activeElement !== participantSurname &&
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const listenings = document.querySelectorAll('.listening');
         listenings.forEach(listening => {
             listening.focus();
@@ -106,9 +113,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyS' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const startersSelect = document.getElementById('startersSelect');
         if (startersSelect) {
             startersSelect.click();
@@ -120,9 +129,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyM' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const moversSelect = document.getElementById('moversSelect');
         if (moversSelect) {
             moversSelect.click();
@@ -134,9 +145,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyF' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const flyersSelect = document.getElementById('flyersSelect');
         if (flyersSelect) {
             flyersSelect.click();
@@ -148,9 +161,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyK' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const ketSelect = document.getElementById('ketSelect');
         if (ketSelect) {
             ketSelect.click();
@@ -162,9 +177,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyP' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const petSelect = document.getElementById('petSelect');
         if (petSelect) {
             petSelect.click();
@@ -176,9 +193,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyE' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const fceSelect = document.getElementById('fceSelect');
         if (fceSelect) {
             fceSelect.click();
@@ -190,9 +209,11 @@ document.addEventListener('keydown', function (event) {
     const participantName = document.getElementById('participantName');
     const participantSurname = document.getElementById("participantSurname");
     const examLevel = document.getElementById("examLevel");
+    const teacherLetter = document.getElementById("teacherLetter");
     if (event.code === 'KeyC' && document.activeElement !== participantName &&
         document.activeElement !== participantSurname &&
-        document.activeElement !== examLevel) {
+        document.activeElement !== examLevel && 
+        document.activeElement !== teacherLetter) {
         const caeSelect = document.getElementById('caeSelect');
         if (caeSelect) {
             caeSelect.click();

@@ -6,6 +6,7 @@
     <title>MMC Certificate Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="theme_notion.css">
+    <link rel="icon" type="image/jpg" href="mmc-logo-notion.png">
 </head>
 <body class="page-styling page-styling_theme_notion">
 <div class="page-layout">
@@ -33,19 +34,19 @@
     </header>
     
     <form class="participant-form">
-        <label class="participant-form__label participant-form__label_theme_notion">Participant's Name:</label>
+        <label class="participant-form__label participant-form__label_theme_notion" for="participantName">Participant's Name:</label>
         <input class="participant-form__input participant-form__input_theme_notion" id="participantName" type="text" required>
         <span id="participantNameError" class="error error_theme_notion"></span><br>
 
-        <label class="participant-form__label participant-form__label_theme_notion">Participant's Surname:</label>
+        <label class="participant-form__label participant-form__label_theme_notion" for="participantSurname">Participant's Surname:</label>
         <input class="participant-form__input participant-form__input_theme_notion" id="participantSurname" type="text" required>
         <span id="participantSurnameError" class="error error_theme_notion"></span><br>
 
-        <label class="participant-form__label participant-form__label_theme_notion">Exam level:</label>
+        <label class="participant-form__label participant-form__label_theme_notion" for="examLevel">Exam level:</label>
         <input class="participant-form__input participant-form__input_theme_notion" id="examLevel" type="text" required>
         <span id="examLevelError" class="error error_theme_notion"></span><br>
 
-        <label class="participant-form__label participant-form__label_theme_notion">Dates:</label>
+        <label class="participant-form__label participant-form__label_theme_notion" for="examDate">Dates:</label>
         <div class="participant-form__dropdown-container">
         <input class="participant-form__input participant-form__input_theme_notion" id="examDate" type="text" required>
         <button id="participantFormToggleButton" class="participant-form__options-list-button participant-form__options-list-button_theme_notion">▼</button>
