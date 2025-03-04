@@ -196,6 +196,15 @@
     font-weight: 500;
 }
 
+.item-list_theme_notion {
+    margin-left: 30px;
+}
+
+.text_theme_notion {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+}
+
 .footer__division-line_theme_notion {
     margin: 50px auto 0 auto;
     width: 50%;
