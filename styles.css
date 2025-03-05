@@ -216,6 +216,10 @@
     color: black;
 }
 
+a {
+    text-decoration: none;
+}
+
 .disabled {
     display: none;
 }
