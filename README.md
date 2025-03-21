@@ -42,8 +42,9 @@
 
 ## 🖼️ Скриншоты интерфейса
 
-![Интерфейс1]([main/Pasted image 20250321185515.png?raw=true "Optional Title"](https://github.com/ElijahPlushkov/MMC-certificate-generator/blob/main/Pasted%20image%2020250321185515.png))
+![Alt text]([/relative/path/to/img.jpg?raw=true "Optional Title"](https://github.com/ElijahPlushkov/MMC-certificate-generator/blob/main/Pasted%20image%2020250321185515.png))
 
+![Alt text]([http://full/path/to/img.jpg "Optional title"](https://github.com/ElijahPlushkov/MMC-certificate-generator/blob/main/Pasted%20image%2020250321185620.png))
 
 ## 🛠️ Технологии
 
