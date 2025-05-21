@@ -246,12 +246,13 @@ async function generateStartersCertificate() {
         doc.text(`${String(startersShieldSum)}/15`, 166, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
@@ -332,12 +333,13 @@ async function generateMoversCertificate() {
         doc.text(`${String(moversShieldSum)}/15`, 166, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
@@ -418,12 +420,13 @@ async function generateFlyersCertificate() {
         doc.text(`${String(flyersShieldSum)}/15`, 166, 142, { align: "left" });
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
@@ -521,13 +524,13 @@ async function generateKetCertificate() {
         }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.setFontSize(16);
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
@@ -632,13 +635,13 @@ async function generatePetCertificate() {
         }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.setFontSize(16);
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
@@ -800,13 +803,13 @@ async function generateFceCertificate() {
         }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.setFontSize(16);
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
@@ -974,13 +977,13 @@ async function generateCaeCertificate() {
         }
 
         const teacherLetter = document.getElementById("teacherLetter").value;
-        const rightMargin = 30;
-        const leftMargin = 30;
+        const rightMargin = 25;
+        const leftMargin = 25;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const maxWidth = pageWidth - leftMargin - rightMargin;
 
-        doc.setFontSize(16);
+        doc.setFontSize(14);
         doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
 
         doc.save(fullName + " " + examLevel);
