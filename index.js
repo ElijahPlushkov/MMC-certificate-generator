@@ -142,7 +142,7 @@ function formatExamLevel() {
 const teacherLetter = document.getElementById("teacherLetter");
 const teacherLetterError = document.getElementById("teacherLetterError");
 const wordCountDisplay = document.getElementById("wordCountDisplay");
-const maxWords = 100;
+const maxWords = 110;
 
 teacherLetter.addEventListener("input", () => {
     const words = teacherLetter.value.trim().split(/\s+/).filter(word => word !== "");
@@ -164,7 +164,7 @@ function isTeacherLetterTooLong() {
     const words = teacherLetter.value.trim().split(/\s+/).filter(word => word !== "");
     const wordCount = words.length;
     let isTooLong = true;
-    const maxWords = 100;
+    const maxWords = 110;
 
     teacherLetter.classList.remove(".input_error_theme_notion");
     teacherLetterError.textContent = "";
@@ -315,7 +315,7 @@ async function generateMoversCertificate() {
         doc.text(`${String(moversListeningShields)}/5`, 67, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(`${String(moversReadingWritingScore)}/35`, 98, 130, { align: "left" });
+        doc.text(`${String(moversReadingWritingScore)}/39`, 98, 130, { align: "left" });
 
         doc.setFontSize(16);
         doc.text(`${String(moversReadingWritingShields)}/5`, 101, 142, { align: "left" });

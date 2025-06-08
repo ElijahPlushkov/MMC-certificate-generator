@@ -199,7 +199,7 @@ async function calculateMoversResult() {
         moversListeningInput.classList.add("input_error_theme_notion");
         return;
     }
-    const readingWritingScore = calculateScoreYLE(moversReadingWritingInput.value, readingWritingThresholds, 35);
+    const readingWritingScore = calculateScoreYLE(moversReadingWritingInput.value, readingWritingThresholds, 39);
     if (readingWritingScore === null || moversReadingWritingInput.value.trim() === "") {
         moversError.textContent = "Invalid input for R&W.";
         moversReadingWritingInput.classList.add("input_error_theme_notion");
