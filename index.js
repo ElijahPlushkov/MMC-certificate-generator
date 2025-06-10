@@ -402,7 +402,7 @@ async function generateFlyersCertificate() {
         doc.text(`${String(flyersListeningShields)}/5`, 67, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(`${String(flyersReadingWritingScore)}/44`, 98, 130, { align: "left" });
+        doc.text(`${String(flyersReadingWritingScore)}/48`, 98, 130, { align: "left" });
 
         doc.setFontSize(16);
         doc.text(`${String(flyersReadingWritingShields)}/5`, 101, 142, { align: "left" });

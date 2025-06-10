@@ -287,7 +287,7 @@ async function calculateFlyersResult() {
         flyersListeningInput.classList.add("input_error_theme_notion");
         return;
     }
-    const readingWritingScore = calculateScoreYLE(flyersReadingWritingInput.value, readingWritingThresholds, 44);
+    const readingWritingScore = calculateScoreYLE(flyersReadingWritingInput.value, readingWritingThresholds, 48);
     if (readingWritingScore === null || flyersReadingWritingInput.value.trim() === "") {
         flyersError.textContent = "Invalid input for R&W.";
         flyersReadingWritingInput.classList.add("input_error_theme_notion");

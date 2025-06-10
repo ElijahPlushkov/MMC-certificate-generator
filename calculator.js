@@ -50,7 +50,7 @@ calculateMov.addEventListener("click", async function () {
         const rows = tbody.querySelectorAll("tr");
 
         rows[0].children[1].textContent = `${moversListeningScore}/25`;
-        rows[0].children[2].textContent = `${moversReadingWritingScore}/35`;
+        rows[0].children[2].textContent = `${moversReadingWritingScore}/39`;
         rows[0].children[3].textContent = `${moversSpeakingScore}/15`;
         rows[0].children[4].textContent = moversGrade;
 
@@ -81,7 +81,7 @@ calculateFl.addEventListener("click", async function () {
         const rows = tbody.querySelectorAll("tr");
 
         rows[0].children[1].textContent = `${flyersListeningScore}/25`;
-        rows[0].children[2].textContent = `${flyersReadingWritingScore}/44`;
+        rows[0].children[2].textContent = `${flyersReadingWritingScore}/48`;
         rows[0].children[3].textContent = `${flyersSpeakingScore}/15`;
         rows[0].children[4].textContent = flyersGrade;
 
