@@ -44,7 +44,7 @@ function participantForm() {
         isValid = false;
     }
 
-    const examLevels = ["starters", "movers", "flyers", "ket", "pet", "fce", "cae"];
+    const examLevels = ["pre-starters", "starters", "movers", "flyers", "ket", "pet", "fce", "cae"];
 
     if (!examLevels.includes(examLevel.value.trim().toLowerCase())) {
         examLevel.classList.add("input_error_theme_notion");
@@ -128,7 +128,8 @@ function formatExamLevel() {
 
     if (formattedExamLevel === "starters" ||
         formattedExamLevel === "movers" ||
-        formattedExamLevel === "flyers") {
+        formattedExamLevel === "flyers" ||
+        formattedExamLevel === "pre-starters") {
         return formattedExamLevel.charAt(0).toUpperCase() + formattedExamLevel.slice(1).toLowerCase();
     }
     else if (formattedExamLevel === "ket" ||
@@ -181,6 +182,93 @@ function isTeacherLetterTooLong() {
     }
 
     return isTooLong;
+}
+
+async function generatePreStartersCertificate() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        compress: true,
+    });
+
+    const backgroundImg = new Image();
+    backgroundImg.src = window.YLE_TEMPLATE_CERT;
+    backgroundImg.onload = async () => {
+
+        doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
+
+        const preStartersResults = await calculatePreStartersResult();
+
+        const {
+            listening: { preStartersListeningScore, preStartersListeningTotal },
+            readingWriting: { preStartersReadingWritingScore, preStartersReadingWritingTotal },
+            speaking: { preStartersSpeakingScore, preStartersSpeakingTotal },
+            preStartersGrade,
+            totalSum
+         } = preStartersResults;
+
+        const fullName = mergeNameAndSurname();
+
+        const examLevel = formatExamLevel();
+
+        const examDate = document.getElementById('examDate').value;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.text(fullName, 95, 72, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examLevel, 95, 84.5, { align: 'left' });
+
+        doc.setFontSize(14);
+        doc.text(examDate, 95, 96.4, { align: 'left' });
+
+
+        doc.setFontSize(16);
+        doc.text(`${String(preStartersListeningScore)}`, 67, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(preStartersListeningTotal)}`, 67, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(preStartersReadingWritingScore)}`, 101, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(preStartersReadingWritingTotal)}`, 101, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(preStartersSpeakingScore)}`, 135, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(preStartersSpeakingTotal)}`, 135, 142, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(preStartersGrade, 167, 130, { align: "left" });
+
+        doc.setFontSize(16);
+        doc.text(`${String(totalSum)}`, 170, 142, { align: "left" });
+
+        const teacherLetter = document.getElementById("teacherLetter").value;
+        const rightMargin = 25;
+        const leftMargin = 25;
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - leftMargin - rightMargin;
+
+        doc.setFontSize(14);
+        doc.text(teacherLetter, leftMargin, 175, { maxWidth: maxWidth });
+
+        doc.save(fullName + " " + examLevel);
+
+        const studentData = {
+            name: fullName,
+            date: examDate,
+            examType: examLevel,
+            overallScore: totalSum,
+            grade: preStartersGrade
+        };
+
+        await sendDataToGoogleSheets(studentData);
+    }
 }
 
 async function generateStartersCertificate() {
@@ -1011,7 +1099,11 @@ async function createCertificate() {
 
     let examLevel = levelChoice();
 
-    if (examLevel === "starters") {
+    if (examLevel === "pre-starters") {
+        generatePreStartersCertificate();
+    }
+
+    else if (examLevel === "starters") {
         generateStartersCertificate();
     }
     else if (examLevel === "movers") {

@@ -6,7 +6,7 @@
     <title>MMC Certificate Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="theme_notion.css">
-    <link rel="icon" type="image/jpg" href="mmc-logo-notion.png">
+    <link rel="icon" type="image/jpg" href="mmc-logo.png">
 </head>
 <body class="page-styling page-styling_theme_notion">
 <div class="page-layout">
@@ -64,6 +64,7 @@
 
     <div class="select-exam">
         <h2 class="heading heading_theme_notion">Calculate the score</h2>
+        <button class="select-exam__button select-exam__button_theme_notion" id="pre-startersSelect">Pre-St</button>
         <button class="select-exam__button select-exam__button_theme_notion" id="startersSelect">Starters</button>
         <button class="select-exam__button select-exam__button_theme_notion" id="moversSelect">Movers</button>
         <button class="select-exam__button select-exam__button_theme_notion" id="flyersSelect">Flyers</button>
@@ -73,6 +74,21 @@
         <button class="select-exam__button select-exam__button_theme_notion" id="caeSelect">CAE</button>
     </div>
    
+    <form class="exam-form exam-form_theme_notion exam-form-pre-starters disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">Pre-Starters</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="pre-startersListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="pre-startersReadingWritingInput">Reading&Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="pre-startersSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="pre-startersListeningInput" type="number" min="0" step="1" placeholder="score"><span><input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersListeningInputTotal" placeholder="out of"></span><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersReadingWritingInput" type="number" min="0" step="1" placeholder="score"><span><input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersReadingWritingInputTotal" placeholder="out of"></span><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersSpeakingInput" type="number" min="0" step="1" placeholder="score"><span><input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersSpeakingInputTotal" placeholder="out of"></span><br>
+            <span id="pre-startersError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+
     <form class="exam-form exam-form_theme_notion exam-form-starters disabled">
         <h2 class="exam-form__heading exam-form__heading_theme_notion">Starters</h2>
         <div class="exam-form-labels">
@@ -191,7 +207,7 @@
 
     <div class="teacher-letter">
         <h2 class="heading heading_theme_notion">Teacher's Exam Feedback</h2>
-        <p class="teacher-letter__word-count teacher-letter__word-count_theme_notion" id="wordCountDisplay">0 / 100</p>
+        <p class="teacher-letter__word-count teacher-letter__word-count_theme_notion" id="wordCountDisplay">0 / 110</p>
         <textarea id="teacherLetter" class="teacher-letter__textarea teacher-letter__textarea_theme_notion" rows="7" cols="50" maxlength="2000"></textarea>
         <span id="teacherLetterError" class="error error_theme_notion teacher-letter__error_theme_notion"></span>
     </div>

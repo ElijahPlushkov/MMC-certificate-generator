@@ -100,10 +100,11 @@
     color: #fff;
     border: none;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: 0.9em;
     transition: background-color 0.3s ease;
-    width: 100px;
+    width: 90px;
     font-family: var(--font-family-sans);
+    text-align: center;
 }
 
 .select-exam__button_theme_notion:hover {

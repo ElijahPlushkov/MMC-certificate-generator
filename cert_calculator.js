@@ -20,6 +20,10 @@ selectExamButtons.forEach(button => {
         disableForms();
         
         switch (button.textContent) {
+            case "Pre-St":
+                const examFormPreStarters = document.querySelector(".exam-form-pre-starters");
+                examFormPreStarters.classList.toggle("disabled");
+                break;
             case "Starters":
                 const examFormStarters = document.querySelector(".exam-form-starters");
                 examFormStarters.classList.toggle("disabled");
@@ -52,6 +56,82 @@ selectExamButtons.forEach(button => {
     });
 });
 
+//Pre-Starters
+
+//scores
+const preStartersListeningInput = document.getElementById("pre-startersListeningInput");
+const preStartersReadingWritingInput = document.getElementById("pre-startersReadingWritingInput");
+const preStartersSpeakingInput = document.getElementById("pre-startersSpeakingInput");
+
+const preStartersError = document.getElementById("pre-startersError");
+
+//totals
+const preStartersListeningInputTotal = document.getElementById("pre-startersListeningInputTotal");
+const preStartersReadingWritingInputTotal = document.getElementById("pre-startersReadingWritingInputTotal");
+const preStartersSpeakingInputTotal = document.getElementById("pre-startersSpeakingInputTotal");
+
+async function calculatePreStartersResult() {
+
+    preStartersError.textContent = "";
+    preStartersListeningInput.classList.remove("input_error_theme_notion");
+    preStartersReadingWritingInput.classList.remove("input_error_theme_notion");
+    preStartersSpeakingInput.classList.remove("input_error_theme_notion");
+
+    const listeningScore = preStartersListeningInput.value;
+    const readingWritingScore = preStartersReadingWritingInput.value;
+    const speakingScore = preStartersSpeakingInput.value;
+
+    const listeningTotal = preStartersListeningInputTotal.value;
+    const readingWritingTotal = preStartersReadingWritingInputTotal.value;
+    const speakingTotal = preStartersSpeakingInputTotal.value;
+
+    if (listeningScore === 0 || listeningScore === null) {
+        listeningScore = 0;
+    }
+
+    if (readingWritingScore === 0 || readingWritingScore === null) {
+        readingWritingScore = 0;
+    }
+
+    if (speakingScore === 0 || speakingScore === null) {
+        speakingScore = 0;
+    }
+
+    if (listeningTotal === 0 || listeningTotal === null) {
+        listeningTotal = 0;
+    }
+
+    if (readingWritingTotal === 0 || readingWritingTotal === null) {
+        readingWritingTotal = 0;
+    }
+
+    if (speakingTotal === 0 || speakingTotal === null) {
+        speakingTotal = 0;
+    }
+
+    const totalSum = Number(listeningTotal) + Number(readingWritingTotal) + Number(speakingTotal);
+
+    const preStartersGrade = "Pass";
+
+    return {
+        listening: {
+            preStartersListeningScore: listeningScore,
+            preStartersListeningTotal: listeningTotal
+        },
+        readingWriting: {
+            preStartersReadingWritingScore: readingWritingScore,
+            preStartersReadingWritingTotal: readingWritingTotal
+        },
+        speaking: {
+            preStartersSpeakingScore: speakingScore,
+            preStartersSpeakingTotal: speakingTotal
+        },
+        preStartersGrade,
+        totalSum
+    };
+}
+
+//YLE
 const startersListeningInput = document.getElementById("startersListeningInput");
 const startersReadingWritingInput = document.getElementById("startersReadingWritingInput");
 const startersSpeakingInput = document.getElementById("startersSpeakingInput");
