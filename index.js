@@ -693,7 +693,7 @@ async function generatePetCertificate() {
         doc.text(`${String(writingScore)}/170`, 109, 142, { align: "left" });
 
         doc.setFontSize(16);
-        doc.text(`${String(petSpeakingInputValue)}/45`, 141, 130, { align: "left" });
+        doc.text(`${String(petSpeakingInputValue)}/30`, 141, 130, { align: "left" });
 
         doc.setFontSize(16);
         doc.text(`${String(speakingScore)}/170`, 138, 142, { align: "left" });
