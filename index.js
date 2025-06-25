@@ -82,9 +82,26 @@ function mergeNameAndSurname() {
     const participantName = document.getElementById("participantName").value.trim();
     const participantSurname = document.getElementById("participantSurname").value.trim();
 
-    const formattedName = participantName.charAt(0).toUpperCase() + participantName.slice(1).toLowerCase();
-    const formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
+    let formattedName;
+    let formattedSurname;
 
+    //chekc for double name or surname
+    if (participantName.includes("-")) {
+        formattedName = participantName;
+    }
+
+    else {
+        formattedName = participantName.charAt(0).toUpperCase() + participantName.slice(1).toLowerCase();
+    }
+
+    if (participantSurname.includes("-")) {
+        formattedSurname = participantSurname;
+    }
+
+    else {
+        formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
+    }
+        
     const nameSurname = `${formattedName} ${formattedSurname}`;
 
     return nameSurname;
