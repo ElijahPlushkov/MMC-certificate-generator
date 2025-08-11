@@ -7,18 +7,6 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-//SELECT DATE
-document.addEventListener('keydown', function (event) {
-    const examDate = document.getElementById("examDate");
-    if (event.code === 'ArrowRight') {
-        const participantFormToggleButton = document.getElementById('participantFormToggleButton');
-        if (participantFormToggleButton) {
-            participantFormToggleButton.click();
-            examDate.focus();
-        }
-    }
-});
-
 document.addEventListener('keydown', function (event) {
     const examDate = document.getElementById("examDate");
     if (event.code === 'Digit1' && document.activeElement === examDate) {

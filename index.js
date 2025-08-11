@@ -2,13 +2,11 @@ function participantForm() {
 
     const participantName = document.getElementById("participantName");
     const participantSurname = document.getElementById("participantSurname");
-    const examLevel = document.getElementById("examLevel");
     const examDate = document.getElementById("examDate");
     const teacherLetter = document.getElementById("teacherLetter");
 
     const participantNameError = document.getElementById("participantNameError");
     const participantSurnameError = document.getElementById("participantSurnameError");
-    const examLevelError = document.getElementById("examLevelError");
     const examDateError = document.getElementById("examDateError");
     const teacherLetterError = document.getElementById("teacherLetterError");
 
@@ -16,13 +14,11 @@ function participantForm() {
 
     participantNameError.textContent = "";
     participantSurnameError.textContent = "";
-    examLevelError.textContent = "";
     examDateError.textContent = "";
     teacherLetterError.textContent = "";
 
     participantName.classList.remove("input_error_theme_notion");
     participantSurname.classList.remove("input_error_theme_notion");
-    examLevel.classList.remove("input_error_theme_notion");
     examDate.classList.remove("input_error_theme_notion");
     teacherLetter.classList.remove("input_error_theme_notion");
 
@@ -35,20 +31,6 @@ function participantForm() {
     if (participantSurname.value.trim() === "") {
         participantSurname.classList.add("input_error_theme_notion");
         participantSurnameError.textContent = "Participant's Surname is required.";
-        isValid = false;
-    }
-
-    if (examLevel.value.trim() === "") {
-        examLevel.classList.add("input_error_theme_notion");
-        examLevelError.textContent = "Exam Level is required.";
-        isValid = false;
-    }
-
-    const examLevels = ["pre-starters", "starters", "movers", "flyers", "ket", "pet", "fce", "cae"];
-
-    if (!examLevels.includes(examLevel.value.trim().toLowerCase())) {
-        examLevel.classList.add("input_error_theme_notion");
-        examLevelError.textContent = "There might be a spelling mistake.";
         isValid = false;
     }
 
@@ -85,7 +67,7 @@ function mergeNameAndSurname() {
     let formattedName;
     let formattedSurname;
 
-    //chekc for double name or surname
+    //check for double name or surname
     if (participantName.includes("-")) {
         formattedName = participantName;
     }
@@ -135,32 +117,83 @@ function initDropdownMenu() {
 
 document.addEventListener('DOMContentLoaded', initDropdownMenu);
 
-function levelChoice() {
-    return document.getElementById("examLevel").value.trim().toLowerCase();
+const selectExamButtons = document.querySelectorAll(".select-exam__button");
+const examForms = document.querySelectorAll(".exam-form");
+
+function disableForms() {
+    examForms.forEach(form => {
+        form.classList.add("disabled");
+    });
 }
 
-function formatExamLevel() {
-    const examLevel = document.getElementById("examLevel").value;
-    const formattedExamLevel = examLevel.trim().toLowerCase();
+selectExamButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        disableForms();
+        
+        switch (button.textContent) {
+            case "Pre-St":
+                const examFormPreStarters = document.querySelector(".exam-form-pre-starters");
+                examFormPreStarters.classList.toggle("disabled");
+                break;
+            case "Starters":
+                const examFormStarters = document.querySelector(".exam-form-starters");
+                examFormStarters.classList.toggle("disabled");
+                break;
+            case "Movers":
+                const examFormMovers = document.querySelector(".exam-form-movers");
+                examFormMovers.classList.toggle("disabled");
+                break;
+            case "Flyers":
+                const examFormFlyers = document.querySelector(".exam-form-flyers");
+                examFormFlyers.classList.toggle("disabled");
+                break;
+            case "KET":
+                const examFormKet = document.querySelector(".exam-form-ket");
+                examFormKet.classList.toggle("disabled");
+                break;
+            case "PET":
+                const examFormPet = document.querySelector(".exam-form-pet");
+                examFormPet.classList.toggle("disabled");
+                break;
+            case "FCE":
+                const examFormFce = document.querySelector(".exam-form-fce");
+                examFormFce.classList.toggle("disabled");
+                break;
+            case "CAE":
+                const examFormCae = document.querySelector(".exam-form-cae");
+                examFormCae.classList.toggle("disabled");
+                break;
+        }
+    });
+});
 
-    if (formattedExamLevel === "starters" ||
-        formattedExamLevel === "movers" ||
-        formattedExamLevel === "flyers" ||
-        formattedExamLevel === "pre-starters") {
-        return formattedExamLevel.charAt(0).toUpperCase() + formattedExamLevel.slice(1).toLowerCase();
-    }
-    else if (formattedExamLevel === "ket" ||
-        formattedExamLevel === "pet" ||
-        formattedExamLevel === "fce" ||
-        formattedExamLevel === "cae") {
-        return formattedExamLevel.toUpperCase();
-    }
+let examLevel = null;
+
+function getExamName() {
+    const buttonsId = 
+    [
+        "pre-startersSelect", "startersSelect", 
+        "moversSelect", "flyersSelect", 
+        "ketSelect", "petSelect", 
+        "fceSelect", "caeSelect"
+    ];
+
+    buttonsId.forEach(id => {
+        const button = document.getElementById(id);
+        if (button) {
+            button.addEventListener("click", () => {
+                examLevel = button.textContent;
+            });
+        }
+    });
 }
+
+document.addEventListener('DOMContentLoaded', getExamName);
 
 const teacherLetter = document.getElementById("teacherLetter");
 const teacherLetterError = document.getElementById("teacherLetterError");
 const wordCountDisplay = document.getElementById("wordCountDisplay");
-const maxWords = 110;
+const maxWords = 130;
 
 teacherLetter.addEventListener("input", () => {
     const words = teacherLetter.value.trim().split(/\s+/).filter(word => word !== "");
@@ -175,14 +208,12 @@ teacherLetter.addEventListener("input", () => {
         else {
             wordCountDisplay.textContent = `${wordCount}/${maxWords}`;
         }
-})
+});
 
 function isTeacherLetterTooLong() {
-    const teacherLetter = document.getElementById("teacherLetter");
     const words = teacherLetter.value.trim().split(/\s+/).filter(word => word !== "");
     const wordCount = words.length;
     let isTooLong = true;
-    const maxWords = 110;
 
     teacherLetter.classList.remove(".input_error_theme_notion");
     teacherLetterError.textContent = "";
@@ -225,7 +256,7 @@ async function generatePreStartersCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "Pre-Starters";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -311,7 +342,7 @@ async function generateStartersCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "Starters";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -398,7 +429,7 @@ async function generateMoversCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "Movers";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -485,7 +516,7 @@ async function generateFlyersCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "Flyers";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -571,7 +602,7 @@ async function generateKetCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "KET";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -676,7 +707,7 @@ async function generatePetCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "PET";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -788,7 +819,7 @@ async function generateFceCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "FCE";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -956,7 +987,7 @@ async function generateCaeCertificate() {
 
         const fullName = mergeNameAndSurname();
 
-        const examLevel = formatExamLevel();
+        const examLevel = "CAE";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -1114,31 +1145,31 @@ async function createCertificate() {
         return;
     }
 
-    let examLevel = levelChoice();
+    console.log(examLevel);
 
-    if (examLevel === "pre-starters") {
+    if (examLevel === "Pre-St") {
         generatePreStartersCertificate();
     }
 
-    else if (examLevel === "starters") {
+    else if (examLevel === "Starters") {
         generateStartersCertificate();
     }
-    else if (examLevel === "movers") {
+    else if (examLevel === "Movers") {
         generateMoversCertificate();
     }
-    else if (examLevel === "flyers") {
+    else if (examLevel === "Flyers") {
         generateFlyersCertificate();
     }
-    else if (examLevel === "ket") {
+    else if (examLevel === "KET") {
         generateKetCertificate();
     }
-    else if (examLevel === "pet") {
+    else if (examLevel === "PET") {
         generatePetCertificate();
     }
-    else if (examLevel === "fce") {
+    else if (examLevel === "FCE") {
         generateFceCertificate();
     }
-    else if (examLevel === "cae") {
+    else if (examLevel === "CAE") {
         generateCaeCertificate();
     }
 }
