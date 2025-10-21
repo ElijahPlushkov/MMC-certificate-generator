@@ -186,6 +186,7 @@ function getExamName() {
             });
         }
     });
+    
 }
 
 document.addEventListener('DOMContentLoaded', getExamName);
@@ -239,7 +240,7 @@ async function generatePreStartersCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.YLE_TEMPLATE_CERT_PUMPKIN : window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -326,7 +327,7 @@ async function generateStartersCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.YLE_TEMPLATE_CERT_PUMPKIN : window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -412,7 +413,7 @@ async function generateMoversCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.YLE_TEMPLATE_CERT_PUMPKIN : window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -499,7 +500,7 @@ async function generateFlyersCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.YLE_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.YLE_TEMPLATE_CERT_PUMPKIN : window.YLE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -586,7 +587,7 @@ async function generateKetCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.KET_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.KET_TEMPLATE_CERT_PUMPKIN : window.KET_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -690,7 +691,7 @@ async function generatePetCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.PET_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.PET_TEMPLATE_CERT_PUMPKIN : window.PET_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -801,7 +802,7 @@ async function generateFceCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.FCE_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.FCE_TEMPLATE_CERT_PUMPKIN : window.FCE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
@@ -969,7 +970,7 @@ async function generateCaeCertificate() {
     });
 
     const backgroundImg = new Image();
-    backgroundImg.src = window.FCE_TEMPLATE_CERT;
+    backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.FCE_TEMPLATE_CERT_PUMPKIN : window.FCE_TEMPLATE_CERT;
     backgroundImg.onload = async () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);

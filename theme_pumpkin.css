@@ -1,0 +1,17 @@
+.select-exam__button_theme_pumpkin {
+    background-color: #D3934F;
+    color: #000000;
+}
+
+.select-exam__button_theme_pumpkin:hover {
+    background-color: #ff8400;
+}
+
+.submit__button_theme_notion {
+    background-color: #D3934F;
+    color: #000000;
+}
+
+.submit__button_theme_notion:hover {
+    background-color: #ff8400;
+}
