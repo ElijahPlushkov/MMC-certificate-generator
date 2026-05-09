@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMC Cambridge Score Calculator</title>
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <link rel="icon" type="image/jpg" href="mmc-logo.png">
+</head>
+
+<style>
+    .disabled {
+    display: none;
+}
+</style>
+
+<body class="bg-light">
+    <div class="container-fluid py-4">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-3 col-xl-2">
+                <nav class="bg-white border rounded-4 p-3 shadow-sm sticky-top">
+                    <ul class="navbar-nav flex-column gap-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2" href="index.html">
+                                Certificate Generator
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2" href="pumpkin-weekend.html">
+                                Pumpkin Weekend
+                            </a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link active bg-dark text-white text-dark fw-medium rounded-3 px-3 py-2" href="calculator.html">
+                                Calculator
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2"
+                                href="https://docs.google.com/spreadsheets/d/15Y0Fx78N5XLKg3w4ImopCkKE-WvRr2JKINrfjPb4qhk/edit?gid=0#gid=0"
+                                target="_blank">
+                                Student DB
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2" href="instructions.html">
+                                Instructions
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-9 col-xl-10">
+                <main class="bg-white rounded-4 shadow-sm p-4 p-md-5">
+                    <header class="mb-5">
+                        <h1 class="display-6 fw-semibold mb-0">
+                            MMC Cambridge Score Calculator
+                        </h1>
+                    </header>
+                     <section class="mb-5">
+                        <h2 class="h4 mb-4 fw-semibold">Calculate the score</h2>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="js-select-exam__button btn btn-outline-dark" id="startersSelect">Starters</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="moversSelect">Movers</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="flyersSelect">Flyers</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="ketSelect">KET</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="petSelect">PET</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="fceSelect">FCE</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="caeSelect">CAE</button>
+                        </div>
+                    </section>
+                    <form class="exam-form js-exam-form-starters disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Starters</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="startersListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="startersListeningInput" type="number" max="20" min="0" step="1"
+                                    placeholder="0-20">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="startersReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="startersReadingWritingInput" type="number" max="25" min="0" step="1"
+                                    placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="startersSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="startersSpeakingInput" type="number" max="15" min="0" step="1"
+                                    placeholder="0-15">
+                            </div>
+                        </div>
+                        <span id="startersError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculateSt"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- MOVERS -->
+                    <form class="exam-form js-exam-form-movers disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Movers</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="moversListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="moversListeningInput" type="number" max="25" min="0" step="1"
+                                    placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="moversReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="moversReadingWritingInput" type="number" max="39" min="0" step="1"
+                                    placeholder="0-39">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="moversSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="moversSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15">
+                            </div>
+                        </div>
+                        <span id="moversError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculateMov"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- FLYERS -->
+                    <form class="exam-form js-exam-form-flyers disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Flyers</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="flyersListeningInput">
+                                    Listening
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="flyersListeningInput" type="number" max="25" min="0" step="1"
+                                    placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="flyersReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="flyersReadingWritingInput" type="number" max="48" min="0" step="1"
+                                    placeholder="0-48">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="flyersSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="flyersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15">
+                            </div>
+                        </div>
+                        <span id="flyersError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculateFl"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- KET -->
+                    <form class="exam-form js-exam-form-ket disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">KET</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="ketListeningInput">
+                                    Listening
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="ketListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="ketReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="ketReadingWritingInput" type="number" min="0" max="60" step="1"
+                                    placeholder="0-60">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="ketSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="ketSpeakingInput" type="number" min="0" max="45" step="1" placeholder="0-45">
+                            </div>
+                        </div>
+                        <span id="ketError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculateKet"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- PET -->
+                    <form class="exam-form js-exam-form-pet disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">PET</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="petListeningInput">
+                                    Listening
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="petListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="petReadingInput">
+                                    Reading
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="petReadingInput"
+                                    type="number" min="0" max="32" step="1" placeholder="0-32">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="petWritingInput">
+                                    Writing
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="petWritingInput"
+                                    type="number" min="0" max="40" step="1" placeholder="0-40">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="petSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="petSpeakingInput" type="number" min="0" max="30" step="1" placeholder="0-30">
+                            </div>
+                        </div>
+                        <span id="petError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculatePet"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- FCE -->
+                    <form class="exam-form js-exam-form-fce disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">FCE</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="fceListeningInput">
+                                    Listening
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="fceListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceReadingInput">
+                                    Reading
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="fceReadingInput"
+                                    type="number" min="0" max="42" step="1" placeholder="0-42">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceUseInput">
+                                    Use of English
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="fceUseInput"
+                                    type="number" min="0" max="28" step="1" placeholder="0-28">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceWritingInput">
+                                    Writing
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="fceWritingInput"
+                                    type="number" min="0" max="40" step="1" placeholder="0-40">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="fceSpeakingInput" type="number" min="0" max="60" step="1" placeholder="0-60">
+                            </div>
+                        </div>
+                        <span id="fceError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculateFce"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- CAE -->
+                    <form class="exam-form js-exam-form-cae disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">CAE</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="caeListeningInput">
+                                    Listening
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-60">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeReadingInput">
+                                    Reading
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="caeReadingInput"
+                                    type="number" min="0" max="50" step="1" placeholder="0-50">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeUseInput">
+                                    Use of English
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="caeUseInput"
+                                    type="number" min="0" max="28" step="1" placeholder="0-28">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeWritingInput">
+                                    Writing
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="caeWritingInput"
+                                    type="number" min="0" max="40" step="1" placeholder="0-40">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="caeSpeakingInput" type="number" min="0" max="75" step="1" placeholder="0-75">
+                            </div>
+                        </div>
+                        <span id="caeError" class="text-danger small mt-3 d-block"></span>
+                        <button type="button" id="calculateCae"
+                            class="submit-button calculate-button btn btn-dark px-4 py-2 mt-4 align-self-start">
+                            Calculate
+                        </button>
+                    </form>
+                    <!-- RESULTS YLE -->
+                    <div id="resultsYle" class="disabled card border-0 shadow-sm p-4 mb-4">
+                        <div class="table-responsive">
+                            <table id="scoresTableYle" class="table table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Listening</th>
+                                        <th>Reading & Writing</th>
+                                        <th>Speaking</th>
+                                        <th>Pass / Fail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-semibold">Marks</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Number of Shields</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- RESULTS KET -->
+                    <div id="resultsKet" class="disabled card border-0 shadow-sm p-4 mb-4">
+                        <div class="table-responsive">
+                            <table id="scoresTableKet" class="table table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Listening</th>
+                                        <th>Reading & Writing</th>
+                                        <th>Speaking</th>
+                                        <th>Overall Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-semibold">Marks</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Cambridge Score</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- RESULTS PET -->
+                    <div id="resultsPet" class="disabled card border-0 shadow-sm p-4 mb-4">
+                        <div class="table-responsive">
+                            <table id="scoresTablePet" class="table table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Listening</th>
+                                        <th>Reading</th>
+                                        <th>Writing</th>
+                                        <th>Speaking</th>
+                                        <th>Overall Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-semibold">Marks</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Cambridge Score</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- RESULTS FCE / CAE -->
+                    <div id="resultsFceCae" class="disabled card border-0 shadow-sm p-4 mb-4">
+                        <div class="table-responsive">
+                            <table id="scoresTableFceCae" class="table table-bordered align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Listening</th>
+                                        <th>Reading</th>
+                                        <th>Use of English</th>
+                                        <th>Writing</th>
+                                        <th>Speaking</th>
+                                        <th>Overall Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-semibold">Marks</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Cambridge Score</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center py-4">
+        <div class="border-top mb-3"></div>
+        <p class="text-muted small mb-0">MMC 2026.</p>
+    </footer>
+
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+    <script src="hotkeys.js"></script>
+    <script src="calculator.js"></script>
+    <script src="cert_calculator.js"></script>
+</body>
+</html>

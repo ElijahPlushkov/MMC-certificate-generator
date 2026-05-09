@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pumpkin Weekend Certificates</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme_notion.css">
+    <link rel="stylesheet" href="theme_pumpkin.css">
+    <link rel="icon" type="image/jpg" href="mmc-logo.png">
+</head>
+<body class="page-styling page-styling_theme_notion">
+<div class="page-layout">
+
+    <nav class="menu menu_left menu_theme_notion">
+        <ul class="menu__list">
+            <li class="menu__item menu__item_theme_notion">
+                <a class="menu__link menu__link-theme_notion" href="index.html">Certificate Generator</a>
+            </li>
+            <li class="menu__item menu__item_theme_notion">
+                <a class="menu__link menu__link-theme_notion" href="pumpkin-weekend.html">Pumpkin Weekend</a>
+            </li>
+            <li class="menu__item menu__item_theme_notion">
+                <a class="menu__link menu__link-theme_notion" href="calculator.html">Calculator</a>
+            </li>
+            <li class="menu__item menu__item_theme_notion">
+                <a class="menu__link menu__link-theme_notion" href="https://docs.google.com/spreadsheets/d/15Y0Fx78N5XLKg3w4ImopCkKE-WvRr2JKINrfjPb4qhk/edit?gid=0#gid=0" target="_blank">Student DB</a>
+            </li>
+             <li class="menu__item menu__item_theme_notion">
+                <a class="menu__link menu__link-theme_notion" href="instructions.html">Instructions</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-container main-container_menu-left main-container_theme_notion">
+    <header class="main-title">
+        <h1 class="main-title__heading main-title__heading_theme_notion">🎃Pumpkin Weekend Certificates🎃</h1>   
+    </header>
+    
+    <form class="participant-form">
+        <label class="participant-form__label participant-form__label_theme_notion" for="participantName">Participant's Name:</label>
+        <input class="participant-form__input participant-form__input_theme_notion" id="participantName" type="text" required>
+        <span id="participantNameError" class="error error_theme_notion"></span><br>
+
+        <label class="participant-form__label participant-form__label_theme_notion" for="participantSurname">Participant's Surname:</label>
+        <input class="participant-form__input participant-form__input_theme_notion" id="participantSurname" type="text" required>
+        <span id="participantSurnameError" class="error error_theme_notion"></span><br>
+
+        <!--the dates are hidden for this page because the date is predefined-->
+        <label class="participant-form__label participant-form__label_theme_notion disabled" for="examDate">Dates:</label>
+        <div class="participant-form__dropdown-container disabled">
+        <input class="participant-form__input participant-form__input_theme_notion" id="examDate" type="text" required value="October 25th to November 4th">
+        <button id="participantFormToggleButton" class="participant-form__options-list-button participant-form__options-list-button_theme_notion">▼</button>
+        </div>
+        <ul id="participantFormOptionsList" class="participant-form__options-list participant-form__options-list_theme_notion">
+            <li class="participant-form__options-list-item" id="date1">June 1st to June 13th</li>
+            <li class="participant-form__options-list-item" id="date2">June 15th to June 27th</li>
+            <li class="participant-form__options-list-item" id="date3">June 29th to July 11th</li>
+            <li class="participant-form__options-list-item" id="date4">July 13th to July 25th</li>
+            <li class="participant-form__options-list-item" id="date5">July 27th to August 8th</li>
+            <li class="participant-form__options-list-item" id="date6">August 10th to August 22nd</li>
+            <li class="participant-form__options-list-item" id="date7">October 25th to November 4th</li>
+        </ul>
+        <span id="examDateError" class="error error_theme_notion"></span><br>
+    </form>
+
+    <div class="select-exam">
+        <h2 class="heading heading_theme_notion">Calculate the score</h2>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="pre-startersSelect">Pre-St</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="startersSelect">Starters</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="moversSelect">Movers</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="flyersSelect">Flyers</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="ketSelect">KET</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="petSelect">PET</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="fceSelect">FCE</button>
+        <button class="select-exam__button select-exam__button_theme_notion select-exam__button_theme_pumpkin" id="caeSelect">CAE</button>
+    </div>
+   
+    <form class="exam-form exam-form_theme_notion exam-form-pre-starters disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">Pre-Starters</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="pre-startersListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="pre-startersReadingWritingInput">Reading&Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="pre-startersSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="pre-startersListeningInput" type="number" min="0" step="1" placeholder="score"><span><input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersListeningInputTotal" placeholder="out of"></span><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersReadingWritingInput" type="number" min="0" step="1" placeholder="score"><span><input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersReadingWritingInputTotal" placeholder="out of"></span><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersSpeakingInput" type="number" min="0" step="1" placeholder="score"><span><input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="pre-startersSpeakingInputTotal" placeholder="out of"></span><br>
+            <span id="pre-startersError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+
+    <form class="exam-form exam-form_theme_notion exam-form-starters disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">Starters</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="startersListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="startersReadingWritingInput">Reading&Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="startersSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="startersListeningInput" type="number" max="20" min="0" step="1" placeholder="0-20"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="startersReadingWritingInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="startersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <span id="startersError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+    
+    <form class="exam-form exam-form_theme_notion exam-form-movers disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">Movers</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="moversListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="moversReadingWritingInput">Reading&Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="moversSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="moversListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversReadingWritingInput" type="number" max="39" min="0" step="1" placeholder="0-39"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="moversSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <span id="moversError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+
+    <form class="exam-form exam-form_theme_notion exam-form-flyers disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">Flyers</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="flyersListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="flyersReadingWritingInput">Reading&Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="flyersSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="flyersListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersReadingWritingInput" type="number" max="48" min="0" step="1" placeholder="0-48"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="flyersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15"><br>
+            <span id="flyersError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+  
+    <form class="exam-form exam-form_theme_notion exam-form-ket disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">KET</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="ketListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="ketReadingWritingInput">Reading&Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="ketSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="ketListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketReadingWritingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="ketSpeakingInput" type="number" min="0" max="45" step="1" placeholder="0-45"><br>
+            <span id="ketError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+    
+    <form class="exam-form exam-form_theme_notion exam-form-pet disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">PET</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion listening" for="petListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="petReadingInput">Reading</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="petWritingInput">Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="petSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="petListeningInput" type="number" min="0" max="25" step="1" placeholder="0-25"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petReadingInput" type="number" min="0" max="32" step="1" placeholder="0-32"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="petSpeakingInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
+            <span id="petError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+
+    <form class="exam-form exam-form_theme_notion exam-form-fce disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">FCE</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="fceListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="fceReadingInput">Reading</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="fceUseInput">Use of English</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="fceWritingInput">Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="fceSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="fceListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceReadingInput" type="number" min="0" max="42" step="1" placeholder="0-42"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceUseInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="fceSpeakingInput" type="number" min="0" max="60" step="1" placeholder="0-60"><br>
+            <span id="fceError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+    
+    <form class="exam-form exam-form_theme_notion exam-form-cae disabled">
+        <h2 class="exam-form__heading exam-form__heading_theme_notion">CAE</h2>
+        <div class="exam-form-labels">
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="caeListeningInput">Listening</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="caeReadingInput">Reading</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="caeUseInput">Use of English</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="caeWritingInput">Writing</label><br>
+            <label class="exam-form-labels__label exam-form-labels__label_theme_notion" for="caeSpeakingInput">Speaking</label><br>
+        </div>
+        <div class="exam-form-inputs">
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion listening" id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-30"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeReadingInput" type="number" min="0" max="50" step="1" placeholder="0-50"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeUseInput" type="number" min="0" max="28" step="1" placeholder="0-28"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeWritingInput" type="number" min="0" max="40" step="1" placeholder="0-40"><br>
+            <input class="exam-form-inputs__input exam-form-inputs__input_theme_notion" id="caeSpeakingInput" type="number" min="0" max="75" step="1" placeholder="0-75"><br>
+            <span id="caeError" class="error error_theme_notion"></span>
+        </div>
+    </form>
+    <br>
+
+    <div class="teacher-letter">
+        <h2 class="heading heading_theme_notion">Teacher's Exam Feedback</h2>
+        <p class="teacher-letter__word-count teacher-letter__word-count_theme_notion" id="wordCountDisplay">0 / 130</p>
+        <textarea id="teacherLetter" class="teacher-letter__textarea teacher-letter__textarea_theme_notion" rows="18" cols="50" maxlength="2000"></textarea>
+        <span id="teacherLetterError" class="error error_theme_notion teacher-letter__error_theme_notion"></span>
+    </div>
+
+    <button class="submit-button submit__button_theme_notion submit__button_theme_notion" type="submit" id="generateCertificate">
+        <span class="submit-button__text">Generate certificate</span>
+    </button>
+    </main>
+
+</div>
+
+<footer class="footer">
+    <div class="footer__division-line footer__division-line_theme_notion"></div>
+    <p class="footer__text footer__text_theme_notion">MMC 2025.</p>       
+</footer>    
+
+<script src="hotkeys.js"></script>
+<script src="jspdf.umd.min.js" data-source-map="none"></script>
+<script src="imageData.js"></script>
+<script src="cert_calculator.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

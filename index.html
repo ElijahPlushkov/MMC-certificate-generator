@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMC Certificate Generator</title>
+    <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <link rel="icon" type="image/jpg" href="mmc-logo.png">
+</head>
+
+<style>
+    .disabled {
+    display: none;
+}
+</style>
+
+<body class="bg-light">
+    <div class="container-fluid py-4">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-3 col-xl-2">
+                <nav class="bg-white border rounded-4 p-3 shadow-sm sticky-top">
+                    <ul class="navbar-nav flex-column gap-2">
+                        <li class="nav-item">
+                            <a class="nav-link active bg-dark text-white text-dark fw-medium rounded-3 px-3 py-2" href="index.html">Certificate
+                                Generator</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2"
+                                href="pumpkin-weekend.html">Pumpkin Weekend</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2"
+                                href="calculator.html">Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2"
+                                href="https://docs.google.com/spreadsheets/d/15Y0Fx78N5XLKg3w4ImopCkKE-WvRr2JKINrfjPb4qhk/edit?gid=0#gid=0"
+                                target="_blank">Student DB</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-medium rounded-3 px-3 py-2"
+                                href="instructions.html">Instructions</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-9 col-xl-10">
+                <main class="bg-white rounded-4 shadow-sm p-4 p-md-5">
+                    <header class="mb-5">
+                        <h1 class="display-6 fw-semibold mb-0">MMC Certificate Generator</h1>
+                    </header>
+                    <form class="participant-form row g-4 mb-5">
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium" for="participantName">
+                                Participant's Name
+                            </label>
+                            <input class="participant-form__input form-control form-control-lg" id="participantName"
+                                type="text" required>
+                            <span id="participantNameError" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium" for="participantSurname">
+                                Participant's Surname
+                            </label>
+                            <input class="participant-form__input form-control form-control-lg" id="participantSurname"
+                                type="text" required>
+                            <span id="participantSurnameError" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium" for="examDate">
+                                Dates
+                            </label>
+                            <div class="input-group">
+                                <input class="participant-form__input form-control form-control-lg" id="examDate"
+                                    type="text" required>
+                                <button class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul id="participantFormOptionsList" class="dropdown-menu w-100">
+                                    <li>
+                                        <button class="participant-form__options-list-item dropdown-item" id="date1"
+                                            type="button">
+                                            May 31st to June 12th
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="participant-form__options-list-item dropdown-item" id="date2"
+                                            type="button">
+                                            June 14th to June 26th
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="participant-form__options-list-item dropdown-item" id="date3"
+                                            type="button">
+                                            June 28th to July 10th
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="participant-form__options-list-item dropdown-item" id="date4"
+                                            type="button">
+                                            July 12th to July 24th
+                                        </button>
+                                    </li>
+
+                                    <li>
+                                        <button class="participant-form__options-list-item dropdown-item" id="date5"
+                                            type="button">
+                                            July 26th to August 7th
+                                        </button>
+                                    </li>
+
+                                    <li>
+                                        <button class="participant-form__options-list-item dropdown-item" id="date6"
+                                            type="button">
+                                            August 9th to August 21st
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <span id="examDateError" class="text-danger small"></span>
+                        </div>
+                    </form>
+                    <section class="mb-5">
+                        <h2 class="h4 mb-4 fw-semibold">Calculate the score</h2>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="js-select-exam__button btn btn-outline-dark" id="pre-startersSelect">Pre-St</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="startersSelect">Starters</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="moversSelect">Movers</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="flyersSelect">Flyers</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="ketSelect">KET</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="petSelect">PET</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="fceSelect">FCE</button>
+                            <button class="js-select-exam__button btn btn-outline-dark" id="caeSelect">CAE</button>
+                        </div>
+                    </section>
+
+                    <!-- PRE-STARTERS -->
+                    <form class="exam-form js-exam-form-pre-starters disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Pre-Starters</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="pre-startersListeningInput">
+                                    Listening
+                                </label>
+                                <div class="d-flex gap-2">
+                                    <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                        id="pre-startersListeningInput" type="number" min="0" step="1"
+                                        placeholder="score">
+                                    <input class="exam-form-inputs__input form-control form-control-lg"
+                                        id="pre-startersListeningInputTotal" placeholder="out of">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="pre-startersReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <div class="d-flex gap-2">
+                                    <input class="exam-form-inputs__input form-control form-control-lg"
+                                        id="pre-startersReadingWritingInput" type="number" min="0" step="1"
+                                        placeholder="score">
+                                    <input class="exam-form-inputs__input form-control form-control-lg"
+                                        id="pre-startersReadingWritingInputTotal" placeholder="out of">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="pre-startersSpeakingInput">
+                                    Speaking
+                                </label>
+                                <div class="d-flex gap-2">
+                                    <input class="exam-form-inputs__input form-control form-control-lg"
+                                        id="pre-startersSpeakingInput" type="number" min="0" step="1"
+                                        placeholder="score">
+                                    <input class="exam-form-inputs__input form-control form-control-lg"
+                                        id="pre-startersSpeakingInputTotal" placeholder="out of">
+                                </div>
+                            </div>
+                        </div>
+                        <span id="pre-startersError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- STARTERS -->
+                    <form class="exam-form js-exam-form-starters disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Starters</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="startersListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="startersListeningInput" type="number" max="20" min="0" step="1"
+                                    placeholder="0-20">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="startersReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="startersReadingWritingInput" type="number" max="25" min="0" step="1"
+                                    placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="startersSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="startersSpeakingInput" type="number" max="15" min="0" step="1"
+                                    placeholder="0-15">
+                            </div>
+                        </div>
+                        <span id="startersError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- MOVERS -->
+                    <form class="exam-form js-exam-form-movers disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Movers</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="moversListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="moversListeningInput" type="number" max="25" min="0" step="1"
+                                    placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="moversReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="moversReadingWritingInput" type="number" max="39" min="0" step="1"
+                                    placeholder="0-39">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="moversSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="moversSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15">
+                            </div>
+                        </div>
+                        <span id="moversError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- FLYERS -->
+                    <form class="exam-form js-exam-form-flyers disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">Flyers</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="flyersListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="flyersListeningInput" type="number" max="25" min="0" step="1"
+                                    placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="flyersReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="flyersReadingWritingInput" type="number" max="48" min="0" step="1"
+                                    placeholder="0-48">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="flyersSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="flyersSpeakingInput" type="number" max="15" min="0" step="1" placeholder="0-15">
+                            </div>
+                        </div>
+                        <span id="flyersError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- KET -->
+                    <form class="exam-form js-exam-form-ket disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">KET</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="ketListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="ketListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="ketReadingWritingInput">
+                                    Reading & Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="ketReadingWritingInput" type="number" max="60" min="0" step="1"
+                                    placeholder="0-60">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="ketSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="ketSpeakingInput" type="number" max="45" min="0" step="1" placeholder="0-45">
+                            </div>
+                        </div>
+                        <span id="ketError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- PET -->
+                    <form class="exam-form js-exam-form-pet disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">PET</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="petListeningInput">
+                                    Listening
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="petListeningInput" type="number" max="25" min="0" step="1" placeholder="0-25">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="petReadingInput">
+                                    Reading
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="petReadingInput"
+                                    type="number" max="32" min="0" step="1" placeholder="0-32">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="petWritingInput">
+                                    Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="petWritingInput"
+                                    type="number" max="40" min="0" step="1" placeholder="0-40">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="petSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="petSpeakingInput" type="number" max="30" min="0" step="1" placeholder="0-30">
+                            </div>
+                        </div>
+                        <span id="petError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- FCE -->
+                    <form class="exam-form js-exam-form-fce disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">FCE</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="fceListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="fceListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceReadingInput">
+                                    Reading
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="fceReadingInput"
+                                    type="number" min="0" max="42" step="1" placeholder="0-42">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceUseInput">
+                                    Use of English
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="fceUseInput"
+                                    type="number" min="0" max="28" step="1" placeholder="0-28">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceWritingInput">
+                                    Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="fceWritingInput"
+                                    type="number" min="0" max="40" step="1" placeholder="0-40">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="fceSpeakingInput">
+                                    Speaking
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="fceSpeakingInput" type="number" min="0" max="60" step="1" placeholder="0-60">
+                            </div>
+                        </div>
+                        <span id="fceError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <!-- CAE -->
+                    <form class="exam-form js-exam-form-cae disabled card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-4">CAE</h2>
+                        <div class="d-flex flex-column gap-4">
+                            <div>
+                                <label class="form-label text-secondary small" for="caeListeningInput">
+                                    Listening
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg listening"
+                                    id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-60">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeReadingInput">
+                                    Reading
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="caeReadingInput"
+                                    type="number" min="0" max="50" step="1" placeholder="0-50">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeUseInput">
+                                    Use of English
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="caeUseInput"
+                                    type="number" min="0" max="28" step="1" placeholder="0-28">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeWritingInput">
+                                    Writing
+                                </label>
+                                <input class="exam-form-inputs__input form-control form-control-lg" id="caeWritingInput"
+                                    type="number" min="0" max="40" step="1" placeholder="0-40">
+                            </div>
+                            <div>
+                                <label class="form-label text-secondary small" for="caeSpeakingInput">
+                                    Speaking
+                                </label>
+
+                                <input class="exam-form-inputs__input form-control form-control-lg"
+                                    id="caeSpeakingInput" type="number" min="0" max="75" step="1" placeholder="0-75">
+                            </div>
+                        </div>
+                        <span id="caeError" class="text-danger small mt-3 d-block"></span>
+                    </form>
+                    <div class="card border-0 shadow-sm p-4 mb-4">
+                        <h2 class="h4 mb-3">Teacher's Exam Feedback</h2>
+                        <p class="text-muted small mb-2" id="wordCountDisplay">0 / 130</p>
+                        <textarea id="teacherLetter" class="teacher-letter__textarea form-control form-control-lg"
+                            rows="12" maxlength="2000"></textarea>
+                        <span id="teacherLetterError" class="text-danger small mt-2 d-block"></span>
+                    </div>
+                    <button class="submit-button btn btn-dark btn-lg px-5 py-3 d-block mx-auto" type="submit"
+                        id="generateCertificate">
+                        Generate certificate
+                    </button>
+                </main>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center py-4">
+        <div class="border-top mb-3"></div>
+        <p class="text-muted small mb-0">MMC 2026.</p>
+    </footer>
+
+    <script src="hotkeys.js"></script>
+    <script src="jspdf.umd.min.js" data-source-map="none"></script>
+    <script src="imageData.js"></script>
+    <script src="cert_calculator.js"></script>
+    <script src="index.js"></script>
+    <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
