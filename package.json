@@ -18,7 +18,41 @@
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build:portable": "electron-builder --win portable",
+    "build:installer": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.mmc.certgenerator",
+    "productName": "MMC Certificate Generator",
+    "copyright": "Copyright © 2026 Elijah Plushkov",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/.bin",
+      "!*.md",
+      "!out/",
+      "!dist/"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "mmc-logo.ico"
+    },
+    "portable": {
+      "artifactName": "MMC-Cert-Generator.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "MMC-Cert-Generator-Setup.exe"
+    }
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.11.1",
@@ -29,7 +63,8 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.11.1",
     "@electron-forge/plugin-fuses": "^7.11.1",
     "@electron/fuses": "^1.8.0",
-    "electron": "^42.0.1"
+    "electron": "^42.0.1",
+    "electron-builder": "^26.15.3"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1"

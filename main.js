@@ -1,9 +1,15 @@
-const { app, BrowserWindow, ipcMain } = require('electron/main')
+const { app, BrowserWindow, ipcMain } = require('electron/main');
+const path = require('path');
 
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 1440,
-        height: 800
+        height: 800,
+        icon: path.join(__dirname, 'mmc-logo.png'),
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
     })
 
     win.loadFile('index.html')
