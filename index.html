@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MMC Certificate Generator</title>
     <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css">
-    <link rel="icon" type="image/jpg" href="mmc-logo.png">
 </head>
 
 <style>
@@ -390,7 +389,7 @@
                                     Listening
                                 </label>
                                 <input class="exam-form-inputs__input form-control form-control-lg listening"
-                                    id="caeListeningInput" type="number" min="0" max="60" step="1" placeholder="0-60">
+                                    id="caeListeningInput" type="number" min="0" max="30" step="1" placeholder="0-30">
                             </div>
                             <div>
                                 <label class="form-label text-secondary small" for="caeReadingInput">
@@ -444,11 +443,6 @@
         <p class="text-muted small mb-0">MMC 2026.</p>
     </footer>
 
-    <script src="hotkeys.js"></script>
-    <script src="jspdf.umd.min.js" data-source-map="none"></script>
-    <script src="imageData.js"></script>
-    <script src="cert_calculator.js"></script>
-    <script src="index.js"></script>
-    <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>

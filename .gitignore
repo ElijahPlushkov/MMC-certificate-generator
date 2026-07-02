@@ -146,6 +146,8 @@ vite.config.ts.timestamp-*
 
 bootstrap-5.3.8-dist/
 
+dist/
+
 # Images
 *.png
 *.jpg

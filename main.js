@@ -1,32 +1,8 @@
-const { app, BrowserWindow, ipcMain } = require('electron/main');
-const path = require('path');
+import './bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js';
+import { jsPDF } from 'jspdf';
+window.jspdf = { jsPDF };
 
-const createWindow = () => {
-    const win = new BrowserWindow({
-        width: 1440,
-        height: 800,
-        icon: path.join(__dirname, 'mmc-logo.png'),
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false
-        }
-    })
-
-    win.loadFile('index.html')
-}
-
-app.whenReady().then(() => {
-    createWindow()
-
-    app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow()
-        }
-    })
-})
-
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
-})
+import './hotkeys.js';
+import './imageData.js';
+import './cert_calculator.js';
+import './index.js';

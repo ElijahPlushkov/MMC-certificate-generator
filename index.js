@@ -1,3 +1,12 @@
+import { calculatePreStartersResult,
+    calculateStartersResult,
+    calculateMoversResult,
+    calculateFlyersResult,
+    calculateKetResult,
+    calculatePetResult,
+    calculateFceResult,
+    calculateCaeResult } from './cert_calculator.js';
+
 function participantForm() {
 
     const participantName = document.getElementById("participantName");
@@ -70,9 +79,7 @@ function mergeNameAndSurname() {
     //check for double name or surname
     if (participantName.includes("-")) {
         formattedName = participantName;
-    }
-
-    else {
+    } else {
         formattedName = participantName.charAt(0).toUpperCase() + participantName.slice(1).toLowerCase();
     }
 
@@ -84,9 +91,7 @@ function mergeNameAndSurname() {
         formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
     }
         
-    const nameSurname = `${formattedName} ${formattedSurname}`;
-
-    return nameSurname;
+    return `${formattedName} ${formattedSurname}`;
 }
 
 // controls the dropdown input
@@ -98,7 +103,6 @@ dropdownItems.forEach(item => {
     examDateInput.value = item.textContent.trim();
   });
 });
-
 
 const selectExamButtons = document.querySelectorAll(".js-select-exam__button");
 const examForms = document.querySelectorAll(".exam-form");
@@ -150,14 +154,14 @@ selectExamButtons.forEach(button => {
     });
 });
 
-let examLevel = null;
+let examLevel;
 
 function getExamName() {
-    const buttonsId = 
+    const buttonsId =
     [
-        "pre-startersSelect", "startersSelect", 
-        "moversSelect", "flyersSelect", 
-        "ketSelect", "petSelect", 
+        "pre-startersSelect", "startersSelect",
+        "moversSelect", "flyersSelect",
+        "ketSelect", "petSelect",
         "fceSelect", "caeSelect"
     ];
 
@@ -169,7 +173,6 @@ function getExamName() {
             });
         }
     });
-    
 }
 
 document.addEventListener('DOMContentLoaded', getExamName);
@@ -184,8 +187,7 @@ teacherLetter.addEventListener("input", () => {
     const wordCount = words.length;
 
         if (wordCount >= maxWords) {
-            const truncatedText = words.slice(0, maxWords).join(" ");
-            teacherLetter.value = truncatedText;
+            teacherLetter.value = words.slice(0, maxWords).join(" ");
             wordCountDisplay.textContent = `${maxWords}/${maxWords}`;
             teacherLetterError.textContent = "You have exceeded the maximum number of words.";
         }
@@ -216,7 +218,7 @@ function isTeacherLetterTooLong() {
     return isTooLong;
 }
 
-async function generatePreStartersCertificate() {
+function generatePreStartersCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -228,7 +230,7 @@ async function generatePreStartersCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const preStartersResults = await calculatePreStartersResult();
+        const preStartersResults = calculatePreStartersResult();
 
         const {
             listening: { preStartersListeningScore, preStartersListeningTotal },
@@ -253,7 +255,6 @@ async function generatePreStartersCertificate() {
 
         doc.setFontSize(14);
         doc.text(examDate, 95, 96.4, { align: 'left' });
-
 
         doc.setFontSize(16);
         doc.text(`${String(preStartersListeningScore)}`, 67, 130, { align: "left" });
@@ -299,11 +300,11 @@ async function generatePreStartersCertificate() {
             grade: preStartersGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generateStartersCertificate() {
+function generateStartersCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -315,7 +316,7 @@ async function generateStartersCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const startersResults = await calculateStartersResult();
+        const startersResults = calculateStartersResult();
 
         const {
             listening: { startersListeningScore, startersListeningShields },
@@ -325,8 +326,6 @@ async function generateStartersCertificate() {
             startersGrade } = startersResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "Starters";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -339,7 +338,6 @@ async function generateStartersCertificate() {
 
         doc.setFontSize(14);
         doc.text(examDate, 95, 96.4, { align: 'left' });
-
 
         doc.setFontSize(16);
         doc.text(`${String(startersListeningScore)}/20`, 64, 130, { align: "left" });
@@ -385,11 +383,11 @@ async function generateStartersCertificate() {
             grade: startersGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generateMoversCertificate() {
+function generateMoversCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -401,7 +399,7 @@ async function generateMoversCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const moversResults = await calculateMoversResult();
+        const moversResults = calculateMoversResult();
 
         const {
             listening: { moversListeningScore, moversListeningShields },
@@ -412,8 +410,6 @@ async function generateMoversCertificate() {
         } = moversResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "Movers";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -426,7 +422,6 @@ async function generateMoversCertificate() {
 
         doc.setFontSize(14);
         doc.text(examDate, 95, 96.4, { align: 'left' });
-
 
         doc.setFontSize(16);
         doc.text(`${String(moversListeningScore)}/25`, 64, 130, { align: "left" });
@@ -472,11 +467,11 @@ async function generateMoversCertificate() {
             grade: moversGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generateFlyersCertificate() {
+function generateFlyersCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -488,7 +483,7 @@ async function generateFlyersCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const flyersResults = await calculateFlyersResult();
+        const flyersResults = calculateFlyersResult();
 
         const {
             listening: { flyersListeningScore, flyersListeningShields },
@@ -499,8 +494,6 @@ async function generateFlyersCertificate() {
         } = flyersResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "Flyers";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -513,7 +506,6 @@ async function generateFlyersCertificate() {
 
         doc.setFontSize(14);
         doc.text(examDate, 95, 96.4, { align: 'left' });
-
 
         doc.setFontSize(16);
         doc.text(`${String(flyersListeningScore)}/25`, 64, 130, { align: "left" });
@@ -559,11 +551,11 @@ async function generateFlyersCertificate() {
             grade: flyersGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generateKetCertificate() {
+function generateKetCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -575,7 +567,7 @@ async function generateKetCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const ketResults = await calculateKetResult();
+        const ketResults = calculateKetResult();
 
         const {
             listening: { ketListeningInputValue, listeningScore },
@@ -585,8 +577,6 @@ async function generateKetCertificate() {
             ketGrade, } = ketResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "KET";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -599,7 +589,6 @@ async function generateKetCertificate() {
 
         doc.setFontSize(14);
         doc.text(examDate, 95, 96.4, { align: 'left' });
-
 
         doc.setFontSize(16);
         doc.text(`${String(ketListeningInputValue)}/25`, 64, 130, { align: "left" });
@@ -663,11 +652,11 @@ async function generateKetCertificate() {
             grade: ketGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generatePetCertificate() {
+function generatePetCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -675,11 +664,11 @@ async function generatePetCertificate() {
 
     const backgroundImg = new Image();
     backgroundImg.src = document.title === "Pumpkin Weekend Certificates" ? window.PET_TEMPLATE_CERT_PUMPKIN : window.PET_TEMPLATE_CERT;
-    backgroundImg.onload = async () => {
+    backgroundImg.onload = () => {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const petResults = await calculatePetResult();
+        const petResults = calculatePetResult();
 
         const {
             listening: { petListeningInputValue, listeningScore },
@@ -690,8 +679,6 @@ async function generatePetCertificate() {
             petGrade, } = petResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "PET";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -704,7 +691,6 @@ async function generatePetCertificate() {
 
         doc.setFontSize(14);
         doc.text(examDate, 95, 96.4, { align: 'left' });
-
 
         doc.setFontSize(16);
         doc.text(`${String(petListeningInputValue)}/25`, 56, 130, { align: "left" });
@@ -774,11 +760,11 @@ async function generatePetCertificate() {
             grade: petGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generateFceCertificate() {
+function generateFceCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -790,7 +776,7 @@ async function generateFceCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const fceResults = await calculateFceResult();
+        const fceResults = calculateFceResult();
 
         const {
             listening: { fceListeningInputValue, listeningScore },
@@ -802,8 +788,6 @@ async function generateFceCertificate() {
             fceGrade, } = fceResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "FCE";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -877,7 +861,6 @@ async function generateFceCertificate() {
         doc.setFontSize(16);
         doc.text(`${String(fceSpeakingInputValue)}/60`, 151, 130, { align: "left" });
 
-
         if (speakingScore < 10) {
             doc.setFontSize(16);
             doc.text(`${String(speakingScore)}/190`, 150, 142, { align: "left" });
@@ -942,11 +925,11 @@ async function generateFceCertificate() {
             grade: fceGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
-async function generateCaeCertificate() {
+function generateCaeCertificate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
         compress: true,
@@ -958,7 +941,7 @@ async function generateCaeCertificate() {
 
         doc.addImage(backgroundImg, 'PNG', 0, 0, 210, 297);
 
-        const caeResults = await calculateCaeResult();
+        const caeResults = calculateCaeResult();
 
         const {
             listening: { caeListeningInputValue, listeningScore },
@@ -970,8 +953,6 @@ async function generateCaeCertificate() {
             caeGrade, } = caeResults;
 
         const fullName = mergeNameAndSurname();
-
-        const examLevel = "CAE";
 
         const examDate = document.getElementById('examDate').value;
 
@@ -1116,7 +1097,7 @@ async function generateCaeCertificate() {
             grade: caeGrade
         };
 
-        await sendDataToGoogleSheets(studentData);
+        sendDataToGoogleSheets(studentData);
     }
 }
 
@@ -1129,32 +1110,24 @@ async function createCertificate() {
         return;
     }
 
-    console.log(examLevel);
+    console.log("Exam level: " + examLevel);
 
     if (examLevel === "Pre-St") {
-        generatePreStartersCertificate();
-    }
-
-    else if (examLevel === "Starters") {
-        generateStartersCertificate();
-    }
-    else if (examLevel === "Movers") {
-        generateMoversCertificate();
-    }
-    else if (examLevel === "Flyers") {
-        generateFlyersCertificate();
-    }
-    else if (examLevel === "KET") {
-        generateKetCertificate();
-    }
-    else if (examLevel === "PET") {
-        generatePetCertificate();
-    }
-    else if (examLevel === "FCE") {
-        generateFceCertificate();
-    }
-    else if (examLevel === "CAE") {
-        generateCaeCertificate();
+        await generatePreStartersCertificate();
+    } else if (examLevel === "Starters") {
+        await generateStartersCertificate();
+    } else if (examLevel === "Movers") {
+        await generateMoversCertificate();
+    } else if (examLevel === "Flyers") {
+        await generateFlyersCertificate();
+    } else if (examLevel === "KET") {
+        await generateKetCertificate();
+    } else if (examLevel === "PET") {
+        await generatePetCertificate();
+    } else if (examLevel === "FCE") {
+        await generateFceCertificate();
+    } else if (examLevel === "CAE") {
+        await generateCaeCertificate();
     }
 }
 

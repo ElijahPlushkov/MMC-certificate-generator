@@ -12,20 +12,20 @@ const preStartersListeningInputTotal = document.getElementById("pre-startersList
 const preStartersReadingWritingInputTotal = document.getElementById("pre-startersReadingWritingInputTotal");
 const preStartersSpeakingInputTotal = document.getElementById("pre-startersSpeakingInputTotal");
 
-async function calculatePreStartersResult() {
+export function calculatePreStartersResult() {
 
     preStartersError.textContent = "";
     preStartersListeningInput.classList.remove("input_error_theme_notion");
     preStartersReadingWritingInput.classList.remove("input_error_theme_notion");
     preStartersSpeakingInput.classList.remove("input_error_theme_notion");
 
-    const listeningScore = preStartersListeningInput.value;
-    const readingWritingScore = preStartersReadingWritingInput.value;
-    const speakingScore = preStartersSpeakingInput.value;
+    let listeningScore = preStartersListeningInput.value;
+    let readingWritingScore = preStartersReadingWritingInput.value;
+    let speakingScore = preStartersSpeakingInput.value;
 
-    const listeningTotal = preStartersListeningInputTotal.value;
-    const readingWritingTotal = preStartersReadingWritingInputTotal.value;
-    const speakingTotal = preStartersSpeakingInputTotal.value;
+    let listeningTotal = preStartersListeningInputTotal.value;
+    let readingWritingTotal = preStartersReadingWritingInputTotal.value;
+    let speakingTotal = preStartersSpeakingInputTotal.value;
 
     if (listeningScore === 0 || listeningScore === null) {
         listeningScore = 0;
@@ -93,7 +93,7 @@ function calculateScoreYLE(input, thresholds, maxScore) {
     }
 }
 
-async function calculateStartersResult() {
+export function calculateStartersResult() {
 
     startersError.textContent = "";
     startersListeningInput.classList.remove("input_error_theme_notion");
@@ -181,7 +181,7 @@ const moversReadingWritingInput = document.getElementById("moversReadingWritingI
 const moversSpeakingInput = document.getElementById("moversSpeakingInput");
 const moversError = document.getElementById("moversError");
 
-async function calculateMoversResult() {
+export function calculateMoversResult() {
 
     moversError.textContent = "";
     moversListeningInput.classList.remove("input_error_theme_notion");
@@ -269,7 +269,7 @@ const flyersReadingWritingInput = document.getElementById("flyersReadingWritingI
 const flyersSpeakingInput = document.getElementById("flyersSpeakingInput");
 const flyersError = document.getElementById("flyersError");
 
-async function calculateFlyersResult() {
+export function calculateFlyersResult() {
 
     flyersError.textContent = "";
     flyersListeningInput.classList.remove("input_error_theme_notion");
@@ -359,8 +359,7 @@ function calculateScoreIntermediate(rawScore, scoresTable, maxScore) {
         return null;
     }
 
-    let cambridgeScore = scoresTable[rawScore];
-    return cambridgeScore;
+    return scoresTable[rawScore];
 }
 
 //KET SECTION
@@ -369,14 +368,14 @@ const ketReadingWritingInput = document.getElementById("ketReadingWritingInput")
 const ketSpeakingInput = document.getElementById("ketSpeakingInput");
 const ketError = document.getElementById("ketError");
 
-async function calculateKetResult(){
+export function calculateKetResult(){
 
     ketError.textContent = "";
     ketListeningInput.classList.remove("input_error_theme_notion");
     ketReadingWritingInput.classList.remove("input_error_theme_notion");
     ketSpeakingInput.classList.remove("input_error_theme_notion");
 
-    ketListeningScoresTable = {
+    const ketListeningScoresTable = {
         25: 150,
         24: 145,
         23: 140,
@@ -405,7 +404,7 @@ async function calculateKetResult(){
         0: 0
     };
     
-    ketReadingWritingScoresTable = {
+    const ketReadingWritingScoresTable = {
         60: 150,
         59: 148,
         58: 146,
@@ -469,7 +468,7 @@ async function calculateKetResult(){
         0:0
     };
     
-    ketSpeakingScoresTable = {
+    const ketSpeakingScoresTable = {
         45: 150,
         44: 148,
         43: 145,
@@ -543,14 +542,11 @@ async function calculateKetResult(){
 
     if (ketAverageScore >= 140) {
         ketGrade = "Grade A (B1)";
-    }
-    else if (ketAverageScore >= 133) {
+    } else if (ketAverageScore >= 133) {
         ketGrade = "Grade B (A2)";
-    }
-    else if (ketAverageScore >= 120) {
+    } else if (ketAverageScore >= 120) {
         ketGrade = "Grade C (A2)";
-    }
-    else {
+    } else {
         ketGrade = "A1 level";
     }
 
@@ -579,7 +575,7 @@ const petWritingInput = document.getElementById("petWritingInput");
 const petSpeakingInput = document.getElementById("petSpeakingInput");
 const petError = document.getElementById("petError");
 
-async function calculatePetResult() {
+export function calculatePetResult() {
 
     petError.textContent = "";
     petListeningInput.classList.remove("input_error_theme_notion");
@@ -587,7 +583,7 @@ async function calculatePetResult() {
     petWritingInput.classList.remove("input_error_theme_notion");
     petSpeakingInput.classList.remove("input_error_theme_notion");
 
-    petListeningScoresTable = {
+    const petListeningScoresTable = {
         25: 170,
         24: 165,
         23: 160,
@@ -616,7 +612,7 @@ async function calculatePetResult() {
         0: 0
     };
 
-    petReadingScoresTable = {
+    const petReadingScoresTable = {
         32: 170,
         31: 167,
         30: 163,
@@ -652,7 +648,7 @@ async function calculatePetResult() {
         0: 0
     };
 
-    petWritingScoresTable = {
+    const petWritingScoresTable = {
         40: 170,
         39: 168,
         38: 167,
@@ -696,7 +692,7 @@ async function calculatePetResult() {
         0: 0
     };
 
-    petSpeakingScoresTable = {
+    const petSpeakingScoresTable = {
         30: 170,
         29: 167,
         28: 163,
@@ -764,17 +760,13 @@ async function calculatePetResult() {
 
     if (petAverageScore >= 160) {
         petGrade = "Grade A (B2)";
-    }
-    else if (petAverageScore >= 153) {
+    } else if (petAverageScore >= 153) {
         petGrade = "Grade B (B1)";
-    }
-    else if (petAverageScore >= 140) {
+    } else if (petAverageScore >= 140) {
         petGrade = "Grade C (B1)";
-    }
-    else if (petAverageScore >= 120) {
+    } else if (petAverageScore >= 120) {
         petGrade = "A2 level";
-    }
-    else {
+    } else {
         petGrade = "A1 level";
     }
 
@@ -800,7 +792,6 @@ async function calculatePetResult() {
     };
 }
 
-
 //FCE SECTION
 const fceListeningInput = document.getElementById("fceListeningInput");
 const fceReadingInput = document.getElementById("fceReadingInput");
@@ -809,7 +800,7 @@ const fceWritingInput = document.getElementById("fceWritingInput");
 const fceSpeakingInput = document.getElementById("fceSpeakingInput");
 const fceError = document.getElementById("fceError");
 
-async function calculateFceResult() {
+export function calculateFceResult() {
     fceError.textContent = "";
     fceListeningInput.classList.remove("input_error_theme_notion");
     fceReadingInput.classList.remove("input_error_theme_notion");
@@ -817,7 +808,7 @@ async function calculateFceResult() {
     fceWritingInput.classList.remove("input_error_theme_notion");
     fceSpeakingInput.classList.remove("input_error_theme_notion");
 
-    fceListeningScoresTable = {
+    const fceListeningScoresTable = {
         30: 190,
         29: 187,
         28: 183,
@@ -851,7 +842,7 @@ async function calculateFceResult() {
         0: 0
     };
     
-    fceReadingScoresTable = {
+    const fceReadingScoresTable = {
         42: 190,
         41: 188,
         40: 186,
@@ -897,7 +888,7 @@ async function calculateFceResult() {
         0: 0
     };
     
-    fceUseScoresTable = {
+    const fceUseScoresTable = {
         28: 190,
         27: 188,
         26: 185,
@@ -929,7 +920,7 @@ async function calculateFceResult() {
         0: 0
     };
     
-    fceWritingScoresTable = {
+    const fceWritingScoresTable = {
         40: 190,
         39: 188,
         38: 187,
@@ -973,7 +964,7 @@ async function calculateFceResult() {
         0: 0
     };
     
-    fceSpeakingScoresTable = {
+    const fceSpeakingScoresTable = {
         60: 190,
         59: 189,
         58: 187,
@@ -1077,20 +1068,15 @@ async function calculateFceResult() {
 
     if (fceAverageScore >= 180) {
         fceGrade = "Grade A (C1)";
-    }
-    else if (fceAverageScore >= 173) {
+    } else if (fceAverageScore >= 173) {
         fceGrade = "Grade B (B2)";
-    }
-    else if (fceAverageScore >= 160) {
+    } else if (fceAverageScore >= 160) {
         fceGrade = "Grade C (B2)";
-    }
-    else if (fceAverageScore >= 140) {
+    } else if (fceAverageScore >= 140) {
         fceGrade = "B1 level";
-    }
-    else if (fceAverageScore >= 120) {
+    } else if (fceAverageScore >= 120) {
         fceGrade = "A2 level";
-    }
-    else {
+    } else {
         fceGrade = "A1 level";
     }
 
@@ -1121,7 +1107,6 @@ async function calculateFceResult() {
 }
 
 //CAE SECTION
-
 const caeListeningInput = document.getElementById("caeListeningInput");
 const caeReadingInput = document.getElementById("caeReadingInput");
 const caeUseInput = document.getElementById("caeUseInput");
@@ -1129,7 +1114,7 @@ const caeWritingInput = document.getElementById("caeWritingInput");
 const caeSpeakingInput = document.getElementById("caeSpeakingInput");
 const caeError = document.getElementById("caeError");
 
-async function calculateCaeResult() {
+export function calculateCaeResult() {
     caeError.textContent = "";
     caeListeningInput.classList.remove("input_error_theme_notion");
     caeReadingInput.classList.remove("input_error_theme_notion");
@@ -1137,7 +1122,7 @@ async function calculateCaeResult() {
     caeWritingInput.classList.remove("input_error_theme_notion");
     caeSpeakingInput.classList.remove("input_error_theme_notion");
 
-    caeListeningScoresTable = {
+    const caeListeningScoresTable = {
         30: 210,
         29: 208,
         28: 205,
@@ -1171,7 +1156,7 @@ async function calculateCaeResult() {
         0: 0
     };
     
-    caeReadingScoresTable = {
+    const caeReadingScoresTable = {
         50: 210,
         49: 209,
         48: 207,
@@ -1225,7 +1210,7 @@ async function calculateCaeResult() {
         0: 0
     };
     
-    caeUseScoresTable = {
+    const caeUseScoresTable = {
         28: 210,
         27: 208,
         26: 206,
@@ -1257,7 +1242,7 @@ async function calculateCaeResult() {
         0: 0
     };
     
-    caeWritingScoresTable = {
+    const caeWritingScoresTable = {
         40: 210,
         39: 208,
         38: 207,
@@ -1301,7 +1286,7 @@ async function calculateCaeResult() {
         0: 0
     };
     
-    caeSpeakingScoresTable = {
+    const caeSpeakingScoresTable = {
         75: 210,
         74: 209,
         73: 208,
@@ -1420,23 +1405,17 @@ async function calculateCaeResult() {
 
     if (caeAverageScore >= 200) {
         caeGrade = "Grade A (C2)";
-    }
-    else if (caeAverageScore >= 193) {
+    } else if (caeAverageScore >= 193) {
         caeGrade = "Grade B (C1)";
-    }
-    else if (caeAverageScore >= 180) {
+    } else if (caeAverageScore >= 180) {
         caeGrade = "Grade C (C1)";
-    }
-    else if (caeAverageScore >= 160) {
+    } else if (caeAverageScore >= 160) {
         caeGrade = "B2 level";
-    }
-    else if (caeAverageScore >= 140) {
+    } else if (caeAverageScore >= 140) {
         caeGrade = "B1 level";
-    }
-    else if (caeAverageScore >= 120) {
+    } else if (caeAverageScore >= 120) {
         caeGrade = "A2 level";
-    }
-    else {
+    } else {
         caeGrade = "A1 level";
     }
 
