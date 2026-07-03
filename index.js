@@ -85,9 +85,7 @@ function mergeNameAndSurname() {
 
     if (participantSurname.includes("-")) {
         formattedSurname = participantSurname;
-    }
-
-    else {
+    } else {
         formattedSurname = participantSurname.charAt(0).toUpperCase() + participantSurname.slice(1).toLowerCase();
     }
         
@@ -102,6 +100,28 @@ dropdownItems.forEach(item => {
   item.addEventListener('click', () => {
     examDateInput.value = item.textContent.trim();
   });
+});
+
+// pumpkin weekend mode
+const sessionTypeModeSwitcher = document.getElementById("switchToPumpkin");
+const certGenPageTitle = document.getElementById("certGenPageTitle");
+const examDatesLabel = document.querySelector(".exam-dates-label");
+const examDatesInput = document.querySelector(".exam-dates-input");
+
+sessionTypeModeSwitcher.addEventListener("change", function () {
+    if (sessionTypeModeSwitcher.checked) {
+        document.title = "Pumpkin Weekend Certificates";
+        certGenPageTitle.textContent = "Pumpkin Weekend Certificates🎃";
+        examDatesLabel.classList.add("disabled");
+        examDatesInput.classList.add("disabled");
+        examDateInput.value = "October 25th to November 4th";
+
+    } else {
+        document.title = "MMC Certificate Generator";
+        certGenPageTitle.textContent = "MMC Certificate Generator";
+        examDatesLabel.classList.remove("disabled");
+        examDatesInput.classList.remove("disabled");
+    }
 });
 
 const selectExamButtons = document.querySelectorAll(".js-select-exam__button");
@@ -1151,4 +1171,4 @@ async function sendDataToGoogleSheets(studentData) {
 
 document.getElementById("generateCertificate").addEventListener("click", async () => {
     await createCertificate();
-}); 
+});
